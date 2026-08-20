@@ -45,6 +45,8 @@
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; }
+canvas { background: linear-gradient(145deg, #030b16 0%, #061428 50%, #0b2740 100%); }
+canvas.webgl-lost { background: linear-gradient(145deg, #061428 0%, #0b2740 50%, #030b16 100%); border: 1px solid rgba(53, 208, 240, 0.12); }
 html { scroll-behavior: smooth; }
 
 @media (prefers-reduced-motion: reduce) {

@@ -27,6 +27,35 @@
   const isSmallScreen = window.innerWidth < 760;
   const isLowPower = isSmallScreen || isCoarsePointer || (navigator.hardwareConcurrency && navigator.hardwareConcurrency <= 4);
 
+  /* WebGL support detection for mobile */
+  let webglAvailable = true;
+  (function checkWebGL() {
+    if (typeof THREE === "undefined") return;
+    try {
+      const testCanvas = document.createElement("canvas");
+      const gl = testCanvas.getContext("webgl") || testCanvas.getContext("experimental-webgl");
+      webglAvailable = !!gl;
+      testCanvas.remove();
+    } catch (e) {
+      webglAvailable = false;
+    }
+  })();
+
+  /* WebGL context loss protection for mobile */
+  (function protectCanvasContext() {
+    const allCanvases = document.querySelectorAll("canvas");
+    allCanvases.forEach((cv) => {
+      cv.addEventListener("webglcontextlost", (e) => {
+        e.preventDefault();
+        cv.classList.add("webgl-lost");
+        cv.style.background = "linear-gradient(145deg, #061428 0%, #0b2740 50%, #030b16 100%)";
+      }, false);
+      cv.addEventListener("webglcontextrestored", () => {
+        cv.classList.remove("webgl-lost");
+      }, false);
+    });
+  })();
+
   /* -------------------------------------------------------
      1. LOADER
   ------------------------------------------------------- */
@@ -598,7 +627,7 @@
     })();
   }
 
-  if(!prefersReducedMotion&&typeof THREE!=="undefined"){initHeroScene();}else if(canvas){canvas.style.display="none";}
+  if(!prefersReducedMotion&&typeof THREE!=="undefined"&&webglAvailable){initHeroScene();}else if(canvas){canvas.style.display="none";}
 
   /* -------------------------------------------------------
      15c. PRINTER 3D SCENE — Printing section
@@ -659,7 +688,7 @@
       renderer.render(scene,camera);
     })();
   }
-  if(!prefersReducedMotion&&typeof THREE!=="undefined"){initPrinterScene();}
+  if(!prefersReducedMotion&&typeof THREE!=="undefined"&&webglAvailable){initPrinterScene();}
 
   /* -------------------------------------------------------
      16. CINEMATIC SCENE SYSTEM — Scroll-driven 3D service animations
@@ -965,7 +994,7 @@
     return { init };
   })();
 
-  if (!prefersReducedMotion && typeof THREE !== "undefined") {
+  if (!prefersReducedMotion && typeof THREE !== "undefined" && webglAvailable) {
     setTimeout(() => CinScenes.init(), 100);
   }
 
@@ -1498,7 +1527,7 @@
      No new audio. Respects reduced-motion + low-power tiers.
   ================================================================ */
 
-  if (!prefersReducedMotion && typeof THREE !== "undefined") {
+  if (!prefersReducedMotion && typeof THREE !== "undefined" && webglAvailable) {
 
     /* ---------------- Shared cinematic helpers ---------------- */
     const CT = (() => {
