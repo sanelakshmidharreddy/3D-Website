@@ -57,6 +57,53 @@
   })();
 
   /* -------------------------------------------------------
+     WEBGL CONTEXT BUDGET
+     Mobile browsers (esp. mid/low-end Android Chrome/WebView)
+     allow far fewer *simultaneously live* WebGL contexts than
+     desktop GPUs — commonly ~8-16, sometimes less. This page
+     creates up to 14 separate WebGLRenderer instances (hero,
+     printer, how, cta, transitions, + 9 cinema scenes). Created
+     all at once, that can exceed a phone's cap: the browser then
+     either fails to create the context or silently evicts an
+     older one — canvas stays in the DOM but draws nothing, which
+     is exactly the "white/blank rectangle" symptom on real
+     devices even though everything looks fine on desktop.
+     safeCreateRenderer() centralizes creation (capped + logged),
+     and the cinema scenes below now build lazily on scroll-in and
+     fully dispose on scroll-out, so only a handful are ever alive
+     at once instead of all 9.
+  ------------------------------------------------------- */
+  let __liveGLContexts = 0;
+  const MAX_LIVE_GL_CONTEXTS = isLowPower ? 6 : 16;
+  function safeCreateRenderer(canvas, opts) {
+    if (!canvas || typeof THREE === "undefined" || !webglAvailable) return null;
+    if (__liveGLContexts >= MAX_LIVE_GL_CONTEXTS) {
+      console.warn("[WebGL] renderer skipped (context cap " + MAX_LIVE_GL_CONTEXTS + " reached):", canvas.id || canvas.className);
+      return null;
+    }
+    let r;
+    try {
+      r = new THREE.WebGLRenderer(Object.assign({ canvas: canvas }, opts));
+    } catch (err) {
+      console.warn("[WebGL] renderer creation failed:", canvas.id || canvas.className, err);
+      return null;
+    }
+    __liveGLContexts++;
+    canvas.addEventListener("webglcontextlost", function () { __liveGLContexts = Math.max(0, __liveGLContexts - 1); }, false);
+    return r;
+  }
+  function disposeRenderer(r) {
+    if (!r) return;
+    try {
+      const gl = r.getContext && r.getContext();
+      r.dispose();
+      const ext = gl && gl.getExtension("WEBGL_lose_context");
+      if (ext) ext.loseContext();
+    } catch (e) { /* noop */ }
+    __liveGLContexts = Math.max(0, __liveGLContexts - 1);
+  }
+
+  /* -------------------------------------------------------
      1. LOADER
   ------------------------------------------------------- */
   window.addEventListener("load", () => {
@@ -529,15 +576,13 @@
 
   function initHeroScene() {
     if (!canvas || typeof THREE === "undefined") return;
-    let renderer;
-    try {
-      renderer = new THREE.WebGLRenderer({canvas,alpha:true,antielias:!isLowPower});
-      renderer.setPixelRatio(Math.min(window.devicePixelRatio,isLowPower?1.5:2));
-      renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=1.3;
-    } catch (e) {
+    const renderer = safeCreateRenderer(canvas, {alpha:true,antialias:!isLowPower});
+    if (!renderer) {
       canvas.style.background = "linear-gradient(145deg, #030b16 0%, #061428 50%, #0b2740 100%)";
       return;
     }
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio,isLowPower?1.5:2));
+    renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=isLowPower?1.05:1.3;
     const scene=new THREE.Scene();
     const camera=new THREE.PerspectiveCamera(42,1,0.1,120);
     camera.position.set(0,0,14);
@@ -636,15 +681,13 @@
     const pc=document.getElementById("printerCanvas");
     if(!pc||typeof THREE==="undefined")return;
     const parent=pc.parentElement;
-    let renderer;
-    try {
-      renderer=new THREE.WebGLRenderer({canvas:pc,alpha:true,antielias:!isLowPower});
-      renderer.setPixelRatio(Math.min(window.devicePixelRatio,isLowPower?1.5:2));
-      renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=1.2;
-    } catch(e) {
+    const renderer = safeCreateRenderer(pc, {alpha:true,antialias:!isLowPower});
+    if (!renderer) {
       pc.style.background="linear-gradient(145deg,#030b16 0%,#061428 50%,#0b2740 100%)";
       return;
     }
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio,isLowPower?1.5:2));
+    renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=isLowPower?1.0:1.2;
     const scene=new THREE.Scene();
     const camera=new THREE.PerspectiveCamera(35,1,0.1,50);
     camera.position.set(0,2,7);camera.lookAt(0,0,0);
@@ -705,17 +748,16 @@
 
     function mkScene(canvas) {
       let r, s, c;
-      try {
-        r = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: !isLowPower });
-        r.setPixelRatio(Math.min(window.devicePixelRatio, isLowPower ? 1.2 : 1.8));
-        r.toneMapping = THREE.ACESFilmicToneMapping; r.toneMappingExposure = 1.2;
-      } catch (e) {
+      r = safeCreateRenderer(canvas, { alpha: true, antialias: !isLowPower });
+      if (!r) {
         canvas.style.background = "linear-gradient(145deg, #061428 0%, #0b2740 50%, #030b16 100%)";
         canvas.style.border = "1px solid rgba(53,208,240,0.15)";
         canvas.style.backdropFilter = "blur(4px)";
         canvas.classList.add("webgl-fallback");
         return { r: null, s: null, c: null };
       }
+      r.setPixelRatio(Math.min(window.devicePixelRatio, isLowPower ? 1.2 : 1.8));
+      r.toneMapping = THREE.ACESFilmicToneMapping; r.toneMappingExposure = isLowPower ? 1.0 : 1.2;
       s = new THREE.Scene();
       c = new THREE.PerspectiveCamera(34, 1, 0.1, 80);
       c.position.set(0, 1.5, 8); c.lookAt(0, 0, 0);
@@ -956,22 +998,77 @@
       };
     };
 
+    /* Build a scene's WebGL context only once its section is near the
+       viewport, and fully dispose it once scrolled well past — keeps
+       simultaneously-live contexts small (usually 1-3) instead of all
+       9 at once, which is what was exceeding mobile browsers' context
+       limit and leaving later sections permanently blank on real
+       devices even though desktop (much higher context limit) looked
+       fine. If a build fails (cap reached / no WebGL), the existing
+       CSS gradient fallback on the canvas stays visible — never a
+       raw white/blank box. */
+    function buildEntry(canvas, key, section) {
+      const { r, s, c } = mkScene(canvas);
+      if (!r) return null;
+      const built = sceneFns[key](s, c);
+      fitRenderer(r, c, canvas);
+      const entry = { r, s, c, built, canvas, section, live: true };
+      active.push(entry);
+      activeSet.add(entry);
+      return entry;
+    }
+
+    function disposeEntry(entry) {
+      if (!entry || !entry.live) return;
+      entry.live = false;
+      const idx = active.indexOf(entry);
+      if (idx !== -1) active.splice(idx, 1);
+      activeSet.delete(entry);
+      try {
+        entry.s.traverse(obj => {
+          if (obj.geometry) obj.geometry.dispose();
+          if (obj.material) {
+            const mats = Array.isArray(obj.material) ? obj.material : [obj.material];
+            mats.forEach(m => { if (m.map) m.map.dispose(); m.dispose(); });
+          }
+        });
+      } catch (e) { /* noop */ }
+      disposeRenderer(entry.r);
+      canvas_reset_fallback(entry.canvas);
+    }
+
+    function canvas_reset_fallback(canvas) {
+      canvas.style.background = "linear-gradient(145deg, #061428 0%, #0b2740 50%, #030b16 100%)";
+    }
+
     function init() {
       document.querySelectorAll(".cinema-canvas").forEach(canvas => {
         const key = canvas.dataset.scene;
         if (!key || !sceneFns[key]) return;
-        const { r, s, c } = mkScene(canvas);
         const section = canvas.closest(".cinema");
-        const built = r ? sceneFns[key](s, c) : { _p: 0, update: function() {} };
-        let vis = false;
-        const obs = new IntersectionObserver(entries => { vis = entries[0].isIntersecting; }, { threshold: 0.05 });
+        if (!section) return;
+        let entry = null;
+        let resizeObs = null;
+
+        const obs = new IntersectionObserver(entries => {
+          const hit = entries[0];
+          if (hit.isIntersecting) {
+            if (!entry) {
+              entry = buildEntry(canvas, key, section);
+              if (entry && !resizeObs) {
+                resizeObs = new ResizeObserver(() => fitRenderer(entry.r, entry.c, canvas));
+                resizeObs.observe(canvas.parentElement);
+              }
+            }
+          } else if (entry) {
+            if (resizeObs) { resizeObs.disconnect(); resizeObs = null; }
+            disposeEntry(entry);
+            entry = null;
+          }
+        }, { threshold: 0.05, rootMargin: "35% 0px 35% 0px" });
         obs.observe(section);
-        const entry = { r, s, c, built, canvas, section, vis: () => vis };
-        active.push(entry);
-        const ro2 = new ResizeObserver(() => fitRenderer(r, c, canvas));
-        ro2.observe(canvas.parentElement);
       });
-      if (active.length > 0) tick(performance.now());
+      requestAnimationFrame(tick);
     }
 
     let lastT = 0;
@@ -979,9 +1076,10 @@
       requestAnimationFrame(tick);
       const dt = (now - lastT) / 1000; lastT = now;
       if (dt > 0.2) return;
-      active.forEach(({ r, s, c, built, canvas, section, vis }) => {
-        if (!vis() || !r) return;
+      active.forEach(({ r, s, c, built, section }) => {
         const rect = section.getBoundingClientRect();
+        const inView = rect.bottom > 0 && rect.top < window.innerHeight;
+        if (!inView) return;
         const raw = Math.max(0, Math.min(1, 1 - rect.top / window.innerHeight));
         /* cinematic damping — ease progress so objects never jump */
         if (!built._p) built._p = raw;
@@ -1534,16 +1632,14 @@
       const el = document.getElementById("transCanvas");
       if (!el) return null;
 
-      let renderer;
-      try {
-        renderer = new THREE.WebGLRenderer({ canvas: el, alpha: true, antialias: !isLowPower });
-        renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, isLowPower ? 1.5 : 2));
-        renderer.toneMapping = THREE.ACESFilmicToneMapping;
-        renderer.toneMappingExposure = 1.25;
-      } catch (e) {
+      const renderer = safeCreateRenderer(el, { alpha: true, antialias: !isLowPower });
+      if (!renderer) {
         el.style.background = "linear-gradient(145deg, #030b16 0%, #061428 50%, #0b2740 100%)";
         return null;
       }
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, isLowPower ? 1.5 : 2));
+      renderer.toneMapping = THREE.ACESFilmicToneMapping;
+      renderer.toneMappingExposure = isLowPower ? 1.0 : 1.25;
       const scene = new THREE.Scene();
       const camera = new THREE.PerspectiveCamera(50, 1, 0.1, 160);
       camera.position.set(0, 0, 10);
@@ -2301,16 +2397,14 @@
       if (!cv || typeof THREE === "undefined") return;
       const howSec = document.querySelector(".how");
       if (!howSec) return;
-      let renderer;
-      try {
-        renderer = new THREE.WebGLRenderer({ canvas: cv, alpha: true, antialias: !isLowPower });
-        renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, isLowPower ? 1.5 : 2));
-        renderer.toneMapping = THREE.ACESFilmicToneMapping;
-        renderer.toneMappingExposure = 1.15;
-      } catch (e) {
+      const renderer = safeCreateRenderer(cv, { alpha: true, antialias: !isLowPower });
+      if (!renderer) {
         cv.style.background = "linear-gradient(145deg, #030b16 0%, #061428 50%, #0b2740 100%)";
         return;
       }
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, isLowPower ? 1.5 : 2));
+      renderer.toneMapping = THREE.ACESFilmicToneMapping;
+      renderer.toneMappingExposure = isLowPower ? 1.0 : 1.15;
       const scene = new THREE.Scene();
       const camera = new THREE.PerspectiveCamera(45, 1, 0.1, 60);
       camera.position.set(0, 4.4, 9.5);
@@ -2436,16 +2530,14 @@
       const ctaSec = document.querySelector(".final-cta");
       if (!ctaSec) return;
       const revealEl = ctaSec.querySelector(".cta-brand-reveal");
-      let renderer;
-      try {
-        renderer = new THREE.WebGLRenderer({ canvas: cv, alpha: true, antielias: !isLowPower });
-        renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, isLowPower ? 1.5 : 2));
-        renderer.toneMapping = THREE.ACESFilmicToneMapping;
-        renderer.toneMappingExposure = 1.2;
-      } catch (e) {
+      const renderer = safeCreateRenderer(cv, { alpha: true, antialias: !isLowPower });
+      if (!renderer) {
         cv.style.background = "linear-gradient(145deg, #030b16 0%, #061428 50%, #0b2740 100%)";
         return;
       }
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, isLowPower ? 1.5 : 2));
+      renderer.toneMapping = THREE.ACESFilmicToneMapping;
+      renderer.toneMappingExposure = isLowPower ? 1.0 : 1.2;
       const scene = new THREE.Scene();
       const camera = new THREE.PerspectiveCamera(42, 1, 0.1, 80);
       camera.position.set(0, 0.6, 9.5);
