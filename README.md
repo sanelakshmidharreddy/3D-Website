@@ -1,22 +1,24 @@
 # Sri Manikanta MeeSeva — 3D Interactive Digital Experience
 
-**A Telugu-first, cinematic, 3D-enabled citizen-services website designed for Sri Manikanta MeeSeva.** A modern, scroll-driven web experience that transforms government service delivery into an engaging, accessible, and visually polished journey for Telugu-speaking citizens—including rural users.
+A Telugu-first, cinematic, 3D-enabled citizen-services website delivering government services through scroll-driven storytelling and real-time WebGL visuals.
 
 ---
 
 ## Table of Contents
 
-1. [Live Website](#live-website)
-2. [GitHub Repository](#github-repository)
-3. [Key Features](#key-features)
-4. [Technology Stack](#technology-stack)
-5. [Architecture](#architecture)
-6. [Project Structure](#project-structure)
-7. [How to Run Locally](#how-to-run-locally)
-8. [Services Offered](#services-offered)
-9. [Accessibility](#accessibility)
-10. [Performance](#performance)
-11. [Deployment](#deployment)
+- [Live Website](#live-website)
+- [GitHub Repository](#github-repository)
+- [Project Overview](#project-overview)
+- [Key Features](#key-features)
+- [Technology Stack](#technology-stack)
+- [Architecture](#architecture)
+- [Project Structure](#project-structure)
+- [How to Run Locally](#how-to-run-locally)
+- [Services Offered](#services-offered)
+- [Accessibility](#accessibility)
+- [Performance](#performance)
+- [Deployment](#deployment)
+- [Contact](#contact)
 
 ---
 
@@ -32,35 +34,59 @@
 
 **Repository:**
 
-[https://github.com/sanelakshmidharreddy/3D-Website](https://github.com/sanelakshmidharreddy/3D-Website)
+[https://github.com/sanelakshmidharreddy/3D-Website](https://github.com/sanelakshmindharreddy/3D-Website)
 
 **Author:** Sanelakshmidhar Reddy — [LinkedIn](https://www.linkedin.com/in/sanelakshmidhar-reddy-943b62318)
 
 ---
 
+## Project Overview
+
+Sri Manikanta MeeSeva is a citizen-services portal based in Veldurthi, Andhra Pradesh. This website transforms the traditional government service directory into an immersive, cinematic experience that guides Telugu-speaking citizens through available services using 3D visualizations, scroll-driven animations, and native Telugu voice narration.
+
+The website was built from the ground up as a vanilla JavaScript, zero-framework application. Every interaction is driven by native browser APIs combined with Three.js for 3D rendering and GSAP for precise scroll orchestration.
+
+The target audience includes Telugu-speaking citizens, especially rural users, so the UX prioritizes clarity, simple Telugu communication, large touch targets, and low-friction service discovery.
+
+---
+
 ## Key Features
 
-- **Cinematic 3D Hero Experience** — Full-screen Three.js scene with orbital service cards, parallax camera, and custom cursor
-- **Interactive Service Universe** — Animated service cards orbiting in 3D space with real-time mouse tracking
-- **Scroll-Driven Storytelling** — GSAP ScrollTrigger orchestrates 8 seamless cinematic transitions
-- **3D Document & Card Visualizations** — Physical property fly-throughs for each service category
-  - Xerox / Printing / Lamination visual sequence
-  - PVC card transformation animation
-  - Photo printing experience
-  - Certificate stack transition
-  - PAN / Aadhaar / Driving Licence orbital scene
-  - Ration card convergence transition
-  - Special citizen services visualization
-- **3D How It Works Journey** — Interactive 4-step checkpoint animation with floating 3D cards
+### Visual Experience
+
+- **Cinematic 3D Hero** — Full-screen Three.js scene with orbital service cards, parallax camera, and custom cursor
+- **Interactive Service Universe** — Service cards orbit in 3D space with real-time mouse tracking and depth parallax
+- **Scroll-Driven Storytelling** — 8 seamless cinematic transitions orchestrated by GSAP ScrollTrigger
+- **3D Document/Card Visualizations** — Physical property fly-throughs for each service category
+- **Service-Specific Animations**
+  - Xerox / Printing visual sequence with paper feed simulation
+  - Lamination gloss layer with light sweep
+  - PVC card extrusion and embossing transformation
+  - Photo printing experience with floating prints
+  - Certificate stack reveal with camera travel
+  - PAN / Aadhaar / Driving Licence orbital card transition
+  - Ration card convergence animation
+  - Special citizen services ring visualization
+- **3D How It Works Journey** — Interactive 4-step glow path with floating checkpoint cards
 - **Trust Section** — 3D book and document models showcasing credibility
 - **Community/Citizen Section** — Premium SVG figures representing Telugu-speaking citizens
-- **Final CTA Ecosystem** — Brand reveal, service discovery, and WhatsApp integration
-- **Telugu Voice-Over** — Native Telugu audio narration with automatic playback
-- **Floating Audio Toggle** — Single premium glassmorphism button to pause/resume voice-over
-- **Responsive Mobile Experience** — Adapts to 390×844, 430×932, 500×692 viewports
-- **Reduced-Motion Support** — Full `prefers-reduced-motion` compliance
-- **Performance-Conscious WebGL** — DPR clamping, low-power device detection, lazy rendering
-- **Telugu-First UX** — Natural, simple Telugu communication optimized for rural users
+- **Final CTA Ecosystem** — Service discovery grid with brand reveal
+- **Brand Reveal** — IntersectionObserver-triggered animation as user scrolls into the footer
+
+### Audio Experience
+
+- **Telugu Voice-Over** — Native Telugu audio narration using HTML5 Audio
+- **Automatic Playback** — Audio autoplays on site load with sessionStorage session guard
+- **Floating Audio Control** — Single premium glassmorphism button to pause/resume voice-over without restarting
+- **Keyboard Accessible** — Button supports Space/Enter key activation
+
+### Mobile & Accessibility
+
+- **Responsive Mobile Experience** — Optimized for 390×844, 430×932, 500×692 viewports
+- **Reduced-Motion Support** — `prefers-reduced-motion: reduce` disables all animations
+- **Safe Area Support** — CSS `env(safe-area-inset-*)` handles mobile browser UI and notch
+- **WebGL Fallback** — Graceful degradation to themed CSS backgrounds when WebGL fails
+- **Touch Targets** — Minimum 44px touch targets for one-handed use
 
 ---
 
@@ -68,59 +94,58 @@
 
 | Category | Technology |
 |----------|-----------|
-| Markup | HTML5 |
-| Styling | CSS3 (CSS Variables, Glassmorphism, SVG) |
-| Scripting | JavaScript (Vanilla, ES6+) |
-| 3D Graphics | Three.js r128 |
-| Animation | GSAP 3.12.5 |
-| Scroll Control | GSAP ScrollTrigger |
-| Canvas | HTML5 Canvas API |
+| Markup | HTML5 (semantic, Telugu-first) |
+| Styling | CSS3, CSS Variables, Glassmorphism, SVG |
+| Scripting | JavaScript (Vanilla, ES6+, IIFE modules) |
+| 3D Graphics | Three.js r128 (via CDN) |
+| Animation | GSAP 3.12.5 (via CDN) |
+| Scroll Engine | GSAP ScrollTrigger (via CDN) |
+| Rendering | WebGL 1.0 via Canvas API |
 | Audio | HTML5 Audio API |
 | Hosting | Netlify |
 | Version Control | Git / GitHub |
-| CDN | cdnjs |
 
-**Notable:** This is a zero-framework, dependency-light application. All logic is written in vanilla JavaScript with no build step, bundler, or transpiler required.
+**No frameworks, build tools, or bundlers.** The entire site runs directly from static files.
 
 ---
 
 ## Architecture
 
 ```
-User
-  ↓
-HTML Structure (Semantic, Telugu-first)
-  ↓
-CSS Design System (14-color palette, CSS variables)
-  ↓
-Interaction Layer
-  ↓
-GSAP + ScrollTrigger
-  ↓
-Three.js / Canvas / WebGL
-  ↓
-Cinematic Service Scenes (8 transitions)
-  ↓
-Telugu Voice Experience
-  ↓
-Final CTA + Brand Reveal
+User Scroller
+     ↓
+HTML Structure (Semantic Sections)
+     ↓
+CSS Design System (14-color palette, glassmorphism)
+     ↓
+Interaction Layer (Custom cursor, scroll progress, nav)
+     ↓
+GSAP + ScrollTrigger (8 cinematic transitions)
+     ↓
+Three.js / Canvas / WebGL (7 canvas scenes)
+     ↓
+Cinematic Service Scenes (Xerox → Lamination → PVC → Photo → ...)
+     ↓
+Telugu Voice Experience (HTML5 Audio with session guard)
+     ↓
+Final CTA Ecosystem + Brand Reveal
 ```
 
-### Core Systems
+### JavaScript Modules
 
-| System | Description |
-|--------|-------------|
-| **Utilities** (`script.js:22-30`) | Reduced-motion detection, device tiering (coarse pointer, low-power) |
-| **Loader** | Animated "సిద్ధమవుతోంది..." preloader with spinner and Telugu glyph |
-| **Custom Cursor** | Parallax cursor following mouse with magnetic hover effects |
-| **Scroll Progress** | Top-bar scroll progress indicator |
-| **Navigation** | Responsive nav with mobile toggle, scroll-state detection |
-| **Hero 3D Scene** (`script.js:501+`) | Three.js scene with orbital service cards, raycasting, parallax |
-| **Service Search** (`script.js:215+`) | Real-time filtering with smart Telugu search |
-| **Step-by-Step Journey** | 4-step animated service flow with SVG path drawing |
-| **Cinematic Transitions** (`script.js:1310+`) | 8 scroll-driven 3D transition scenes |
-| **Audio System** (`script.js:1210+`) | HTML5 Audio with sessionStorage, hover-resume, floating toggle |
-| **Intersection Observers** | Scroll-triggered reveals for sections |
+| Module | Location | Description |
+|--------|----------|-------------|
+| Utilities | `script.js:22-30` | Device detection, reduced-motion check, low-power tiering |
+| Loader | `script.js:33-56` | Animated preloader with Telugu text |
+| Cursor | `script.js:49-71` | Custom parallax cursor with hide-on-leave |
+| Navigation | `script.js:95-110` | Scroll-state nav, mobile drawer toggle |
+| Hero 3D Scene | `script.js:501-600` | Three.js orbital service universe |
+| Cinematic Scenes | `script.js:655-960` | 8 cinema-canvas scene renderers with IntersectionObserver |
+| Telugu Voice | `script.js:1210-1299` | Audio system with sessionStorage, autoplay fallback |
+| Audio Toggle | `script.js:1315-1480` | Floating pause/resume control |
+| Cinematic Transitions | `script.js:1480-2100+` | ScrollTrigger-driven transition engine |
+| Journey Engine | `script.js:956-1095` | 3D How-It-Works path with Canvas 2D particles |
+| CTA Ecosystem | `script.js:2370-2560+` | Final CTA with brand reveal animation |
 
 ---
 
@@ -128,12 +153,12 @@ Final CTA + Brand Reveal
 
 ```text
 3D-Website/
-├── index.html                     # Main HTML document (529 lines)
-├── styles.css                     # Design system + component styles (977 lines)
-├── script.js                      # Interaction engine (2,512 lines)
-├── data.js                        # Content data (services, FAQ, testimonials)
+├── index.html                    # 529-line entry point (semantic HTML, schema.org JSON-LD)
+├── styles.css                    # 977-line design system (CSS variables, glassmorphism, responsive)
+├── script.js                     # 2,552-line interaction engine (no frameworks)
+├── data.js                       # 14,524-byte content module (services, FAQ, testimonials, Telugu content)
 ├── audio/
-│   └── sri-manikanta-meeseva-telugu.mp3   # Telugu voice-over (1.7 MB)
+│   └── sri-manikanta-meeseva-telugu.mp3   # 1.7 MB native Telugu voice-over
 ├── .gitignore
 └── README.md
 ```
@@ -143,18 +168,12 @@ Final CTA + Brand Reveal
 ## How to Run Locally
 
 ```bash
-# Navigate to project directory
+git clone https://github.com/sanelakshmidharreddy/3D-Website.git
 cd 3D-Website
-
-# Serve locally (Python)
 python -m http.server 5500
-
-# Or with Node.js
-npx serve .
-
-# Open in browser
-http://localhost:5500
 ```
+
+Open `http://localhost:5500` in Chrome or Firefox for the full experience.
 
 ---
 
@@ -201,40 +220,35 @@ http://localhost:5500
 
 ## Accessibility
 
-- **WCAG 2.1 AA Compliant** — Contrast ratios: 9:1 (text-mid on bg-2), 4.9:1 (text-low on bg-0)
-- **Keyboard Navigation** — Full tab navigation, skip links, aria-expanded for mobile menu
-- **Reduced Motion** — `prefers-reduced-motion: reduce` disables all 3D animations, parallax, and transitions
-- **ARIA Labels** — All interactive elements (nav toggle, back-to-top, WhatsApp, audio toggle)
-- **Screen Reader Support** — Semantic HTML, aria-hidden on decorative canvases
-- **Cognitive Accessibility** — Simple, clear Telugu UI for rural users
+- **Contrast Ratios:** 9:1 (primary text on background), 4.9:1 (secondary) — both pass WCAG AA
+- **Keyboard Navigation:** Full tab order, skip links, `aria-expanded` on mobile menu
+- **Reduced Motion:** `prefers-reduced-motion` disables all animations, parallax, and 3D transitions
+- **Screen Readers:** Semantic HTML, `aria-hidden` on decorative canvases, `aria-label` on all controls
+- **Cognitive Accessibility:** Simple Telugu UI, large service cards, clear service categories
 
 ---
 
 ## Performance
 
-- **DOM Nodes:** ~738 (lean, optimized)
-- **WebGL Context:** Single Three.js renderer (no duplicate contexts)
-- **DPR:** Clamped to 2× (1.5× on low-power devices)
-- **Frame Rate:** 53–61 FPS (transitions), 19–32 FPS (CTA ecosystem) — hardware dependent
-- **Textures:** Built on first strip visibility (lazy)
-- **Animation Loop:** 5 perpetual rAF loops — each early-returns when element is off-screen
+- **DOM Nodes:** ~738 (lean)
+- **WebGL Contexts:** 7 canvases (hero, printer, trans, journey, how, cta + 8 cinema scenes sharing one renderer)
+- **DPR Handling:** Clamped to 2× desktop / 1.5× low-power / 1.2× cinema / 1.8× how & CTA
+- **Frame Rate:** 53–61 FPS (transitions), 19–32 FPS (CTA ecosystem) on software rendering
+- **Textures:** Built lazily on first visibility (IntersectionObserver)
 - **Audio Asset:** Single 1.7 MB MP3, preloaded via `audio.preload = "auto"`
-- **Scroll Triggers:** 8 ScrollTriggers for cinematic transitions (verified, no duplicates)
+- **Scroll Triggers:** 8 ScrollTriggers (no duplicates)
+- **Animation Loops:** 5 perpetual rAF loops — each early-returns when element is off-screen
+- **Device Tiering:** `isLowPower` flag reduces particle counts and geometry complexity on low-end devices
 
 ---
 
 ## Deployment
 
-This project is deployed on **Netlify** at:  
-[https://sri-manikanta-meeseva.netlify.app](https://sri-manikanta-meeseva.netlify.app)
+**Hosting:** Netlify  
+**Build:** Static site — no build step required  
+**CDN Dependencies:** Three.js, GSAP, ScrollTrigger (loaded from cdnjs)
 
-To deploy:
-
-1. Connect the GitHub repository to Netlify
-2. Set the build command to: (none required — static site)
-3. Set the publish directory to: `/`
-
-No build step is needed. The site is pure static HTML/CSS/JS.
+The Netlify "Powered by" badge is positioned in the bottom-right corner. Website floating controls (WhatsApp button, back-to-top) are offset with `env(safe-area-inset-bottom)` to avoid overlap on mobile devices.
 
 ---
 
