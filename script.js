@@ -500,9 +500,15 @@
 
   function initHeroScene() {
     if (!canvas || typeof THREE === "undefined") return;
-    const renderer = new THREE.WebGLRenderer({canvas,alpha:true,antialias:!isLowPower});
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio,isLowPower?1.5:2));
-    renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=1.3;
+    let renderer;
+    try {
+      renderer = new THREE.WebGLRenderer({canvas,alpha:true,antielias:!isLowPower});
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio,isLowPower?1.5:2));
+      renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=1.3;
+    } catch (e) {
+      canvas.style.background = "linear-gradient(145deg, #030b16 0%, #061428 50%, #0b2740 100%)";
+      return;
+    }
     const scene=new THREE.Scene();
     const camera=new THREE.PerspectiveCamera(42,1,0.1,120);
     camera.position.set(0,0,14);
@@ -601,9 +607,15 @@
     const pc=document.getElementById("printerCanvas");
     if(!pc||typeof THREE==="undefined")return;
     const parent=pc.parentElement;
-    const renderer=new THREE.WebGLRenderer({canvas:pc,alpha:true,antialias:!isLowPower});
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio,isLowPower?1.5:2));
-    renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=1.2;
+    let renderer;
+    try {
+      renderer=new THREE.WebGLRenderer({canvas:pc,alpha:true,antielias:!isLowPower});
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio,isLowPower?1.5:2));
+      renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=1.2;
+    } catch(e) {
+      pc.style.background="linear-gradient(145deg,#030b16 0%,#061428 50%,#0b2740 100%)";
+      return;
+    }
     const scene=new THREE.Scene();
     const camera=new THREE.PerspectiveCamera(35,1,0.1,50);
     camera.position.set(0,2,7);camera.lookAt(0,0,0);
@@ -663,11 +675,20 @@
     });
 
     function mkScene(canvas) {
-      const r = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: !isLowPower });
-      r.setPixelRatio(Math.min(window.devicePixelRatio, isLowPower ? 1.2 : 1.8));
-      r.toneMapping = THREE.ACESFilmicToneMapping; r.toneMappingExposure = 1.2;
-      const s = new THREE.Scene();
-      const c = new THREE.PerspectiveCamera(34, 1, 0.1, 80);
+      let r, s, c;
+      try {
+        r = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: !isLowPower });
+        r.setPixelRatio(Math.min(window.devicePixelRatio, isLowPower ? 1.2 : 1.8));
+        r.toneMapping = THREE.ACESFilmicToneMapping; r.toneMappingExposure = 1.2;
+      } catch (e) {
+        canvas.style.background = "linear-gradient(145deg, #061428 0%, #0b2740 50%, #030b16 100%)";
+        canvas.style.border = "1px solid rgba(53,208,240,0.15)";
+        canvas.style.backdropFilter = "blur(4px)";
+        canvas.classList.add("webgl-fallback");
+        return { r: null, s: null, c: null };
+      }
+      s = new THREE.Scene();
+      c = new THREE.PerspectiveCamera(34, 1, 0.1, 80);
       c.position.set(0, 1.5, 8); c.lookAt(0, 0, 0);
       s.add(new THREE.AmbientLight(0x3a5a78, 0.65));
       const k = new THREE.PointLight(0x35d0f0, 3.2, 28); k.position.set(4, 4, 6); s.add(k);
@@ -676,6 +697,7 @@
       return { r, s, c };
     }
     function fitRenderer(r, c, el) {
+      if (!r || !c) return;
       const w = el.clientWidth, h = el.clientHeight;
       r.setSize(w, h, false); c.aspect = w / h; c.updateProjectionMatrix();
     }
@@ -911,7 +933,7 @@
         if (!key || !sceneFns[key]) return;
         const { r, s, c } = mkScene(canvas);
         const section = canvas.closest(".cinema");
-        const built = sceneFns[key](s, c);
+        const built = r ? sceneFns[key](s, c) : { _p: 0, update: function() {} };
         let vis = false;
         const obs = new IntersectionObserver(entries => { vis = entries[0].isIntersecting; }, { threshold: 0.05 });
         obs.observe(section);
@@ -929,7 +951,7 @@
       const dt = (now - lastT) / 1000; lastT = now;
       if (dt > 0.2) return;
       active.forEach(({ r, s, c, built, canvas, section, vis }) => {
-        if (!vis()) return;
+        if (!vis() || !r) return;
         const rect = section.getBoundingClientRect();
         const raw = Math.max(0, Math.min(1, 1 - rect.top / window.innerHeight));
         /* cinematic damping — ease progress so objects never jump */
@@ -1350,8 +1372,8 @@
         "  transform: scale(0.95) translateZ(0);",
         "}",
         "@media (max-width: 600px) {",
-        "  .smkv-audio-toggle { width: 44px; height: 44px; bottom: 1.25rem; right: 1.25rem; }",
-        "}",
+         "  .smkv-audio-toggle { width: 44px; height: 44px; top: calc(4rem + env(safe-area-inset-top, 0px) + 12px); left: 16px; bottom: auto; right: auto; }",
+         "}",
         ".smkv-audio-icon {",
         "  width: 20px;",
         "  height: 20px;",
@@ -1483,10 +1505,16 @@
       const el = document.getElementById("transCanvas");
       if (!el) return null;
 
-      const renderer = new THREE.WebGLRenderer({ canvas: el, alpha: true, antialias: !isLowPower });
-      renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, isLowPower ? 1.5 : 2));
-      renderer.toneMapping = THREE.ACESFilmicToneMapping;
-      renderer.toneMappingExposure = 1.25;
+      let renderer;
+      try {
+        renderer = new THREE.WebGLRenderer({ canvas: el, alpha: true, antialias: !isLowPower });
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, isLowPower ? 1.5 : 2));
+        renderer.toneMapping = THREE.ACESFilmicToneMapping;
+        renderer.toneMappingExposure = 1.25;
+      } catch (e) {
+        el.style.background = "linear-gradient(145deg, #030b16 0%, #061428 50%, #0b2740 100%)";
+        return null;
+      }
       const scene = new THREE.Scene();
       const camera = new THREE.PerspectiveCamera(50, 1, 0.1, 160);
       camera.position.set(0, 0, 10);
@@ -2244,10 +2272,16 @@
       if (!cv || typeof THREE === "undefined") return;
       const howSec = document.querySelector(".how");
       if (!howSec) return;
-      const renderer = new THREE.WebGLRenderer({ canvas: cv, alpha: true, antialias: !isLowPower });
-      renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, isLowPower ? 1.5 : 2));
-      renderer.toneMapping = THREE.ACESFilmicToneMapping;
-      renderer.toneMappingExposure = 1.15;
+      let renderer;
+      try {
+        renderer = new THREE.WebGLRenderer({ canvas: cv, alpha: true, antialias: !isLowPower });
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, isLowPower ? 1.5 : 2));
+        renderer.toneMapping = THREE.ACESFilmicToneMapping;
+        renderer.toneMappingExposure = 1.15;
+      } catch (e) {
+        cv.style.background = "linear-gradient(145deg, #030b16 0%, #061428 50%, #0b2740 100%)";
+        return;
+      }
       const scene = new THREE.Scene();
       const camera = new THREE.PerspectiveCamera(45, 1, 0.1, 60);
       camera.position.set(0, 4.4, 9.5);
@@ -2373,10 +2407,16 @@
       const ctaSec = document.querySelector(".final-cta");
       if (!ctaSec) return;
       const revealEl = ctaSec.querySelector(".cta-brand-reveal");
-      const renderer = new THREE.WebGLRenderer({ canvas: cv, alpha: true, antialias: !isLowPower });
-      renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, isLowPower ? 1.5 : 2));
-      renderer.toneMapping = THREE.ACESFilmicToneMapping;
-      renderer.toneMappingExposure = 1.2;
+      let renderer;
+      try {
+        renderer = new THREE.WebGLRenderer({ canvas: cv, alpha: true, antielias: !isLowPower });
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, isLowPower ? 1.5 : 2));
+        renderer.toneMapping = THREE.ACESFilmicToneMapping;
+        renderer.toneMappingExposure = 1.2;
+      } catch (e) {
+        cv.style.background = "linear-gradient(145deg, #030b16 0%, #061428 50%, #0b2740 100%)";
+        return;
+      }
       const scene = new THREE.Scene();
       const camera = new THREE.PerspectiveCamera(42, 1, 0.1, 80);
       camera.position.set(0, 0.6, 9.5);
