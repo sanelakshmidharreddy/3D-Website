@@ -1,6 +1,6 @@
 /* ================================================================
-   SRI MANIKANTA MEESEVA — ULTRA-LUXURY 3D DOCUMENT STYLESHEET
-   Master 3D Canvas Architecture + High-Contrast Typography
+   SRI MANIKANTA MEESEVA — ULTRA-LUXURY CINEMATIC 3D MOTION STYLESHEET
+   One Continuous Camera Journey + Physics Momentum + Atmosphere Shifts
    ================================================================ */
 
 :root {
@@ -25,6 +25,10 @@
   --text-hi: #f8fafc;
   --text-mid: #cbd5e1;
   --text-low: #94a3b8;
+
+  --orb-color-1: #0284c7;
+  --orb-color-2: #b45309;
+  --orb-color-3: #4338ca;
 
   --font-telugu: "Noto Sans Telugu", -apple-system, BlinkMacSystemFont, sans-serif;
   --font-latin: "Space Grotesk", sans-serif;
@@ -79,7 +83,7 @@ body {
   background: transparent;
 }
 
-/* ==================== AMBIENT ATMOSPHERE ==================== */
+/* ==================== DYNAMIC ATMOSPHERIC LIGHTING ==================== */
 .ambient-glow {
   position: fixed;
   inset: 0;
@@ -90,12 +94,22 @@ body {
 .glow-orb {
   position: absolute;
   border-radius: 50%;
-  filter: blur(120px);
+  filter: blur(130px);
   opacity: 0.32;
+  transition: background 1.4s ease, transform 1.4s ease;
 }
-.orb-top { width: 550px; height: 550px; top: -150px; left: 15%; background: var(--cyan-deep); }
-.orb-mid { width: 450px; height: 450px; top: 40%; right: -100px; background: #b45309; }
-.orb-bottom { width: 600px; height: 600px; bottom: -150px; left: 10%; background: #4338ca; }
+.orb-top {
+  width: 550px; height: 550px; top: -150px; left: 15%;
+  background: var(--orb-color-1);
+}
+.orb-mid {
+  width: 480px; height: 480px; top: 40%; right: -100px;
+  background: var(--orb-color-2);
+}
+.orb-bottom {
+  width: 600px; height: 600px; bottom: -150px; left: 10%;
+  background: var(--orb-color-3);
+}
 
 /* ==================== SKIP LINK & FOCUS ==================== */
 .skip-link {
@@ -266,7 +280,7 @@ button { font: inherit; color: inherit; background: none; border: none; cursor: 
 
 .nav-actions { display: flex; align-items: center; gap: 10px; }
 
-/* Upgraded Branded Header Voice-Over Toggle */
+/* Branded Header Voice-Over Toggle */
 .nav-audio-btn {
   display: inline-flex; align-items: center; gap: 8px;
   padding: 6px 14px; border-radius: 999px;
@@ -510,7 +524,7 @@ button { font: inherit; color: inherit; background: none; border: none; cursor: 
 .step-card h3 { font-size: 1.05rem; margin-bottom: 8px; color: var(--text-hi); }
 .step-card p { font-size: 0.88rem; color: var(--text-mid); }
 
-/* ==================== CINEMATIC 3D SERVICE SECTIONS ==================== */
+/* ==================== CINEMATIC 3D SERVICE CHAPTERS ==================== */
 .cinema { padding: 90px 20px; position: relative; z-index: 2; }
 .cinema-alt { background: linear-gradient(180deg, transparent, rgba(11, 39, 64, 0.25), transparent); }
 .cinema-inner {

@@ -1,15 +1,14 @@
 /**
- * SRI MANIKANTA MEESEVA — FINAL CINEMATIC 3D DOCUMENT STORYTELLING ENGINE
- * Architecture: 1 Master WebGLRenderer + Document Spatial Journey (Z-Depth, Perspective Rotation & Light Sweep)
- * Real High-Definition Andhra Pradesh Government Digital Documents
- * 100% Mobile & Desktop Crash-Proof (Exactly 1 WebGL Context)
+ * SRI MANIKANTA MEESEVA — PREMIUM CINEMATIC MOTION & SPATIAL CAMERA ENGINE
+ * Award-Winning Scroll Storytelling: Continuous Camera Flight, Physical Momentum, Specular Light Sweeps & Dynamic Atmosphere
+ * Single Master WebGL Architecture (100% Crash-Proof, 1 WebGL Context)
  */
 
 (function () {
   "use strict";
 
   /* ================================================================
-     1. PERFORMANCE & DEVICE CAPABILITIES
+     1. HARDWARE CAPABILITIES & PERFORMANCE
      ================================================================ */
   const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || window.innerWidth < 768;
@@ -24,7 +23,7 @@
   }
 
   /* ================================================================
-     2. GLOBAL LOADER & PROGRESS BAR
+     2. GLOBAL LOADER & SMOOTH SCROLL PROGRESS
      ================================================================ */
   const loader = document.getElementById("loader");
   const progressBar = document.querySelector(".scroll-progress-bar");
@@ -38,7 +37,7 @@
     }
   }
   window.addEventListener("load", dismissLoader);
-  setTimeout(dismissLoader, 2000);
+  setTimeout(dismissLoader, 1800);
 
   window.addEventListener("scroll", () => {
     if (!progressBar) return;
@@ -48,7 +47,7 @@
   }, { passive: true });
 
   /* ================================================================
-     3. CUSTOM CURSOR
+     3. CUSTOM INTERACTION CURSOR
      ================================================================ */
   const cursor = document.getElementById("customCursor");
   if (cursor && !isMobile) {
@@ -74,7 +73,7 @@
   }
 
   /* ================================================================
-     4. NAVIGATION & MOBILE MENU
+     4. NAVIGATION & MOBILE EXPANSION
      ================================================================ */
   const siteNav = document.getElementById("siteNav");
   const navToggle = document.getElementById("navToggle");
@@ -102,7 +101,7 @@
   }
 
   /* ================================================================
-     5. TELUGU VOICE-OVER AUDIO (Branded Top Header Toggle)
+     5. BRANDED HEADER AUDIO CONTROLLER (Single Source of Truth)
      ================================================================ */
   const TeluguVoiceover = (() => {
     const audioBtn = document.getElementById("navAudioToggle");
@@ -167,7 +166,7 @@
   })();
 
   /* ================================================================
-     6. INTERSECTION REVEALS & NUMBER COUNTERS
+     6. INTERSECTION REVEALS & METRIC COUNTERS
      ================================================================ */
   const revealElements = document.querySelectorAll(".reveal, .reveal-up, .reveal-word");
   if ("IntersectionObserver" in window) {
@@ -385,16 +384,13 @@
     // 1. AP Official Certificate Document (ఆదాయ, కుల, నివాస, EWS)
     function certFront(title = "ఆదాయ ధృవీకరణ పత్రం", docId = "AP-INCOME-2026") {
       return getOrCreate(`cert_f_${title}_${docId}`, (ctx, w, h) => {
-        // Realistic subtle ivory parchment background
         const grad = ctx.createLinearGradient(0, 0, w, h);
         grad.addColorStop(0, "#fdfcf7"); grad.addColorStop(0.5, "#f7f3e8"); grad.addColorStop(1, "#f2ebe0");
         ctx.fillStyle = grad; ctx.fillRect(0, 0, w, h);
 
-        // Ornate guilloche borders
         ctx.strokeStyle = "#b45309"; ctx.lineWidth = 14; ctx.strokeRect(28, 28, w - 56, h - 56);
         ctx.strokeStyle = "#0284c7"; ctx.lineWidth = 4; ctx.strokeRect(44, 44, w - 88, h - 88);
 
-        // Header: AP Government Crest & Revenue Dept
         ctx.fillStyle = "#0f172a"; ctx.font = "bold 38px 'Noto Sans Telugu', sans-serif"; ctx.textAlign = "center";
         ctx.fillText("ఆంధ్రప్రదేశ్ ప్రభుత్వం", w / 2, 110);
         ctx.fillStyle = "#0369a1"; ctx.font = "bold 24px 'Space Grotesk', sans-serif";
@@ -402,19 +398,15 @@
         ctx.fillStyle = "#b45309"; ctx.font = "bold 20px 'Space Grotesk', sans-serif";
         ctx.fillText("REVENUE DEPARTMENT — MEESEVA CITIZEN SERVICES", w / 2, 178);
 
-        // Gold Ribbon Divider
         ctx.fillStyle = "#f59e0b"; ctx.fillRect(100, 195, w - 200, 6);
 
-        // Document Title
         ctx.fillStyle = "#090d16"; ctx.font = "800 46px 'Noto Sans Telugu', sans-serif";
         ctx.fillText(title, w / 2, 280);
 
-        // Details Container
         ctx.fillStyle = "#ffffff"; ctx.strokeStyle = "#cbd5e1"; ctx.lineWidth = 2;
         ctx.fillRect(100, 320, w - 200, 480);
         ctx.strokeRect(100, 320, w - 200, 480);
 
-        // Applicant & Service Info
         ctx.textAlign = "left"; ctx.fillStyle = "#334155"; ctx.font = "600 28px 'Noto Sans Telugu', sans-serif";
         ctx.fillText(`ధృవీకరణ సంఖ్య: ${docId}`, 130, 380);
         ctx.fillText("సేవా కేంద్రం: శ్రీ మణికంఠ మీ సేవ — వెల్దుర్తి", 130, 440);
@@ -423,7 +415,7 @@
         ctx.fillText("జారీ తేదీ: 21-08-2026", 130, 620);
         ctx.fillText("పరిశీలన స్థితి: డిజిటల్ సంతకంతో ఆమోదించబడింది ✓", 130, 680);
 
-        // Holographic Security Seal (Bottom Left)
+        // Holographic Seal
         ctx.save();
         ctx.translate(220, 880);
         const hg = ctx.createRadialGradient(0, 0, 10, 0, 0, 60);
@@ -434,7 +426,7 @@
         ctx.fillText("GENUINE", 0, -6); ctx.fillText("MEESEVA", 0, 18);
         ctx.restore();
 
-        // Official Violet MeeSeva Stamp (Bottom Right)
+        // Violet MeeSeva Stamp
         ctx.save();
         ctx.translate(w - 240, 880); ctx.rotate(-0.1);
         ctx.strokeStyle = "#7c3aed"; ctx.lineWidth = 5;
@@ -571,17 +563,16 @@
   })();
 
   /* ================================================================
-     10. 3D DIGITAL DOCUMENT MESH BUILDER
-     Realistic Physical Paper with Edge Depth & Specular Coating
+     10. 3D DIGITAL DOCUMENT MESH CREATION
      ================================================================ */
   const MeshFactory = (() => {
     function createDocument(frontTex, backTex = null, w = 2.8, h = 3.8, d = 0.03) {
       const geom = new THREE.BoxGeometry(w, h, d);
       const fMat = new THREE.MeshPhysicalMaterial({
         map: frontTex,
-        roughness: 0.3,
+        roughness: 0.28,
         metalness: 0.05,
-        clearcoat: 0.5,
+        clearcoat: 0.6,
         clearcoatRoughness: 0.2
       });
       const bMat = new THREE.MeshPhysicalMaterial({
@@ -589,7 +580,7 @@
         roughness: 0.35,
         metalness: 0.05
       });
-      const edgeMat = new THREE.MeshStandardMaterial({ color: 0xf59e0b, metalness: 0.8, roughness: 0.25 });
+      const edgeMat = new THREE.MeshStandardMaterial({ color: 0xf59e0b, metalness: 0.85, roughness: 0.2 });
       return new THREE.Mesh(geom, [edgeMat, edgeMat, edgeMat, edgeMat, fMat, bMat]);
     }
 
@@ -597,10 +588,10 @@
       const geom = new THREE.BoxGeometry(w, h, d);
       const fMat = new THREE.MeshPhysicalMaterial({
         map: frontTex,
-        roughness: 0.18,
-        metalness: 0.2,
-        clearcoat: 0.7,
-        clearcoatRoughness: 0.15
+        roughness: 0.16,
+        metalness: 0.25,
+        clearcoat: 0.8,
+        clearcoatRoughness: 0.12
       });
       const bMat = new THREE.MeshPhysicalMaterial({
         map: backTex || frontTex,
@@ -615,8 +606,8 @@
   })();
 
   /* ================================================================
-     11. MASTER DOCUMENT SPATIAL STORYTELLING ENGINE
-     Scroll-Driven Z-Depth, Dynamic Perspective Rotation & Light Sweep
+     11. MASTER CINEMATIC MOTION & SPATIAL CAMERA ENGINE
+     Physical Momentum, Z-Depth Travel, Perspective Rotation & Light Sweeps
      ================================================================ */
   function initMasterDocumentEngine() {
     const canvas = document.getElementById("master3DCanvas");
@@ -634,7 +625,7 @@
       renderer.setSize(window.innerWidth, window.innerHeight);
       renderer.setScissorTest(true);
       renderer.toneMapping = THREE.ACESFilmicToneMapping;
-      renderer.toneMappingExposure = 1.35;
+      renderer.toneMappingExposure = 1.4;
     } catch (err) {
       console.warn("WebGL initialization skipped:", err);
       return;
@@ -651,26 +642,42 @@
 
     const registeredStages = [];
 
-    // Helper: Setup studio 3-point lighting + dynamic moving specular sweep light
+    // Studio 3-Point Lighting + Dynamic Moving Specular Sweep Light
     function setupDocumentLighting(scene) {
       scene.add(new THREE.AmbientLight(0x2a4365, 0.95));
 
-      // Key light
       const kl = new THREE.PointLight(0x38bdf8, 3.8, 35);
       kl.position.set(4, 5, 6);
       scene.add(kl);
 
-      // Warm rim light
       const rl = new THREE.PointLight(0xfbbf24, 2.8, 30);
       rl.position.set(-5, -3, 5);
       scene.add(rl);
 
-      // Dynamic moving specular light (travels across paper surface)
       const sweepLight = new THREE.PointLight(0xffffff, 2.2, 20);
       sweepLight.position.set(-3, 1, 4);
       scene.add(sweepLight);
 
       return { sweepLight };
+    }
+
+    // Dynamic Atmosphere Shifts
+    const atmosphereThemes = [
+      { top: "#0284c7", mid: "#b45309", bot: "#4338ca" },
+      { top: "#0284c7", mid: "#059669", bot: "#38bdf8" },
+      { top: "#059669", mid: "#b45309", bot: "#0284c7" },
+      { top: "#0369a1", mid: "#b45309", bot: "#1e1b4b" },
+      { top: "#d97706", mid: "#78350f", bot: "#0284c7" },
+      { top: "#0f2942", mid: "#b45309", bot: "#0369a1" },
+      { top: "#b45309", mid: "#0284c7", bot: "#0f2942" }
+    ];
+
+    function updateAtmosphere(scrollRatio) {
+      const idx = Math.min(atmosphereThemes.length - 1, Math.floor(scrollRatio * atmosphereThemes.length));
+      const th = atmosphereThemes[idx];
+      document.documentElement.style.setProperty("--orb-color-1", th.top);
+      document.documentElement.style.setProperty("--orb-color-2", th.mid);
+      document.documentElement.style.setProperty("--orb-color-3", th.bot);
     }
 
     // ----------------------------------------------------
@@ -686,11 +693,9 @@
       const heroGroup = new THREE.Group();
       scene.add(heroGroup);
 
-      // Central Royal Document
       const mainDoc = MeshFactory.createDocument(HDTextures.certFront("శ్రీ మణికంఠ మీ సేవ", "MEESEVA-VELDURTHI-AP"), null, 3.2, 4.4, 0.04);
       heroGroup.add(mainDoc);
 
-      // Orbiting Service Documents & Cards
       const orbitItems = [];
       const oData = [
         { mesh: MeshFactory.createCard(HDTextures.panFront()), angle: 0, r: 4.8, y: 0.6 },
@@ -705,7 +710,6 @@
         orbitItems.push(od);
       });
 
-      // Touch & Gyro interaction
       let targetRotX = 0, targetRotY = 0;
       let currentRotX = 0, currentRotY = 0;
       let isDragging = false, startX = 0, startY = 0;
@@ -751,7 +755,6 @@
           mainDoc.position.y = Math.sin(t * 0.8) * 0.15;
           mainDoc.rotation.y = Math.sin(t * 0.5) * 0.1;
 
-          // Moving specular light sweep
           lights.sweepLight.position.x = Math.sin(t * 1.2) * 5.0;
 
           orbitItems.forEach((oc, i) => {
@@ -764,7 +767,7 @@
       });
     }
 
-    // Helper: Create a Cinema Document Stage with Scroll-Driven Spatial Travel
+    // Helper: Register a Cinema Document Stage with Physical Momentum & Travel
     function registerDocumentStage(selector, createMeshFn, cameraDist = 6.2) {
       const el = document.querySelector(selector);
       if (!el) return;
@@ -781,23 +784,23 @@
         element: el,
         scene,
         camera,
-        update(t, scrollProgress) {
-          // Scroll-driven Z-depth: moves from depth (z: -4) to focus (z: 0) to passing (z: +1.5)
+        update(t, scrollProgress, momentum) {
+          // Physical Momentum: Scroll progress with spring lag
           const p = Math.max(0, Math.min(1, scrollProgress));
-          const targetZ = -3.5 + p * 4.5;
-          docMesh.position.z += (targetZ - docMesh.position.z) * 0.1;
+          const targetZ = -4.0 + (p * 5.5) + (momentum * 0.003);
+          docMesh.position.z += (targetZ - docMesh.position.z) * 0.09;
 
-          // Natural perspective rotation: -18deg -> 0deg -> 12deg -> -8deg
-          const targetRotY = (-0.3 + p * 0.5) + Math.sin(t * 0.6) * 0.15;
-          const targetRotX = (-0.05 + Math.sin(t * 0.8) * 0.08);
-          docMesh.rotation.y += (targetRotY - docMesh.rotation.y) * 0.1;
-          docMesh.rotation.x += (targetRotX - docMesh.rotation.x) * 0.1;
+          // Realistic perspective rotation: -18deg -> 0deg -> 14deg -> -8deg
+          const targetRotY = (-0.32 + p * 0.55) + Math.sin(t * 0.6) * 0.12;
+          const targetRotX = (-0.06 + Math.sin(t * 0.8) * 0.07);
+          docMesh.rotation.y += (targetRotY - docMesh.rotation.y) * 0.09;
+          docMesh.rotation.x += (targetRotX - docMesh.rotation.x) * 0.09;
 
-          // Idle vertical floating
+          // Idle vertical floating with weight
           docMesh.position.y = Math.sin(t * 1.0) * 0.12;
 
-          // Moving specular light sweep across document
-          lights.sweepLight.position.x = -4.0 + (p * 8.0) + Math.sin(t * 1.5) * 1.5;
+          // Dynamic light sweep travelling across document
+          lights.sweepLight.position.x = -4.5 + (p * 9.0) + Math.sin(t * 1.5) * 1.5;
         }
       });
     }
@@ -810,7 +813,6 @@
       const doc = MeshFactory.createDocument(HDTextures.certFront("కలర్ జిరాక్స్ డాక్యుమెంట్", "AP-PRINT-2026"), null, 2.6, 3.6, 0.03);
       g.add(doc);
 
-      // Subtle glowing laser scan line
       const laser = new THREE.Mesh(
         new THREE.CylinderGeometry(0.02, 0.02, 2.8, 16),
         new THREE.MeshStandardMaterial({ color: 0x38bdf8, emissive: 0x38bdf8, emissiveIntensity: 3.0 })
@@ -823,14 +825,14 @@
     });
 
     // ----------------------------------------------------
-    // 3. THERMAL LAMINATION STAGE (High-Gloss Protected Document)
+    // 3. THERMAL LAMINATION STAGE
     // ----------------------------------------------------
     registerDocumentStage('[data-stage="lamination"]', () => {
       return MeshFactory.createDocument(HDTextures.certFront("లామినేషన్ సర్టిఫికేట్", "AP-LAM-2026"), null, 2.6, 3.6, 0.03);
     });
 
     // ----------------------------------------------------
-    // 4. SMART PVC CARD STAGE (360° Rotating Card)
+    // 4. SMART PVC CARD STAGE
     // ----------------------------------------------------
     registerDocumentStage('[data-stage="pvccard"]', () => {
       return MeshFactory.createCard(HDTextures.panFront(), null, 3.6, 2.2, 0.08);
@@ -900,8 +902,13 @@
     }, 5.8);
 
     // ----------------------------------------------------
-    // RESIZE & SCISSOR RENDER LOOP
+    // SCROLL PHYSICS & CONTINUOUS RENDER LOOP
     // ----------------------------------------------------
+    let targetScroll = 0, currentScroll = 0, scrollVelocity = 0;
+    window.addEventListener("scroll", () => {
+      targetScroll = window.scrollY;
+    }, { passive: true });
+
     function onResize() {
       const w = window.innerWidth, h = window.innerHeight;
       renderer.setSize(w, h);
@@ -918,6 +925,14 @@
 
       const time = clock.getElapsedTime();
 
+      // Smooth scroll lerp for physical weight
+      currentScroll += (targetScroll - currentScroll) * 0.08;
+      scrollVelocity = targetScroll - currentScroll;
+
+      const docH = document.documentElement.scrollHeight - window.innerHeight;
+      const globalRatio = docH > 0 ? (currentScroll / docH) : 0;
+      updateAtmosphere(globalRatio);
+
       // Clear full canvas buffer
       renderer.setScissorTest(false);
       renderer.clear();
@@ -925,7 +940,7 @@
 
       const winH = window.innerHeight;
 
-      // Render each visible stage portal with scroll progress
+      // Render each visible stage portal
       registeredStages.forEach(st => {
         const rect = st.element.getBoundingClientRect();
 
@@ -945,12 +960,9 @@
         st.camera.aspect = width / height;
         st.camera.updateProjectionMatrix();
 
-        // Calculate stage scroll progress (0 when entering bottom, 1 when exiting top)
         const scrollP = (winH - rect.top) / (winH + rect.height);
+        st.update(time, scrollP, scrollVelocity);
 
-        st.update(time, scrollP);
-
-        // If stage has an internal laser line, animate its position
         if (st.scene.children[1] && st.scene.children[1].userData && st.scene.children[1].userData.laser) {
           st.scene.children[1].userData.laser.position.y = Math.sin(time * 2.2) * 1.5;
         }
