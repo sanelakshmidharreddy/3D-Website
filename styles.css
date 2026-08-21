@@ -1,6 +1,6 @@
 /* ================================================================
-   SRI MANIKANTA MEESEVA — ULTRA-LUXURY 3D SCISSOR-VIEWPORT STYLESHEET
-   Master 3D Canvas Architecture + High-Contrast Typography
+   SRI MANIKANTA MEESEVA — ULTRA-LUXURY 3D BRAND EXPERIENCE STYLESHEET
+   Palette: Deep Obsidian Base + Electric Cyan Signal + Royal Gold Accent
    ================================================================ */
 
 :root {
@@ -266,24 +266,37 @@ button { font: inherit; color: inherit; background: none; border: none; cursor: 
 
 .nav-actions { display: flex; align-items: center; gap: 10px; }
 
-/* Integrated Header Voice-Over Toggle */
+/* Branded Header Audio Voice-Over Toggle (శ్రీ Brand Mark + Sound Wave Equalizer) */
 .nav-audio-btn {
   display: inline-flex; align-items: center; gap: 8px;
-  padding: 8px 14px; border-radius: 999px;
+  padding: 6px 14px 6px 8px; border-radius: 999px;
   background: rgba(6, 18, 36, 0.85);
   border: 1px solid var(--border-strong);
-  color: var(--cyan-soft); font-size: 0.8rem; font-weight: 600;
+  color: var(--cyan-soft); font-size: 0.82rem; font-weight: 600;
   transition: all 0.3s var(--ease);
+  cursor: pointer;
 }
-.nav-audio-btn:hover { border-color: var(--gold); color: var(--gold); transform: translateY(-1px); }
+.nav-audio-badge {
+  width: 24px; height: 24px; border-radius: 6px;
+  background: linear-gradient(135deg, #0f2942, #061224);
+  border: 1px solid var(--border-gold);
+  color: var(--gold); font-weight: 800; font-size: 0.76rem;
+  display: grid; place-items: center;
+}
+.nav-audio-btn:hover {
+  border-color: var(--gold);
+  color: var(--gold);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 16px -4px rgba(251, 191, 36, 0.35);
+}
 .nav-audio-btn.playing {
   background: rgba(56, 189, 248, 0.15);
   border-color: var(--cyan);
   color: var(--cyan-soft);
-  box-shadow: 0 0 16px -4px rgba(56, 189, 248, 0.5);
+  box-shadow: 0 0 18px -4px rgba(56, 189, 248, 0.6), inset 0 0 10px rgba(56, 189, 248, 0.12);
 }
 .nav-eq { display: flex; align-items: flex-end; gap: 2.5px; height: 14px; width: 14px; }
-.nav-eq span { width: 2.5px; background: currentColor; border-radius: 1.5px; height: 3px; }
+.nav-eq span { width: 2.5px; background: var(--cyan); border-radius: 1.5px; height: 3px; }
 .nav-audio-btn.playing .nav-eq span:nth-child(1) { animation: eq-wave 0.75s ease-in-out infinite alternate; }
 .nav-audio-btn.playing .nav-eq span:nth-child(2) { animation: eq-wave 0.9s ease-in-out 0.2s infinite alternate; }
 .nav-audio-btn.playing .nav-eq span:nth-child(3) { animation: eq-wave 0.65s ease-in-out 0.4s infinite alternate; }
@@ -324,19 +337,25 @@ button { font: inherit; color: inherit; background: none; border: none; cursor: 
 .nav-mobile.is-open { transform: translateY(0) scale(1); opacity: 1; pointer-events: auto; }
 .nav-mobile a { font-size: 1.05rem; color: var(--text-hi); font-weight: 600; padding: 4px 0; }
 
-/* ==================== BUTTONS ==================== */
+/* ==================== BUTTONS WITH SHIMMER ==================== */
 .btn {
   display: inline-flex; align-items: center; justify-content: center; gap: 10px;
   padding: 14px 28px; border-radius: 999px;
   font-family: var(--font-display); font-weight: 600; font-size: 0.96rem;
   transition: transform 0.3s var(--ease), box-shadow 0.3s ease, background 0.3s ease;
-  min-height: 48px;
+  min-height: 48px; position: relative; overflow: hidden;
 }
 .btn-primary {
   background: linear-gradient(135deg, var(--cyan), #0284c7);
   color: #030712; font-weight: 700;
   box-shadow: 0 10px 28px -10px rgba(56, 189, 248, 0.6);
 }
+.btn-primary::before {
+  content: ""; position: absolute; top: 0; left: -100%; width: 50%; height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.35), transparent);
+  transform: skewX(-20deg); transition: left 0.6s ease;
+}
+.btn-primary:hover::before { left: 150%; }
 .btn-primary:hover {
   transform: translateY(-2px) scale(1.02);
   box-shadow: 0 16px 36px -10px rgba(56, 189, 248, 0.8);
@@ -743,7 +762,7 @@ button { font: inherit; color: inherit; background: none; border: none; cursor: 
   .cinema-copy .section-sub { margin: 0 auto 16px; }
   .service-tags { justify-content: center; }
 
-  .nav-audio-btn { padding: 6px 12px; font-size: 0.76rem; }
+  .nav-audio-btn { padding: 6px 10px 6px 6px; font-size: 0.76rem; }
   .nav-audio-text { display: none; }
   .float-whatsapp { width: 50px; height: 50px; right: 14px; bottom: calc(16px + env(safe-area-inset-bottom, 0px)); }
   .back-to-top { right: 14px; bottom: calc(74px + env(safe-area-inset-bottom, 0px)); width: 38px; height: 38px; }

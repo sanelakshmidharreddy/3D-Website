@@ -1,9 +1,9 @@
 /**
- * SRI MANIKANTA MEESEVA — MASTER SCISSOR-VIEWPORT 3D ENGINE
+ * SRI MANIKANTA MEESEVA — MASTER SCISSOR-VIEWPORT 3D BRAND ENGINE
  * Architecture: 1 Single WebGLRenderer rendering across multiple DOM Stage Portals
  * High-Definition Dual-Sided Procedural Textures (1024x1024)
- * Active 3D Animations: Hero Paper Galaxy, Laser Xerox Scanner, Thermal Lamination,
- * Smart PVC 360°, Photo Studio Fan, AP Certificates Fan, ID Cards Carousel, Passbook 3D.
+ * Active 3D Animations: Hero Paper Galaxy with Ambient Particles, Laser Xerox Scanner,
+ * Thermal Lamination, Smart PVC 360°, Photo Studio Fan, AP Certificates Fan, ID Carousel, Passbook 3D.
  * 100% Mobile & Desktop Crash-Proof (Exactly 1 WebGL Context)
  */
 
@@ -631,7 +631,25 @@
       return { group: g, beam, outDoc };
     }
 
-    return { createCard, createCertificate, createLaserScanner };
+    function createParticleField(count = 100) {
+      const geom = new THREE.BufferGeometry();
+      const positions = new Float32Array(count * 3);
+      for (let i = 0; i < count * 3; i += 3) {
+        positions[i] = (Math.random() - 0.5) * 20;
+        positions[i + 1] = (Math.random() - 0.5) * 14;
+        positions[i + 2] = (Math.random() - 0.5) * 12;
+      }
+      geom.setAttribute("position", new THREE.BufferAttribute(positions, 3));
+      const mat = new THREE.PointsMaterial({
+        color: 0x38bdf8,
+        size: 0.08,
+        transparent: true,
+        opacity: 0.65
+      });
+      return new THREE.Points(geom, mat);
+    }
+
+    return { createCard, createCertificate, createLaserScanner, createParticleField };
   })();
 
   /* ================================================================
@@ -685,7 +703,7 @@
     }
 
     // ----------------------------------------------------
-    // 1. HERO STAGE (Paper Galaxy, Touch Inertia & Gyro)
+    // 1. HERO STAGE (Paper Galaxy, Floating Particles, Touch & Gyro)
     // ----------------------------------------------------
     const heroEl = document.querySelector('[data-stage="hero"]');
     if (heroEl) {
@@ -694,18 +712,24 @@
       camera.position.set(0, 0, isMobile ? 12.5 : 10.5);
       addStudioLighting(scene);
 
+      // Ambient 3D Particle Dust Field
+      const particles = MeshFactory.createParticleField(isMobile ? 60 : 120);
+      scene.add(particles);
+
       const heroGroup = new THREE.Group();
       scene.add(heroGroup);
 
+      // Central Royal MeeSeva Document at Depth Z=0
       const mainCert = MeshFactory.createCertificate("శ్రీ మణికంఠ మీ సేవ", "MEESEVA-VELDURTHI-AP", 3.0, 4.2);
       heroGroup.add(mainCert);
 
+      // Multi-Layered Orbiting 3D Documents
       const orbitCards = [];
       const oData = [
-        { fn: () => MeshFactory.createCard(HDTextures.panFront()), angle: 0, r: 4.8, y: 0.6 },
-        { fn: () => MeshFactory.createCard(HDTextures.aadhaarFront()), angle: (Math.PI * 2) / 4, r: 5.0, y: -0.5 },
-        { fn: () => MeshFactory.createCard(HDTextures.riceCardFront()), angle: (Math.PI * 4) / 4, r: 4.8, y: 0.4 },
-        { fn: () => MeshFactory.createCertificate("కుల సర్టిఫికేట్", "AP-CASTE-2026", 2.2, 3.0), angle: (Math.PI * 6) / 4, r: 4.9, y: -0.3 }
+        { fn: () => MeshFactory.createCard(HDTextures.panFront()), angle: 0, r: 4.8, y: 0.6, speed: 0.3 },
+        { fn: () => MeshFactory.createCard(HDTextures.aadhaarFront()), angle: (Math.PI * 2) / 4, r: 5.0, y: -0.5, speed: 0.25 },
+        { fn: () => MeshFactory.createCard(HDTextures.riceCardFront()), angle: (Math.PI * 4) / 4, r: 4.8, y: 0.4, speed: 0.35 },
+        { fn: () => MeshFactory.createCertificate("కుల సర్టిఫికేట్", "AP-CASTE-2026", 2.2, 3.0), angle: (Math.PI * 6) / 4, r: 4.9, y: -0.3, speed: 0.28 }
       ];
 
       oData.forEach(od => {
@@ -758,11 +782,14 @@
           heroGroup.rotation.x = currentRotX + Math.sin(t * 0.4) * 0.04;
           heroGroup.rotation.y = currentRotY + t * 0.15;
 
+          particles.rotation.y = t * 0.04;
+          particles.rotation.x = Math.sin(t * 0.2) * 0.02;
+
           mainCert.position.y = Math.sin(t * 0.8) * 0.15;
           mainCert.rotation.y = Math.sin(t * 0.5) * 0.1;
 
           orbitCards.forEach((oc, i) => {
-            const a = oc.data.angle + t * 0.3;
+            const a = oc.data.angle + t * oc.data.speed;
             const r = oc.data.r;
             oc.mesh.position.set(Math.cos(a) * r, oc.data.y + Math.sin(t * 1.2 + i) * 0.15, Math.sin(a) * r * 0.6);
             oc.mesh.rotation.y = -a + Math.PI / 2 + Math.sin(t * 0.6) * 0.15;
