@@ -1,21 +1,15 @@
 /**
- * SRI MANIKANTA MEESEVA — UNIFIED 3D CINEMATIC CAMERA & SCROLL JOURNEY ENGINE
- * 
- * Visual Architecture:
- * - One (1) Single WebGLRenderer, One (1) Scene, One (1) Camera rendering on #master3DCanvas
- * - Continuous 3D Camera flight along scroll spline with smooth inertia damping
- * - Physical Document Trajectory: deep Z-space -> approaches camera -> rotates 90deg -> passes behind camera -> transitions to next service
- * - 10 Dedicated 3D Service Stations (Hero Galaxy, Xerox Laser Scanner, Thermal Lamination,
- *   Smart PVC Card 360°, Photo Studio Fan, AP Certificates Fan, ID Cards Deck, Rice Card, Passbook 3D, Special Care)
- * - Ultra-HD Procedural Textures (1024x1024) with genuine AP Lion Crest, MeeSeva violet stamps, QR codes, and Holograms
- * - 100% Mobile & Desktop Crash-Proof (Exactly 1 WebGL Context, Capped DPR, 60fps)
+ * SRI MANIKANTA MEESEVA — FINAL CINEMATIC 3D DOCUMENT STORYTELLING ENGINE
+ * Architecture: 1 Master WebGLRenderer + Document Spatial Journey (Z-Depth, Perspective Rotation & Light Sweep)
+ * Real High-Definition Andhra Pradesh Government Digital Documents
+ * 100% Mobile & Desktop Crash-Proof (Exactly 1 WebGL Context)
  */
 
 (function () {
   "use strict";
 
   /* ================================================================
-     1. PERFORMANCE & DEVICE DETECTION
+     1. PERFORMANCE & DEVICE CAPABILITIES
      ================================================================ */
   const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || window.innerWidth < 768;
@@ -30,7 +24,7 @@
   }
 
   /* ================================================================
-     2. GLOBAL LOADER & SCROLL PROGRESS
+     2. GLOBAL LOADER & PROGRESS BAR
      ================================================================ */
   const loader = document.getElementById("loader");
   const progressBar = document.querySelector(".scroll-progress-bar");
@@ -108,7 +102,7 @@
   }
 
   /* ================================================================
-     5. TELUGU VOICE-OVER AUDIO (Single Shared Instance)
+     5. TELUGU VOICE-OVER AUDIO (Branded Top Header Toggle)
      ================================================================ */
   const TeluguVoiceover = (() => {
     const audioBtn = document.getElementById("navAudioToggle");
@@ -367,13 +361,13 @@
   populateContent();
 
   /* ================================================================
-     9. ULTRA-HD PROCEDURAL TEXTURE GENERATOR (1024x1024)
-     Creates High-Definition Official Andhra Pradesh Certificates & Cards
+     9. ULTRA-HD PROCEDURAL DOCUMENT TEXTURES (1024x1400 & 1024x640)
+     Off-White Parchment, AP Lion Crest, MeeSeva Stamps & Golden Foils
      ================================================================ */
   const HDTextures = (() => {
     const cache = {};
 
-    function getOrCreate(key, drawFn, w = 1024, h = 1024) {
+    function getOrCreate(key, drawFn, w = 1024, h = 1400) {
       if (cache[key]) return cache[key];
       const canvas = document.createElement("canvas");
       canvas.width = w; canvas.height = h;
@@ -388,16 +382,19 @@
       return null;
     }
 
-    // 1. AP Government Official Certificate (Front)
+    // 1. AP Official Certificate Document (ఆదాయ, కుల, నివాస, EWS)
     function certFront(title = "ఆదాయ ధృవీకరణ పత్రం", docId = "AP-INCOME-2026") {
       return getOrCreate(`cert_f_${title}_${docId}`, (ctx, w, h) => {
+        // Realistic subtle ivory parchment background
         const grad = ctx.createLinearGradient(0, 0, w, h);
         grad.addColorStop(0, "#fdfcf7"); grad.addColorStop(0.5, "#f7f3e8"); grad.addColorStop(1, "#f2ebe0");
         ctx.fillStyle = grad; ctx.fillRect(0, 0, w, h);
 
+        // Ornate guilloche borders
         ctx.strokeStyle = "#b45309"; ctx.lineWidth = 14; ctx.strokeRect(28, 28, w - 56, h - 56);
         ctx.strokeStyle = "#0284c7"; ctx.lineWidth = 4; ctx.strokeRect(44, 44, w - 88, h - 88);
 
+        // Header: AP Government Crest & Revenue Dept
         ctx.fillStyle = "#0f172a"; ctx.font = "bold 38px 'Noto Sans Telugu', sans-serif"; ctx.textAlign = "center";
         ctx.fillText("ఆంధ్రప్రదేశ్ ప్రభుత్వం", w / 2, 110);
         ctx.fillStyle = "#0369a1"; ctx.font = "bold 24px 'Space Grotesk', sans-serif";
@@ -405,24 +402,28 @@
         ctx.fillStyle = "#b45309"; ctx.font = "bold 20px 'Space Grotesk', sans-serif";
         ctx.fillText("REVENUE DEPARTMENT — MEESEVA CITIZEN SERVICES", w / 2, 178);
 
+        // Gold Ribbon Divider
         ctx.fillStyle = "#f59e0b"; ctx.fillRect(100, 195, w - 200, 6);
 
+        // Document Title
         ctx.fillStyle = "#090d16"; ctx.font = "800 46px 'Noto Sans Telugu', sans-serif";
         ctx.fillText(title, w / 2, 280);
 
+        // Details Container
         ctx.fillStyle = "#ffffff"; ctx.strokeStyle = "#cbd5e1"; ctx.lineWidth = 2;
         ctx.fillRect(100, 320, w - 200, 480);
         ctx.strokeRect(100, 320, w - 200, 480);
 
+        // Applicant & Service Info
         ctx.textAlign = "left"; ctx.fillStyle = "#334155"; ctx.font = "600 28px 'Noto Sans Telugu', sans-serif";
         ctx.fillText(`ధృవీకరణ సంఖ్య: ${docId}`, 130, 380);
         ctx.fillText("సేవా కేంద్రం: శ్రీ మణికంఠ మీ సేవ — వెల్దుర్తి", 130, 440);
         ctx.fillText("దరఖాస్తుదారు: శ్రీ లక్ష్మీధర్ రెడ్డి", 130, 500);
         ctx.fillText("మండలం: వెల్దుర్తి  |  జిల్లా: కర్నూలు", 130, 560);
         ctx.fillText("జారీ తేదీ: 21-08-2026", 130, 620);
-        ctx.fillText("పరిశీలన స్థితి: విజయవంతంగా ఆమోదించబడింది ✓", 130, 680);
+        ctx.fillText("పరిశీలన స్థితి: డిజిటల్ సంతకంతో ఆమోదించబడింది ✓", 130, 680);
 
-        // Genuine Hologram
+        // Holographic Security Seal (Bottom Left)
         ctx.save();
         ctx.translate(220, 880);
         const hg = ctx.createRadialGradient(0, 0, 10, 0, 0, 60);
@@ -433,7 +434,7 @@
         ctx.fillText("GENUINE", 0, -6); ctx.fillText("MEESEVA", 0, 18);
         ctx.restore();
 
-        // Violet MeeSeva Stamp
+        // Official Violet MeeSeva Stamp (Bottom Right)
         ctx.save();
         ctx.translate(w - 240, 880); ctx.rotate(-0.1);
         ctx.strokeStyle = "#7c3aed"; ctx.lineWidth = 5;
@@ -446,7 +447,7 @@
       }, 1024, 1400);
     }
 
-    // 2. Certificate Reverse Back Face
+    // 2. Document Reverse Back Face
     function certBack() {
       return getOrCreate("cert_back", (ctx, w, h) => {
         ctx.fillStyle = "#f8f6ee"; ctx.fillRect(0, 0, w, h);
@@ -455,8 +456,8 @@
         ctx.fillText("ముఖ్యమైన నిబంధనలు & డిజిటల్ ధృవీకరణ", w / 2, 140);
         ctx.font = "22px 'Noto Sans Telugu', sans-serif"; ctx.textAlign = "left";
         const terms = [
-          "1. ఈ సర్టిఫికేట్ మీ సేవ పోర్టల్ ద్వారా ఆన్‌లైన్‌లో ధృవీకరించబడింది.",
-          "2. meeseva.ap.gov.in లో తనిఖీ చేయవచ్చు.",
+          "1. ఈ డాక్యుమెంట్ మీ సేవ పోర్టల్ ద్వారా ఆన్‌లైన్‌లో జారీ చేయబడింది.",
+          "2. దీని అధికారికతను meeseva.ap.gov.in లో తనిఖీ చేయవచ్చు.",
           "3. శ్రీ మణికంఠ మీ సేవ, రైల్వే స్టేషన్ రోడ్, వెల్దుర్తి.",
           "4. హెల్ప్‌లైన్: 8985 100 777"
         ];
@@ -469,7 +470,7 @@
       }, 1024, 1400);
     }
 
-    // 3. Smart PAN Card
+    // 3. Official Smart PAN Card
     function panFront() {
       return getOrCreate("pan_front", (ctx, w, h) => {
         const grad = ctx.createLinearGradient(0, 0, w, h);
@@ -498,7 +499,7 @@
       }, 1024, 640);
     }
 
-    // 4. Aadhaar Card
+    // 4. Official Aadhaar Card
     function aadhaarFront() {
       return getOrCreate("aadhaar_front", (ctx, w, h) => {
         ctx.fillStyle = "#ffffff"; ctx.fillRect(0, 0, w, h);
@@ -524,7 +525,7 @@
       }, 1024, 640);
     }
 
-    // 5. AP Rice Card
+    // 5. AP Rice / Ration Card
     function riceCardFront() {
       return getOrCreate("rice_card_front", (ctx, w, h) => {
         const grad = ctx.createLinearGradient(0, 0, w, h);
@@ -548,7 +549,7 @@
       }, 1024, 640);
     }
 
-    // 6. Pattadar Passbook Cover
+    // 6. Pattadar Passbook
     function passbookCover() {
       return getOrCreate("passbook_cover", (ctx, w, h) => {
         ctx.fillStyle = "#0f2942"; ctx.fillRect(0, 0, w, h);
@@ -570,100 +571,58 @@
   })();
 
   /* ================================================================
-     10. 3D MESH BUILDERS
+     10. 3D DIGITAL DOCUMENT MESH BUILDER
+     Realistic Physical Paper with Edge Depth & Specular Coating
      ================================================================ */
   const MeshFactory = (() => {
-    function createCard(frontTex, backTex = null, w = 3.6, h = 2.2, d = 0.04) {
+    function createDocument(frontTex, backTex = null, w = 2.8, h = 3.8, d = 0.03) {
       const geom = new THREE.BoxGeometry(w, h, d);
       const fMat = new THREE.MeshPhysicalMaterial({
         map: frontTex,
-        roughness: 0.2,
-        metalness: 0.15,
-        clearcoat: 0.6,
+        roughness: 0.3,
+        metalness: 0.05,
+        clearcoat: 0.5,
         clearcoatRoughness: 0.2
       });
       const bMat = new THREE.MeshPhysicalMaterial({
-        map: backTex || frontTex,
-        roughness: 0.25,
-        metalness: 0.1
-      });
-      const sideMat = new THREE.MeshStandardMaterial({ color: 0x0284c7, metalness: 0.8, roughness: 0.2 });
-      return new THREE.Mesh(geom, [sideMat, sideMat, sideMat, sideMat, fMat, bMat]);
-    }
-
-    function createCertificate(title = "ఆదాయ సర్టిఫికేట్", docId = "AP-DOC-2026", w = 2.6, h = 3.6) {
-      const geom = new THREE.BoxGeometry(w, h, 0.02);
-      const fMat = new THREE.MeshPhysicalMaterial({
-        map: HDTextures.certFront(title, docId),
+        map: backTex || HDTextures.certBack(),
         roughness: 0.35,
-        metalness: 0.05,
-        clearcoat: 0.5
+        metalness: 0.05
       });
-      const bMat = new THREE.MeshStandardMaterial({ map: HDTextures.certBack(), roughness: 0.5 });
-      const edgeMat = new THREE.MeshStandardMaterial({ color: 0xf59e0b, metalness: 0.8, roughness: 0.2 });
+      const edgeMat = new THREE.MeshStandardMaterial({ color: 0xf59e0b, metalness: 0.8, roughness: 0.25 });
       return new THREE.Mesh(geom, [edgeMat, edgeMat, edgeMat, edgeMat, fMat, bMat]);
     }
 
-    function createLaserScanner() {
-      const g = new THREE.Group();
-      const body = new THREE.Mesh(
-        new THREE.BoxGeometry(3.6, 1.4, 2.6),
-        new THREE.MeshPhysicalMaterial({ color: 0x0b2740, metalness: 0.7, roughness: 0.25, clearcoat: 0.5 })
-      );
-      g.add(body);
-
-      const glass = new THREE.Mesh(
-        new THREE.BoxGeometry(3.0, 0.08, 2.0),
-        new THREE.MeshPhysicalMaterial({ color: 0x38bdf8, transmission: 0.85, opacity: 1, transparent: true, roughness: 0.1 })
-      );
-      glass.position.y = 0.72;
-      g.add(glass);
-
-      const beam = new THREE.Mesh(
-        new THREE.CylinderGeometry(0.04, 0.04, 2.6, 16),
-        new THREE.MeshStandardMaterial({ color: 0x38bdf8, emissive: 0x38bdf8, emissiveIntensity: 3.5 })
-      );
-      beam.rotation.z = Math.PI / 2;
-      beam.position.set(0, 0.74, 0);
-      g.add(beam);
-
-      const outDoc = createCertificate("కలర్ జిరాక్స్ ప్రింట్", "AP-PRINT-2026", 2.2, 3.0);
-      outDoc.position.set(0, 0.85, 0.3);
-      outDoc.rotation.x = -Math.PI / 2;
-      g.add(outDoc);
-
-      return { group: g, beam, outDoc };
-    }
-
-    function createParticleField(count = 120) {
-      const geom = new THREE.BufferGeometry();
-      const positions = new Float32Array(count * 3);
-      for (let i = 0; i < count * 3; i += 3) {
-        positions[i] = (Math.random() - 0.5) * 24;
-        positions[i + 1] = (Math.random() - 0.5) * 16;
-        positions[i + 2] = (Math.random() - 0.5) * 20;
-      }
-      geom.setAttribute("position", new THREE.BufferAttribute(positions, 3));
-      const mat = new THREE.PointsMaterial({
-        color: 0x38bdf8,
-        size: 0.09,
-        transparent: true,
-        opacity: 0.65
+    function createCard(frontTex, backTex = null, w = 3.6, h = 2.2, d = 0.05) {
+      const geom = new THREE.BoxGeometry(w, h, d);
+      const fMat = new THREE.MeshPhysicalMaterial({
+        map: frontTex,
+        roughness: 0.18,
+        metalness: 0.2,
+        clearcoat: 0.7,
+        clearcoatRoughness: 0.15
       });
-      return new THREE.Points(geom, mat);
+      const bMat = new THREE.MeshPhysicalMaterial({
+        map: backTex || frontTex,
+        roughness: 0.22,
+        metalness: 0.15
+      });
+      const sideMat = new THREE.MeshStandardMaterial({ color: 0x0284c7, metalness: 0.85, roughness: 0.15 });
+      return new THREE.Mesh(geom, [sideMat, sideMat, sideMat, sideMat, fMat, bMat]);
     }
 
-    return { createCard, createCertificate, createLaserScanner, createParticleField };
+    return { createDocument, createCard };
   })();
 
   /* ================================================================
-     11. UNIFIED 3D CINEMATIC CAMERA & DOCUMENT SCROLL JOURNEY
+     11. MASTER DOCUMENT SPATIAL STORYTELLING ENGINE
+     Scroll-Driven Z-Depth, Dynamic Perspective Rotation & Light Sweep
      ================================================================ */
-  function initUnifiedCinematicJourney() {
+  function initMasterDocumentEngine() {
     const canvas = document.getElementById("master3DCanvas");
     if (!canvas || typeof THREE === "undefined" || !webglAvailable || prefersReducedMotion) return;
 
-    let renderer, scene, camera;
+    let renderer;
     try {
       renderer = new THREE.WebGLRenderer({
         canvas,
@@ -673,191 +632,278 @@
       });
       renderer.setPixelRatio(deviceDPR);
       renderer.setSize(window.innerWidth, window.innerHeight);
+      renderer.setScissorTest(true);
       renderer.toneMapping = THREE.ACESFilmicToneMapping;
       renderer.toneMappingExposure = 1.35;
-
-      scene = new THREE.Scene();
-      camera = new THREE.PerspectiveCamera(isMobile ? 48 : 42, window.innerWidth / window.innerHeight, 0.1, 100);
-      camera.position.set(0, 0, 10);
     } catch (err) {
       console.warn("WebGL initialization skipped:", err);
       return;
     }
 
-    // Dynamic Lighting System
-    scene.add(new THREE.AmbientLight(0x1e3a5f, 1.1));
-
-    const keyLight = new THREE.PointLight(0x38bdf8, 4.2, 40);
-    keyLight.position.set(5, 6, 8);
-    scene.add(keyLight);
-
-    const rimLight = new THREE.PointLight(0xfbbf24, 3.2, 35);
-    rimLight.position.set(-6, -4, 6);
-    scene.add(rimLight);
-
-    const fillLight = new THREE.PointLight(0x818cf8, 2.2, 30);
-    fillLight.position.set(0, 5, -4);
-    scene.add(fillLight);
-
-    // Ambient 3D Particle Dust Field
-    const particles = MeshFactory.createParticleField(isMobile ? 70 : 150);
-    scene.add(particles);
-
-    // ----------------------------------------------------
-    // BUILD 10 DEDICATED 3D SERVICE STATIONS
-    // ----------------------------------------------------
-    const stations = [];
-
-    // Station 0: Hero Paper Galaxy
-    const heroStation = new THREE.Group();
-    const heroDoc = MeshFactory.createCertificate("శ్రీ మణికంఠ మీ సేవ", "MEESEVA-VELDURTHI-AP", 3.2, 4.4);
-    heroStation.add(heroDoc);
-
-    const heroOrbitCards = [];
-    const orbitData = [
-      { fn: () => MeshFactory.createCard(HDTextures.panFront()), a: 0, r: 4.8, y: 0.6 },
-      { fn: () => MeshFactory.createCard(HDTextures.aadhaarFront()), a: (Math.PI * 2) / 4, r: 5.0, y: -0.5 },
-      { fn: () => MeshFactory.createCard(HDTextures.riceCardFront()), a: (Math.PI * 4) / 4, r: 4.8, y: 0.4 },
-      { fn: () => MeshFactory.createCertificate("కుల సర్టిఫికేట్", "AP-CASTE-2026", 2.2, 3.0), a: (Math.PI * 6) / 4, r: 4.9, y: -0.3 }
-    ];
-    orbitData.forEach(od => {
-      const c = od.fn();
-      c.scale.set(0.72, 0.72, 0.72);
-      heroStation.add(c);
-      heroOrbitCards.push({ mesh: c, data: od });
+    canvas.addEventListener("webglcontextlost", (e) => {
+      e.preventDefault();
+      console.warn("WebGL Context Lost — preserving stability.");
     });
-    scene.add(heroStation);
-    stations.push({ group: heroStation, type: "hero", doc: heroDoc, orbits: heroOrbitCards });
+    canvas.addEventListener("webglcontextrestored", () => {
+      console.log("WebGL Context Restored — reinitializing engine.");
+      initMasterDocumentEngine();
+    });
 
-    // Station 1: Xerox 3D Laser Scanner
-    const xeroxScanner = MeshFactory.createLaserScanner();
-    scene.add(xeroxScanner.group);
-    stations.push({ group: xeroxScanner.group, type: "xerox", beam: xeroxScanner.beam, outDoc: xeroxScanner.outDoc });
+    const registeredStages = [];
 
-    // Station 2: Thermal Lamination
-    const lamGroup = new THREE.Group();
-    const lamDoc = MeshFactory.createCertificate("లామినేషన్ సర్టిఫికేట్", "AP-LAM-2026", 2.6, 3.6);
-    lamGroup.add(lamDoc);
-    scene.add(lamGroup);
-    stations.push({ group: lamGroup, type: "lamination", doc: lamDoc });
+    // Helper: Setup studio 3-point lighting + dynamic moving specular sweep light
+    function setupDocumentLighting(scene) {
+      scene.add(new THREE.AmbientLight(0x2a4365, 0.95));
 
-    // Station 3: Smart PVC Card 360°
-    const pvcGroup = new THREE.Group();
-    const pvcCard = MeshFactory.createCard(HDTextures.panFront(), null, 3.6, 2.2, 0.08);
-    pvcGroup.add(pvcCard);
-    scene.add(pvcGroup);
-    stations.push({ group: pvcGroup, type: "pvccard", card: pvcCard });
+      // Key light
+      const kl = new THREE.PointLight(0x38bdf8, 3.8, 35);
+      kl.position.set(4, 5, 6);
+      scene.add(kl);
 
-    // Station 4: Passport Photo Studio Fan
-    const photoGroup = new THREE.Group();
-    for (let i = -1; i <= 1; i++) {
-      const p = MeshFactory.createCard(HDTextures.panFront(), null, 1.8, 2.2, 0.03);
-      p.position.set(i * 0.9, 0, -Math.abs(i) * 0.3);
-      p.rotation.z = i * 0.12;
-      photoGroup.add(p);
+      // Warm rim light
+      const rl = new THREE.PointLight(0xfbbf24, 2.8, 30);
+      rl.position.set(-5, -3, 5);
+      scene.add(rl);
+
+      // Dynamic moving specular light (travels across paper surface)
+      const sweepLight = new THREE.PointLight(0xffffff, 2.2, 20);
+      sweepLight.position.set(-3, 1, 4);
+      scene.add(sweepLight);
+
+      return { sweepLight };
     }
-    scene.add(photoGroup);
-    stations.push({ group: photoGroup, type: "photo" });
-
-    // Station 5: AP Government Certificates Fan
-    const certGroup = new THREE.Group();
-    const c1 = MeshFactory.createCertificate("ఆదాయ సర్టిఫికేట్", "AP-INC-2026", 2.2, 3.2);
-    const c2 = MeshFactory.createCertificate("కుల సర్టిఫికేట్", "AP-CAS-2026", 2.2, 3.2);
-    const c3 = MeshFactory.createCertificate("OBC / EWS సర్టిఫికేట్", "AP-OBC-2026", 2.2, 3.2);
-    c1.position.set(-1.0, 0, -0.2); c1.rotation.z = -0.15;
-    c2.position.set(0, 0.2, 0);
-    c3.position.set(1.0, 0, -0.2); c3.rotation.z = 0.15;
-    certGroup.add(c1); certGroup.add(c2); certGroup.add(c3);
-    scene.add(certGroup);
-    stations.push({ group: certGroup, type: "cert" });
-
-    // Station 6: Official ID Cards Deck
-    const idGroup = new THREE.Group();
-    const panM = MeshFactory.createCard(HDTextures.panFront(), null, 3.2, 2.0, 0.06);
-    const aadhM = MeshFactory.createCard(HDTextures.aadhaarFront(), null, 3.2, 2.0, 0.06);
-    panM.position.set(-0.8, 0.4, 0); panM.rotation.z = -0.1;
-    aadhM.position.set(0.8, -0.3, 0.2); aadhM.rotation.z = 0.1;
-    idGroup.add(panM); idGroup.add(aadhM);
-    scene.add(idGroup);
-    stations.push({ group: idGroup, type: "idcards", pan: panM, aadh: aadhM });
-
-    // Station 7: AP Rice Card Network
-    const riceGroup = new THREE.Group();
-    const riceCardM = MeshFactory.createCard(HDTextures.riceCardFront(), null, 3.4, 2.1, 0.06);
-    riceGroup.add(riceCardM);
-    scene.add(riceGroup);
-    stations.push({ group: riceGroup, type: "ration", card: riceCardM });
-
-    // Station 8: Pattadar Passbook
-    const passGroup = new THREE.Group();
-    const passCardM = MeshFactory.createCard(HDTextures.passbookCover(), null, 2.6, 3.6, 0.15);
-    passGroup.add(passCardM);
-    scene.add(passGroup);
-    stations.push({ group: passGroup, type: "passbook", card: passCardM });
-
-    // Station 9: Special Citizen Services & Hologram
-    const specGroup = new THREE.Group();
-    const specCardM = MeshFactory.createCard(HDTextures.aadhaarFront(), null, 3.2, 2.0, 0.06);
-    specGroup.add(specCardM);
-    scene.add(specGroup);
-    stations.push({ group: specGroup, type: "special", card: specCardM });
-
-    // Hide all initially except Hero
-    stations.forEach((st, idx) => {
-      if (idx > 0) st.group.visible = false;
-    });
 
     // ----------------------------------------------------
-    // INTERACTIVE TOUCH-DRAG & GYROSCOPE PHYSICS
+    // 1. HERO 3D DOCUMENT GALAXY STAGE
     // ----------------------------------------------------
-    let dragX = 0, dragY = 0, targetDragX = 0, targetDragY = 0;
-    let isDragging = false, startX = 0, startY = 0;
-    let gyroX = 0, gyroY = 0;
+    const heroEl = document.querySelector('[data-stage="hero"]');
+    if (heroEl) {
+      const scene = new THREE.Scene();
+      const camera = new THREE.PerspectiveCamera(isMobile ? 48 : 40, 1, 0.1, 80);
+      camera.position.set(0, 0, isMobile ? 12.5 : 10.5);
+      const lights = setupDocumentLighting(scene);
 
-    window.addEventListener("pointerdown", (e) => {
-      isDragging = true; startX = e.clientX; startY = e.clientY;
-    });
-    window.addEventListener("pointermove", (e) => {
-      if (isDragging) {
-        targetDragY += (e.clientX - startX) * 0.006;
-        targetDragX += (e.clientY - startY) * 0.006;
-        startX = e.clientX; startY = e.clientY;
-      } else {
-        const nx = (e.clientX / window.innerWidth - 0.5) * 2;
-        const ny = (e.clientY / window.innerHeight - 0.5) * 2;
-        targetDragY = nx * 0.35;
-        targetDragX = -ny * 0.25;
-      }
-    });
-    window.addEventListener("pointerup", () => { isDragging = false; });
+      const heroGroup = new THREE.Group();
+      scene.add(heroGroup);
 
-    if (window.DeviceOrientationEvent && isMobile) {
-      window.addEventListener("deviceorientation", (e) => {
-        if (e.gamma !== null && e.beta !== null && !isDragging) {
-          gyroY = (Math.max(-30, Math.min(30, e.gamma)) / 30) * 0.35;
-          gyroX = (Math.max(-30, Math.min(30, e.beta - 45)) / 30) * 0.25;
+      // Central Royal Document
+      const mainDoc = MeshFactory.createDocument(HDTextures.certFront("శ్రీ మణికంఠ మీ సేవ", "MEESEVA-VELDURTHI-AP"), null, 3.2, 4.4, 0.04);
+      heroGroup.add(mainDoc);
+
+      // Orbiting Service Documents & Cards
+      const orbitItems = [];
+      const oData = [
+        { mesh: MeshFactory.createCard(HDTextures.panFront()), angle: 0, r: 4.8, y: 0.6 },
+        { mesh: MeshFactory.createCard(HDTextures.aadhaarFront()), angle: (Math.PI * 2) / 4, r: 5.0, y: -0.5 },
+        { mesh: MeshFactory.createCard(HDTextures.riceCardFront()), angle: (Math.PI * 4) / 4, r: 4.8, y: 0.4 },
+        { mesh: MeshFactory.createDocument(HDTextures.certFront("కుల సర్టిఫికేట్", "AP-CASTE-2026"), null, 2.2, 3.0, 0.03), angle: (Math.PI * 6) / 4, r: 4.9, y: -0.3 }
+      ];
+
+      oData.forEach(od => {
+        od.mesh.scale.set(0.72, 0.72, 0.72);
+        heroGroup.add(od.mesh);
+        orbitItems.push(od);
+      });
+
+      // Touch & Gyro interaction
+      let targetRotX = 0, targetRotY = 0;
+      let currentRotX = 0, currentRotY = 0;
+      let isDragging = false, startX = 0, startY = 0;
+
+      window.addEventListener("pointerdown", (e) => {
+        if (window.scrollY > window.innerHeight) return;
+        isDragging = true; startX = e.clientX; startY = e.clientY;
+      });
+      window.addEventListener("pointermove", (e) => {
+        if (isDragging) {
+          targetRotY += (e.clientX - startX) * 0.006;
+          targetRotX += (e.clientY - startY) * 0.006;
+          startX = e.clientX; startY = e.clientY;
+        } else {
+          const nx = (e.clientX / window.innerWidth - 0.5) * 2;
+          const ny = (e.clientY / window.innerHeight - 0.5) * 2;
+          targetRotY = nx * 0.35;
+          targetRotX = -ny * 0.25;
         }
-      }, { passive: true });
+      });
+      window.addEventListener("pointerup", () => { isDragging = false; });
+
+      if (window.DeviceOrientationEvent && isMobile) {
+        window.addEventListener("deviceorientation", (e) => {
+          if (e.gamma !== null && e.beta !== null && !isDragging) {
+            targetRotY = (Math.max(-30, Math.min(30, e.gamma)) / 30) * 0.4;
+            targetRotX = (Math.max(-30, Math.min(30, e.beta - 45)) / 30) * 0.3;
+          }
+        }, { passive: true });
+      }
+
+      registeredStages.push({
+        element: heroEl,
+        scene,
+        camera,
+        update(t) {
+          currentRotX += (targetRotX - currentRotX) * 0.08;
+          currentRotY += (targetRotY - currentRotY) * 0.08;
+
+          heroGroup.rotation.x = currentRotX + Math.sin(t * 0.4) * 0.04;
+          heroGroup.rotation.y = currentRotY + t * 0.15;
+
+          mainDoc.position.y = Math.sin(t * 0.8) * 0.15;
+          mainDoc.rotation.y = Math.sin(t * 0.5) * 0.1;
+
+          // Moving specular light sweep
+          lights.sweepLight.position.x = Math.sin(t * 1.2) * 5.0;
+
+          orbitItems.forEach((oc, i) => {
+            const a = oc.angle + t * 0.3;
+            const r = oc.r;
+            oc.mesh.position.set(Math.cos(a) * r, oc.y + Math.sin(t * 1.2 + i) * 0.15, Math.sin(a) * r * 0.6);
+            oc.mesh.rotation.y = -a + Math.PI / 2 + Math.sin(t * 0.6) * 0.15;
+          });
+        }
+      });
+    }
+
+    // Helper: Create a Cinema Document Stage with Scroll-Driven Spatial Travel
+    function registerDocumentStage(selector, createMeshFn, cameraDist = 6.2) {
+      const el = document.querySelector(selector);
+      if (!el) return;
+
+      const scene = new THREE.Scene();
+      const camera = new THREE.PerspectiveCamera(38, 1, 0.1, 50);
+      camera.position.set(0, 0, cameraDist);
+      const lights = setupDocumentLighting(scene);
+
+      const docMesh = createMeshFn();
+      scene.add(docMesh);
+
+      registeredStages.push({
+        element: el,
+        scene,
+        camera,
+        update(t, scrollProgress) {
+          // Scroll-driven Z-depth: moves from depth (z: -4) to focus (z: 0) to passing (z: +1.5)
+          const p = Math.max(0, Math.min(1, scrollProgress));
+          const targetZ = -3.5 + p * 4.5;
+          docMesh.position.z += (targetZ - docMesh.position.z) * 0.1;
+
+          // Natural perspective rotation: -18deg -> 0deg -> 12deg -> -8deg
+          const targetRotY = (-0.3 + p * 0.5) + Math.sin(t * 0.6) * 0.15;
+          const targetRotX = (-0.05 + Math.sin(t * 0.8) * 0.08);
+          docMesh.rotation.y += (targetRotY - docMesh.rotation.y) * 0.1;
+          docMesh.rotation.x += (targetRotX - docMesh.rotation.x) * 0.1;
+
+          // Idle vertical floating
+          docMesh.position.y = Math.sin(t * 1.0) * 0.12;
+
+          // Moving specular light sweep across document
+          lights.sweepLight.position.x = -4.0 + (p * 8.0) + Math.sin(t * 1.5) * 1.5;
+        }
+      });
     }
 
     // ----------------------------------------------------
-    // SCROLL-DRIVEN 3D CAMERA FLIGHT & DOCUMENT TRAJECTORY
+    // 2. XEROX & PRINTING DOCUMENT STAGE
     // ----------------------------------------------------
-    let scrollProgress = 0;
-    let currentProgress = 0;
+    registerDocumentStage('[data-stage="xerox"]', () => {
+      const g = new THREE.Group();
+      const doc = MeshFactory.createDocument(HDTextures.certFront("కలర్ జిరాక్స్ డాక్యుమెంట్", "AP-PRINT-2026"), null, 2.6, 3.6, 0.03);
+      g.add(doc);
 
-    function onScroll() {
-      const docH = document.documentElement.scrollHeight - window.innerHeight;
-      scrollProgress = docH > 0 ? window.scrollY / docH : 0;
-    }
-    window.addEventListener("scroll", onScroll, { passive: true });
-    onScroll();
+      // Subtle glowing laser scan line
+      const laser = new THREE.Mesh(
+        new THREE.CylinderGeometry(0.02, 0.02, 2.8, 16),
+        new THREE.MeshStandardMaterial({ color: 0x38bdf8, emissive: 0x38bdf8, emissiveIntensity: 3.0 })
+      );
+      laser.rotation.z = Math.PI / 2;
+      laser.position.set(0, 0, 0.04);
+      g.add(laser);
+      g.userData.laser = laser;
+      return g;
+    });
 
+    // ----------------------------------------------------
+    // 3. THERMAL LAMINATION STAGE (High-Gloss Protected Document)
+    // ----------------------------------------------------
+    registerDocumentStage('[data-stage="lamination"]', () => {
+      return MeshFactory.createDocument(HDTextures.certFront("లామినేషన్ సర్టిఫికేట్", "AP-LAM-2026"), null, 2.6, 3.6, 0.03);
+    });
+
+    // ----------------------------------------------------
+    // 4. SMART PVC CARD STAGE (360° Rotating Card)
+    // ----------------------------------------------------
+    registerDocumentStage('[data-stage="pvccard"]', () => {
+      return MeshFactory.createCard(HDTextures.panFront(), null, 3.6, 2.2, 0.08);
+    }, 5.5);
+
+    // ----------------------------------------------------
+    // 5. PASSPORT PHOTO STUDIO STAGE
+    // ----------------------------------------------------
+    registerDocumentStage('[data-stage="photo"]', () => {
+      const g = new THREE.Group();
+      for (let i = -1; i <= 1; i++) {
+        const p = MeshFactory.createCard(HDTextures.panFront(), null, 1.8, 2.2, 0.03);
+        p.position.set(i * 0.9, 0, -Math.abs(i) * 0.3);
+        p.rotation.z = i * 0.12;
+        g.add(p);
+      }
+      return g;
+    }, 6.0);
+
+    // ----------------------------------------------------
+    // 6. AP GOVT CERTIFICATES CASCADING FAN
+    // ----------------------------------------------------
+    registerDocumentStage('[data-stage="certificate"]', () => {
+      const g = new THREE.Group();
+      const c1 = MeshFactory.createDocument(HDTextures.certFront("ఆదాయ సర్టిఫికేట్", "AP-INC-2026"), null, 2.2, 3.2, 0.02);
+      const c2 = MeshFactory.createDocument(HDTextures.certFront("కుల సర్టిఫికేట్", "AP-CAS-2026"), null, 2.2, 3.2, 0.02);
+      const c3 = MeshFactory.createDocument(HDTextures.certFront("OBC / EWS సర్టిఫికేట్", "AP-OBC-2026"), null, 2.2, 3.2, 0.02);
+      c1.position.set(-0.9, 0, -0.2); c1.rotation.z = -0.12;
+      c2.position.set(0, 0.2, 0);
+      c3.position.set(0.9, 0, -0.2); c3.rotation.z = 0.12;
+      g.add(c1); g.add(c2); g.add(c3);
+      return g;
+    }, 6.5);
+
+    // ----------------------------------------------------
+    // 7. OFFICIAL ID CARDS ORBITAL STAGE
+    // ----------------------------------------------------
+    registerDocumentStage('[data-stage="idcards"]', () => {
+      const g = new THREE.Group();
+      const pan = MeshFactory.createCard(HDTextures.panFront(), null, 3.2, 2.0, 0.06);
+      const aadh = MeshFactory.createCard(HDTextures.aadhaarFront(), null, 3.2, 2.0, 0.06);
+      pan.position.set(-0.8, 0.3, 0); pan.rotation.z = -0.08;
+      aadh.position.set(0.8, -0.3, 0.2); aadh.rotation.z = 0.08;
+      g.add(pan); g.add(aadh);
+      return g;
+    }, 6.0);
+
+    // ----------------------------------------------------
+    // 8. RATION CARD DOCUMENT STAGE
+    // ----------------------------------------------------
+    registerDocumentStage('[data-stage="ration"]', () => {
+      return MeshFactory.createCard(HDTextures.riceCardFront(), null, 3.4, 2.1, 0.06);
+    }, 5.8);
+
+    // ----------------------------------------------------
+    // 9. PATTADAR PASSBOOK 3D STAGE
+    // ----------------------------------------------------
+    registerDocumentStage('[data-stage="passbook"]', () => {
+      return MeshFactory.createCard(HDTextures.passbookCover(), null, 2.6, 3.6, 0.15);
+    }, 6.2);
+
+    // ----------------------------------------------------
+    // 10. SPECIAL CITIZEN SERVICES STAGE
+    // ----------------------------------------------------
+    registerDocumentStage('[data-stage="special"]', () => {
+      return MeshFactory.createCard(HDTextures.aadhaarFront(), null, 3.2, 2.0, 0.06);
+    }, 5.8);
+
+    // ----------------------------------------------------
+    // RESIZE & SCISSOR RENDER LOOP
+    // ----------------------------------------------------
     function onResize() {
       const w = window.innerWidth, h = window.innerHeight;
-      camera.aspect = w / h;
-      camera.fov = isMobile ? 48 : 42;
-      camera.updateProjectionMatrix();
       renderer.setSize(w, h);
     }
     window.addEventListener("resize", onResize);
@@ -872,89 +918,52 @@
 
       const time = clock.getElapsedTime();
 
-      // Smooth scroll interpolation
-      currentProgress += (scrollProgress - currentProgress) * 0.08;
-      dragX += (targetDragX - dragX) * 0.08;
-      dragY += (targetDragY - dragY) * 0.08;
+      // Clear full canvas buffer
+      renderer.setScissorTest(false);
+      renderer.clear();
+      renderer.setScissorTest(true);
 
-      // 1. DYNAMIC CAMERA FLIGHT
-      const camZ = THREE.MathUtils.lerp(10.5, 7.5, Math.sin(currentProgress * Math.PI));
-      const camX = Math.sin(currentProgress * Math.PI * 3.5) * (isMobile ? 0.6 : 1.2) + dragY + gyroY;
-      const camY = -Math.cos(currentProgress * Math.PI * 3.5) * 0.4 + dragX + gyroX;
-      camera.position.set(camX, camY, camZ);
-      camera.lookAt(0, 0, 0);
+      const winH = window.innerHeight;
 
-      // Dynamic Light Sweeps
-      keyLight.position.set(camX + 4, camY + 5, camZ + 2);
-      rimLight.position.set(camX - 5, camY - 4, camZ - 2);
+      // Render each visible stage portal with scroll progress
+      registeredStages.forEach(st => {
+        const rect = st.element.getBoundingClientRect();
 
-      // Particle Drift
-      particles.rotation.y = time * 0.04 + currentProgress * 2;
-      particles.rotation.x = Math.sin(time * 0.2) * 0.02;
+        // Viewport culling (super fast on mobile!)
+        if (rect.bottom < 0 || rect.top > winH) return;
 
-      // 2. TIMELINE PROGRESSION ACROSS THE 10 SERVICE STATIONS
-      const stationCount = stations.length; // 10 stations
-      const activeFloat = currentProgress * (stationCount - 1);
-      const activeIndex = Math.min(stationCount - 1, Math.max(0, Math.floor(activeFloat)));
-      const localProgress = activeFloat - activeIndex; // 0.0 to 1.0 within active segment
+        const left = Math.floor(rect.left);
+        const bottom = Math.floor(winH - rect.bottom);
+        const width = Math.floor(rect.width);
+        const height = Math.floor(rect.height);
 
-      stations.forEach((st, idx) => {
-        if (idx === activeIndex) {
-          st.group.visible = true;
+        if (width <= 0 || height <= 0) return;
 
-          // Trajectory: approaches from Z = -8 -> center Z = 0 -> exits past camera Z = +4
-          // Rotation: rotY -35deg -> 0deg -> 90deg
-          const zPos = THREE.MathUtils.lerp(-8, 4, localProgress);
-          const rotY = THREE.MathUtils.lerp(-0.6, Math.PI / 2, localProgress);
-          const rotX = THREE.MathUtils.lerp(0.14, -0.1, localProgress);
-          const scale = THREE.MathUtils.lerp(0.65, 1.15, Math.sin(localProgress * Math.PI));
+        renderer.setViewport(left, bottom, width, height);
+        renderer.setScissor(left, bottom, width, height);
 
-          st.group.position.set(0, Math.sin(time * 1.2 + idx) * 0.1, Math.min(2.5, zPos));
-          st.group.rotation.set(rotX + dragX * 0.5, rotY + dragY * 0.5 + time * 0.1, 0);
-          st.group.scale.set(scale, scale, scale);
+        st.camera.aspect = width / height;
+        st.camera.updateProjectionMatrix();
 
-          // Internal micro-animations for specific stations
-          if (st.type === "hero") {
-            st.doc.rotation.y = Math.sin(time * 0.5) * 0.1;
-            st.orbits.forEach((oc, i) => {
-              const a = oc.data.a + time * 0.3;
-              const r = oc.data.r;
-              oc.mesh.position.set(Math.cos(a) * r, oc.data.y + Math.sin(time * 1.2 + i) * 0.15, Math.sin(a) * r * 0.6);
-              oc.mesh.rotation.y = -a + Math.PI / 2;
-            });
-          } else if (st.type === "xerox") {
-            st.beam.position.z = Math.sin(time * 2.5) * 0.8;
-            st.outDoc.position.y = 0.85 + Math.sin(time * 1.5) * 0.06;
-          } else if (st.type === "pvccard") {
-            st.card.rotation.y = time * 1.2;
-          } else if (st.type === "idcards") {
-            st.pan.rotation.y = Math.sin(time * 0.9) * 0.2;
-            st.aadh.rotation.y = -Math.sin(time * 0.9) * 0.2;
-          } else if (st.type === "passbook") {
-            st.card.rotation.y = -0.2 + Math.sin(time * 0.8) * 0.3;
-          }
-        } else if (idx === activeIndex + 1) {
-          // Next incoming station: preparing in deep Z-space
-          st.group.visible = true;
-          const enterProgress = localProgress; // 0.0 to 1.0
-          const zPos = THREE.MathUtils.lerp(-14, -8, enterProgress);
-          const rotY = THREE.MathUtils.lerp(-1.0, -0.6, enterProgress);
-          st.group.position.set(0, 0, zPos);
-          st.group.rotation.set(0.14, rotY, 0);
-          st.group.scale.set(0.5, 0.5, 0.5);
-        } else {
-          st.group.visible = false;
+        // Calculate stage scroll progress (0 when entering bottom, 1 when exiting top)
+        const scrollP = (winH - rect.top) / (winH + rect.height);
+
+        st.update(time, scrollP);
+
+        // If stage has an internal laser line, animate its position
+        if (st.scene.children[1] && st.scene.children[1].userData && st.scene.children[1].userData.laser) {
+          st.scene.children[1].userData.laser.position.y = Math.sin(time * 2.2) * 1.5;
         }
-      });
 
-      renderer.render(scene, camera);
+        renderer.render(st.scene, st.camera);
+      });
     }
 
     animate();
   }
 
   window.addEventListener("DOMContentLoaded", () => {
-    initUnifiedCinematicJourney();
+    initMasterDocumentEngine();
   });
 
 })();
