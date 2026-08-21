@@ -40,10 +40,10 @@
 </head>
 <body>
 
-<!-- MASTER 3D SCISSOR CANVAS -->
+<!-- UNIFIED MASTER 3D SCENE CANVAS -->
 <canvas id="master3DCanvas" aria-hidden="true"></canvas>
 
-<!-- AMBIENT ATMOSPHERE -->
+<!-- AMBIENT GLOW ATMOSPHERE -->
 <div class="ambient-glow" aria-hidden="true">
   <div class="glow-orb orb-top"></div>
   <div class="glow-orb orb-mid"></div>
@@ -58,7 +58,7 @@
     <div class="loader-ring"><div></div><div></div><div></div></div>
     <div class="loader-glyph">శ్రీ</div>
     <div class="loader-bar"><span></span></div>
-    <p class="loader-text">3D బ్రాండ్ అనుభవం సిద్ధమవుతోంది...</p>
+    <p class="loader-text">3D సినిమాటిక్ అనుభవం సిద్ధమవుతోంది...</p>
   </div>
 </div>
 
@@ -107,8 +107,8 @@
 
 <main id="main">
 
-  <!-- HERO SECTION WITH 3D PAPER GALAXY -->
-  <section class="hero" id="home" data-stage="hero">
+  <!-- HERO SECTION WITH CINEMATIC 3D PAPER JOURNEY LAUNCH -->
+  <section class="hero" id="home" data-section-index="0">
     <div class="hero-content">
       <span class="eyebrow">
         <span class="eyebrow-dot"></span>
@@ -135,7 +135,7 @@
       </div>
     </div>
     <div class="scroll-hint" aria-hidden="true">
-      <span>3D అనుభవం చూడటానికి క్రిందికి స్క్రోల్ చేయండి</span>
+      <span>3D ప్రయాణం కోసం క్రిందికి స్క్రోల్ చేయండి</span>
       <div class="scroll-hint-line"><i></i></div>
     </div>
   </section>
@@ -207,12 +207,12 @@
     </div>
   </section>
 
-  <!-- ==================== CINEMATIC 3D SERVICE SECTIONS ==================== -->
+  <!-- ==================== CONTINUOUS 3D CINEMATIC SERVICE STATIONS ==================== -->
 
-  <!-- 1. XEROX & PRINTING (Live 3D Laser Machine) -->
-  <section class="cinema" id="cin-xerox">
+  <!-- STATION 1: XEROX & COLOR PRINTING -->
+  <section class="cinema" id="cin-xerox" data-section-index="1">
     <div class="cinema-inner">
-      <div class="cinema-stage-card" data-stage="xerox">
+      <div class="cinema-stage-card">
         <div class="cinema-badge">3D Laser Scanner</div>
       </div>
       <div class="cinema-copy reveal">
@@ -224,8 +224,8 @@
     </div>
   </section>
 
-  <!-- 2. THERMAL LAMINATION (3D Specular Encased Card) -->
-  <section class="cinema cinema-alt" id="cin-lam">
+  <!-- STATION 2: THERMAL LAMINATION -->
+  <section class="cinema cinema-alt" id="cin-lam" data-section-index="2">
     <div class="cinema-inner cinema-rev">
       <div class="cinema-copy reveal">
         <span class="eyebrow">లామినేషన్</span>
@@ -233,16 +233,16 @@
         <p class="section-sub">మీ ముఖ్యమైన డాక్యుమెంట్లకు దీర్ఘకాలిక రక్షణ — ప్రీమియం థర్మల్ లామినేషన్.</p>
         <div class="service-tags"><span>అన్ని సైజులు</span><span>ప్రీమియం ఫినిష్</span><span>వాటర్ ప్రూఫ్</span></div>
       </div>
-      <div class="cinema-stage-card" data-stage="lamination">
+      <div class="cinema-stage-card">
         <div class="cinema-badge">Thermal Lamination</div>
       </div>
     </div>
   </section>
 
-  <!-- 3. PVC SMART CARD (3D Metallic EMV Card) -->
-  <section class="cinema" id="cin-pvc">
+  <!-- STATION 3: PVC SMART CARD -->
+  <section class="cinema" id="cin-pvc" data-section-index="3">
     <div class="cinema-inner">
-      <div class="cinema-stage-card" data-stage="pvccard">
+      <div class="cinema-stage-card">
         <div class="cinema-badge">Smart PVC Card</div>
       </div>
       <div class="cinema-copy reveal">
@@ -254,8 +254,8 @@
     </div>
   </section>
 
-  <!-- 4. PASSPORT PHOTO STUDIO (3D Glossy Photo Fan) -->
-  <section class="cinema cinema-alt" id="cin-photo">
+  <!-- STATION 4: PASSPORT PHOTO STUDIO -->
+  <section class="cinema cinema-alt" id="cin-photo" data-section-index="4">
     <div class="cinema-inner cinema-rev">
       <div class="cinema-copy reveal">
         <span class="eyebrow">ఫోటో ప్రింటింగ్</span>
@@ -263,16 +263,16 @@
         <p class="section-sub">అన్ని ప్రభుత్వ మరియు ప్రైవేట్ దరఖాస్తులకు తగిన విధంగా ఇన్స్టంట్ పాస్‌పోర్ట్ ఫోటోలు.</p>
         <div class="service-tags"><span>పాస్‌పోర్ట్ సైజ్</span><span>ID ఫోటో</span><span>ఇన్స్టంట్ డెలివరీ</span></div>
       </div>
-      <div class="cinema-stage-card" data-stage="photo">
+      <div class="cinema-stage-card">
         <div class="cinema-badge">Studio Photo Print</div>
       </div>
     </div>
   </section>
 
-  <!-- 5. AP GOVT CERTIFICATES (3D Cascading Fan) -->
-  <section class="cinema" id="cin-cert">
+  <!-- STATION 5: AP GOVT CERTIFICATES -->
+  <section class="cinema" id="cin-cert" data-section-index="5">
     <div class="cinema-inner">
-      <div class="cinema-stage-card" data-stage="certificate">
+      <div class="cinema-stage-card">
         <div class="cinema-badge">AP Govt Certificates</div>
       </div>
       <div class="cinema-copy reveal">
@@ -284,8 +284,8 @@
     </div>
   </section>
 
-  <!-- 6. PAN, AADHAAR & DRIVING LICENSE (3D Orbital Deck) -->
-  <section class="cinema cinema-alt" id="cin-id">
+  <!-- STATION 6: OFFICIAL ID DECK -->
+  <section class="cinema cinema-alt" id="cin-id" data-section-index="6">
     <div class="cinema-inner cinema-rev">
       <div class="cinema-copy reveal">
         <span class="eyebrow">PAN, ఆధార్ &amp; లైసెన్స్</span>
@@ -293,16 +293,16 @@
         <p class="section-sub">కొత్త PAN కార్డ్ దరఖాస్తు, కరెక్షన్లు, ఆధార్ సేవలు, డ్రైవింగ్ లైసెన్స్ అన్నీ ఒకే చోట.</p>
         <div class="service-tags"><span>PAN కార్డ్</span><span>ఆధార్ సేవలు</span><span>డ్రైవింగ్ లైసెన్స్</span></div>
       </div>
-      <div class="cinema-stage-card" data-stage="idcards">
+      <div class="cinema-stage-card">
         <div class="cinema-badge">Official ID Cards</div>
       </div>
     </div>
   </section>
 
-  <!-- 7. RATION CARD (3D Rice Card Citizen Network) -->
-  <section class="cinema" id="cin-ration">
+  <!-- STATION 7: RATION CARD CITIZEN NETWORK -->
+  <section class="cinema" id="cin-ration" data-section-index="7">
     <div class="cinema-inner">
-      <div class="cinema-stage-card" data-stage="ration">
+      <div class="cinema-stage-card">
         <div class="cinema-badge">AP Rice Card</div>
       </div>
       <div class="cinema-copy reveal">
@@ -314,8 +314,8 @@
     </div>
   </section>
 
-  <!-- 8. PASSBOOK & E-STAMP (3D Gold-Embossed Passbook) -->
-  <section class="cinema cinema-alt" id="cin-pass">
+  <!-- STATION 8: PASSBOOK & E-STAMP -->
+  <section class="cinema cinema-alt" id="cin-pass" data-section-index="8">
     <div class="cinema-inner cinema-rev">
       <div class="cinema-copy reveal">
         <span class="eyebrow">పాస్‌బుక్ &amp; స్టాంప్</span>
@@ -323,16 +323,16 @@
         <p class="section-sub">పట్టాదారు పాస్‌బుక్ మ్యూటేషన్, ఈ-పాస్‌బుక్, నాన్-జ్యుడీషియల్ స్టాంప్ పేపర్స్.</p>
         <div class="service-tags"><span>పాస్‌బుక్ మ్యూటేషన్</span><span>E-Passbook</span><span>E-Stamp</span></div>
       </div>
-      <div class="cinema-stage-card" data-stage="passbook">
+      <div class="cinema-stage-card">
         <div class="cinema-badge">Revenue &amp; Stamp</div>
       </div>
     </div>
   </section>
 
-  <!-- 9. SPECIAL CITIZEN SERVICES (3D Holographic Shield) -->
-  <section class="cinema" id="cin-special">
+  <!-- STATION 9: SPECIAL CITIZEN CARE -->
+  <section class="cinema" id="cin-special" data-section-index="9">
     <div class="cinema-inner">
-      <div class="cinema-stage-card" data-stage="special">
+      <div class="cinema-stage-card">
         <div class="cinema-badge">Citizen Care</div>
       </div>
       <div class="cinema-copy reveal">
@@ -436,7 +436,7 @@
       <div class="contact-grid">
         <div class="contact-card reveal">
           <div class="pin" aria-hidden="true">
-            <svg viewBox="0 0 40 52"><path d="M20 2C10 2 2 10 2 20c0 14 18 30 18 30s18-16 18-30C38 10 30 2 20 2z" fill="url(#pinGrad)"/><circle cx="20" cy="20" r="7" fill="#061224"/><defs><linearGradient id="pinGrad" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#7ee8ff"/><stop offset="1" stop-color="#0284c7"/></linearGradient></defs></svg>
+            <svg viewBox="0 0 40 52"><path d="M20 2C10 2 2 10 2 20c0 14 18 30 18 30s18-16 18-30C38 10 30 2 20 2z" fill="url(#pinGrad)"/><circle cx="20" cy="20" r="7" fill="#061224"/><defs><linearGradient id="pinGrad" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7ee8ff"/><stop offset="1" stop-color="#0284c7"/></linearGradient></defs></svg>
           </div>
           <h3>అడ్రస్</h3>
           <p>రైల్వే స్టేషన్ రోడ్,<br />వెల్దుర్తి</p>
@@ -458,7 +458,7 @@
   </section>
 
   <!-- FINAL CTA SECTION -->
-  <section class="final-cta" data-stage="cta">
+  <section class="final-cta">
     <div class="final-cta-inner reveal">
       <h2>మీ పని సులభం చేయడం<br />మా లక్ష్యం.</h2>
       <p>మీకు కావాల్సిన సేవ కోసం ఈరోజే శ్రీ మణికంఠ మీ సేవను సంప్రదించండి.</p>
