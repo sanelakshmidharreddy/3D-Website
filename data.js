@@ -1,165 +1,138 @@
-/* ============================================================
-   SRI MANIKANTA MEESEVA — Content Data
-   Edit this file to add / remove / rename services, testimonials,
-   FAQ items, marquee items, and voice-over script segments.
-   ============================================================ */
+/**
+ * SRI MANIKANTA MEESEVA — SOURCE DATA DEFINITIONS
+ * Official Government & Citizen Services Directory (Veldurthi, Andhra Pradesh)
+ */
 
-const SERVICE_CATEGORIES = [
-  {
-    id: "printing",
-    title: "\u0C2A\u0C4D\u0C30\u0C3F\u0C02\u0C1F\u0C3F\u0C02\u0C17\u0C4D \u0C38\u0C47\u0C35\u0C32\u0C41",
-    icon: "printer",
-    items: [
-      "\u0C1C\u0C3F\u0C30\u0C3E\u0C15\u0C4D\u0C38\u0C4D",
-      "\u0C2C\u0C4D\u0C32\u0C3E\u0C15\u0C4D & \u0C15\u0C32\u0C30\u0C4D \u0C1C\u0C3F\u0C30\u0C3E\u0C15\u0C4D\u0C38\u0C4D",
-      "\u0C2B\u0C4B\u0C1F\u0C4B \u0C2A\u0C4D\u0C30\u0C3F\u0C02\u0C1F\u0C3F\u0C02\u0C17\u0C4D",
-      "\u0C05\u0C28\u0C4D\u0C28\u0C3F \u0C38\u0C48\u0C1C\u0C41\u0C32 \u0C32\u0C3E\u0C2E\u0C3F\u0C28\u0C47\u0C37\u0C28\u0C4D",
-      "PVC \u0C15\u0C3E\u0C30\u0C4D\u0C21\u0C4D \u0C2A\u0C4D\u0C30\u0C3F\u0C02\u0C1F\u0C3F\u0C02\u0C17\u0C4D",
-      "\u0C21\u0C3E\u0C15\u0C4D\u0C2F\u0C41\u0C2E\u0C46\u0C02\u0C1F\u0C4D \u0C2A\u0C4D\u0C30\u0C3F\u0C02\u0C1F\u0C3F\u0C02\u0C17\u0C4D"
-    ]
-  },
-  {
-    id: "certificate",
-    title: "\u0C2A\u0C4D\u0C30\u0C2D\u0C41\u0C24\u0C4D\u0C35 \u0C38\u0C30\u0C4D\u0C1F\u0C3F\u0C2B\u0C3F\u0C15\u0C47\u0C1F\u0C4D \u0C38\u0C47\u0C35\u0C32\u0C41",
-    icon: "certificate",
-    items: [
-      "\u0C06\u0C26\u0C3E\u0C2F \u0C38\u0C30\u0C4D\u0C1F\u0C3F\u0C2B\u0C3F\u0C15\u0C47\u0C1F\u0C4D",
-      "\u0C15\u0C41\u0C32 \u0C38\u0C30\u0C4D\u0C1F\u0C3F\u0C2B\u0C3F\u0C15\u0C47\u0C1F\u0C4D",
-      "OBC / EWS \u0C38\u0C30\u0C4D\u0C1F\u0C3F\u0C2B\u0C3F\u0C15\u0C47\u0C1F\u0C4D",
-      "\u0C35\u0C4D\u0C2F\u0C35\u0C38\u0C3E\u0C2F \u0C06\u0C26\u0C3E\u0C2F \u0C38\u0C30\u0C4D\u0C1F\u0C3F\u0C2B\u0C3F\u0C15\u0C47\u0C1F\u0C4D",
-      "\u0C32\u0C40\u0C17\u0C32\u0C4D \u0C39\u0C46\u0C2F\u0C3F\u0C30\u0C4D \u0C38\u0C30\u0C4D\u0C1F\u0C3F\u0C2B\u0C3F\u0C15\u0C47\u0C1F\u0C4D",
-      "\u0C05\u0C21\u0C02\u0C17\u0C32\u0C4D / 1B",
-      "\u0C2A\u0C3E\u0C38\u0C4D\u200C\u0C2C\u0C41\u0C15\u0C4D \u0C2E\u0C4D\u0C2F\u0C42\u0C1F\u0C47\u0C37\u0C28\u0C4D",
-      "\u0C08-\u0C2A\u0C3E\u0C38\u0C4D\u200C\u0C2C\u0C41\u0C15\u0C4D \u0C38\u0C47\u0C35\u0C32\u0C41"
-    ]
-  },
-  {
-    id: "idcards",
-    title: "PAN / \u0C06\u0C27\u0C3E\u0C30\u0C4D / \u0C32\u0C48\u0C38\u0C46\u0C28\u0C4D\u0C38\u0C4D",
-    icon: "idcard",
-    items: [
-      "\u0C15\u0C4A\u0C24\u0C4D\u0C24 PAN \u0C15\u0C3E\u0C30\u0C4D\u0C21\u0C4D",
-      "PAN \u0C15\u0C3E\u0C30\u0C4D\u0C21\u0C4D \u0C38\u0C35\u0C30\u0C23\u0C32\u0C41",
-      "\u0C06\u0C27\u0C3E\u0C30\u0C4D \u0C38\u0C02\u0C2C\u0C02\u0C27\u0C3F\u0C24 \u0C38\u0C47\u0C35\u0C32\u0C41",
-      "PVC \u0C15\u0C3E\u0C30\u0C4D\u0C21\u0C4D",
-      "\u0C21\u0C4D\u0C30\u0C48\u0C35\u0C3F\u0C02\u0C17\u0C4D \u0C32\u0C48\u0C38\u0C46\u0C28\u0C4D\u0C38\u0C4D \u0C38\u0C47\u0C35\u0C32\u0C41"
-    ]
-  },
-  {
-    id: "ration",
-    title: "\u0C30\u0C47\u0C37\u0C28\u0C4D \u0C15\u0C3E\u0C30\u0C4D\u0C21\u0C4D \u0C38\u0C47\u0C35\u0C32\u0C41",
-    icon: "ration",
-    items: [
-      "\u0C15\u0C4A\u0C24\u0C4D\u0C24 \u0C30\u0C48\u0C38\u0C4D \u0C15\u0C3E\u0C30\u0C4D\u0C21\u0C4D",
-      "\u0C38\u0C2D\u0C4D\u0C2F\u0C41\u0C32 \u0C1A\u0C47\u0C30\u0C4D\u0C2A\u0C41",
-      "\u0C38\u0C2D\u0C4D\u0C2F\u0C41\u0C32 \u0C24\u0C4A\u0C32\u0C17\u0C3F\u0C02\u0C2A\u0C41",
-      "\u0C35\u0C3F\u0C2D\u0C1C\u0C28 / \u0C2E\u0C48\u0C17\u0C4D\u0C30\u0C47\u0C37\u0C28\u0C4D",
-      "\u0C30\u0C48\u0C38\u0C4D \u0C15\u0C3E\u0C30\u0C4D\u0C21\u0C4D \u0C1F\u0C4D\u0C30\u0C3E\u0C28\u0C4D\u0C38\u0C4D\u200C\u0C2B\u0C30\u0C4D",
-      "\u0C30\u0C48\u0C38\u0C4D \u0C15\u0C3E\u0C30\u0C4D\u0C21\u0C4D \u0C38\u0C30\u0C46\u0C02\u0C21\u0C30\u0C4D"
-    ]
-  },
-  {
-    id: "special",
-    title: "\u0C2A\u0C4D\u0C30\u0C24\u0C4D\u0C2F\u0C47\u0C15 \u0C2A\u0C4C\u0C30 \u0C38\u0C47\u0C35\u0C32\u0C41",
-    icon: "special",
-    items: [
-      "\u0C38\u0C40\u0C28\u0C3F\u0C2F\u0C30\u0C4D \u0C38\u0C3F\u0C1F\u0C3F\u0C1C\u0C28\u0C4D \u0C15\u0C3E\u0C30\u0C4D\u0C21\u0C4D",
-      "UDID \u0C15\u0C3E\u0C30\u0C4D\u0C21\u0C4D",
-      "\u0C28\u0C3E\u0C28\u0C4D-\u0C1C\u0C4D\u0C2F\u0C41\u0C21\u0C40\u0C37\u0C3F\u0C2F\u0C32\u0C4D \u0C38\u0C4D\u0C1F\u0C3E\u0C02\u0C2A\u0C4D \u0C2A\u0C47\u0C2A\u0C30\u0C4D\u0C32\u0C41",
-      "\u0C08-\u0C38\u0C4D\u0C1F\u0C3E\u0C02\u0C2A\u0C4D \u0C38\u0C47\u0C35\u0C32\u0C41"
-    ]
-  }
-];
+window.MEESEVA_DATA = {
+  marqueeItems: [
+    "ఆదాయ సర్టిఫికేట్ (Income Certificate)",
+    "కుల సర్టిఫికేట్ (Caste Certificate)",
+    "కొత్త PAN కార్డ్ & కరెక్షన్లు (PAN Services)",
+    "ఆధార్ సేవలు (Aadhaar Services)",
+    "రైస్ కార్డ్ సేవలు (Rice / Ration Card)",
+    "డ్రైవింగ్ లైసెన్స్ దరఖాస్తు (Driving Licence)",
+    "బ్లాక్ & కలర్ జిరాక్స్ (High-Speed Xerox)",
+    "అన్ని సైజుల లామినేషన్ (Lamination)",
+    "స్మార్ట్ PVC కార్డ్ ప్రింటింగ్ (Smart PVC Cards)",
+    "ఇన్స్టంట్ పాస్‌పోర్ట్ సైజ్ ఫోటోలు (Passport Photos)",
+    "పట్టాదారు పాస్‌బుక్ & ఈ-స్టాంప్ (Passbook & E-Stamp)",
+    "సీనియర్ సిటిజన్ & UDID కార్డ్ (Special Citizen Care)"
+  ],
 
-const SEARCH_SYNONYMS = {
-  "\u0C06\u0C27\u0C3E\u0C30\u0C4D": "idcards",
-  "aadhar": "idcards",
-  "aadhaar": "idcards",
-  "pan": "idcards",
-  "license": "idcards",
-  "\u0C32\u0C48\u0C38\u0C46\u0C28\u0C4D\u0C38\u0C4D": "idcards",
-  "\u0C30\u0C47\u0C37\u0C28\u0C4D": "ration",
-  "\u0C30\u0C48\u0C38\u0C4D \u0C15\u0C3E\u0C30\u0C4D\u0C21\u0C4D": "ration",
-  "ration": "ration",
-  "\u0C38\u0C30\u0C4D\u0C1F\u0C3F\u0C2B\u0C3F\u0C15\u0C47\u0C1F\u0C4D": "certificate",
-  "certificate": "certificate",
-  "\u0C15\u0C41\u0C32": "certificate",
-  "\u0C06\u0C26\u0C3E\u0C2F": "certificate",
-  "\u0C1C\u0C3F\u0C30\u0C3E\u0C15\u0C4D\u0C38\u0C4D": "printing",
-  "xerox": "printing",
-  "print": "printing",
-  "\u0C2A\u0C4D\u0C30\u0C3F\u0C02\u0C1F\u0C4D": "printing",
-  "pvc": "idcards",
-  "udid": "special",
-  "\u0C38\u0C4D\u0C1F\u0C3E\u0C02\u0C2A\u0C4D": "special"
+  categories: [
+    {
+      id: "printing",
+      title: "ప్రింటింగ్ & లామినేషన్ సేవలు",
+      icon: "🖨️",
+      services: [
+        { name: "బ్లాక్ & వైట్ జిరాక్స్ (B&W Xerox)", badge: "అతి వేగంగా" },
+        { name: "కలర్ జిరాక్స్ (Color Print / Xerox)", badge: "HD క్వాలిటీ" },
+        { name: "అన్ని సైజుల లామినేషన్ (Lamination)", badge: "వాటర్ ప్రూఫ్" },
+        { name: "PVC కార్డ్ ప్రింటింగ్ (Smart PVC Print)", badge: "లైఫ్‌టైమ్" },
+        { name: "పాస్‌పోర్ట్ సైజ్ ఫోటోలు (Instant Photos)", badge: "5 నిమిషాల్లో" }
+      ]
+    },
+    {
+      id: "certificate",
+      title: "ప్రభుత్వ సర్టిఫికేట్ సేవలు (AP Revenue)",
+      icon: "📜",
+      services: [
+        { name: "ఆదాయ ధృవీకరణ పత్రం (Income Certificate)", badge: "అధికారికం" },
+        { name: "కుల ధృవీకరణ పత్రం (Caste Certificate)", badge: "అధికారికం" },
+        { name: "OBC / EWS సర్టిఫికేట్", badge: "అధికారికం" },
+        { name: "వ్యవసాయ ఆదాయ సర్టిఫికేట్ (Agri Income)", badge: "అధికారికం" },
+        { name: "నివాస ధృవీకరణ పత్రం (Residence / Nativity)", badge: "అధికారికం" },
+        { name: "ఫ్యామిలీ మెంబర్ సర్టిఫికేట్ (Legal Heir)", badge: "అధికారికం" }
+      ]
+    },
+    {
+      id: "idcards",
+      title: "PAN, ఆధార్ & లైసెన్స్ సేవలు",
+      icon: "🪪",
+      services: [
+        { name: "కొత్త PAN కార్డ్ దరఖాస్తు (New PAN Card)", badge: "ఇన్స్టంట్" },
+        { name: "PAN కార్డ్ కరెక్షన్ & రీప్రింట్ (PAN Update)", badge: "ఖచ్చితమైనది" },
+        { name: "ఆధార్ అడ్రస్ & వివరాల అప్‌డేట్ (Aadhaar)", badge: "సురక్షితం" },
+        { name: "లెర్నర్స్ లైసెన్స్ (LLR Application)", badge: "త్వరితం" },
+        { name: "డ్రైవింగ్ లైసెన్స్ దరఖాస్తు (Driving Licence)", badge: "పూర్తి సహాయం" }
+      ]
+    },
+    {
+      id: "ration",
+      title: "రేషన్ కార్డ్ సేవలు (AP Civil Supplies)",
+      icon: "🌾",
+      services: [
+        { name: "కొత్త రైస్ కార్డ్ దరఖాస్తు (New Rice Card)", badge: "లభ్యం" },
+        { name: "కుటుంబ సభ్యుల చేర్పు (Member Addition)", badge: "లభ్యం" },
+        { name: "కుటుంబ సభ్యుల తొలగింపు (Member Deletion)", badge: "లభ్యం" },
+        { name: "రైస్ కార్డ్ స్ప్లిట్ & ట్రాన్స్‌ఫర్ (Card Transfer)", badge: "లభ్యం" }
+      ]
+    },
+    {
+      id: "passbook",
+      title: "రెవెన్యూ, పాస్‌బుక్ & స్టాంప్ సేవలు",
+      icon: "📑",
+      services: [
+        { name: "పట్టాదారు పాస్‌బుక్ మ్యూటేషన్ (Passbook Mutation)", badge: "రెవెన్యూ" },
+        { name: "ఈ-పాస్‌బుక్ డౌన్‌లోడ్ (E-Passbook Copy)", badge: "డిజిటల్" },
+        { name: "నాన్-జ్యుడీషియల్ ఈ-స్టాంప్ పేపర్స్ (E-Stamp Papers)", badge: "అధికారికం" }
+      ]
+    },
+    {
+      id: "special",
+      title: "ప్రత్యేక పౌర & సంక్షేమ సేవలు",
+      icon: "🤝",
+      services: [
+        { name: "సీనియర్ సిటిజన్ ID కార్డ్ (Senior Citizen Card)", badge: "ప్రత్యేకం" },
+        { name: "దివ్యాంగుల UDID కార్డ్ (Divyangjan UDID Card)", badge: "ప్రత్యేకం" },
+        { name: "ఆన్‌లైన్ జాబ్ & ఎంట్రన్స్ అప్లికేషన్లు", badge: "సహాయం" }
+      ]
+    }
+  ],
+
+  testimonials: [
+    {
+      name: "కె. రామాంజనేయులు",
+      location: "రైతు, వెల్దుర్తి",
+      text: "పట్టాదారు పాస్‌బుక్ మరియు ఆదాయ సర్టిఫికేట్ పని చాలా త్వరగా, సులభంగా చేసి పెట్టారు. మా ఊళ్ళోనే ఇంత మంచి సేవ ఉండటం చాలా సంతోషం."
+    },
+    {
+      name: "ఎం. లక్ష్మీదేవి",
+      location: "గృహిణి, వెల్దుర్తి",
+      text: "రైస్ కార్డులో మా బాబు పేరు చేర్చడం కోసం వెళ్లాను. ఎలాంటి ఇబ్బంది లేకుండా వెంటనే దరఖాస్తు చేసి ఇచ్చారు."
+    },
+    {
+      name: "ఎస్. నవీన్ కుమార్",
+      location: "విద్యార్థి, వెల్దుర్తి",
+      text: "నా కాలేజీ అడ్మిషన్ కోసం కుల, ఆదాయ సర్టిఫికేట్లు మరియు పాస్‌పోర్ట్ సైజ్ ఫోటోలు ఒకే చోట వెంటనే లభించాయి."
+    },
+    {
+      name: "బి. సురేష్ రెడ్డి",
+      location: "వ్యాపారి, వెల్దుర్తి",
+      text: "కొత్త PAN కార్డ్ మరియు PVC కార్డ్ ప్రింటింగ్ నాణ్యత చాలా బాగుంది. సర్వీస్ చాలా నమ్మకంగా ఉంది."
+    }
+  ],
+
+  faqs: [
+    {
+      q: "ఆదాయ మరియు కుల సర్టిఫికేట్ కోసం ఏ డాక్యుమెంట్లు కావాలి?",
+      a: "ఆధార్ కార్డ్, రేషన్ కార్డ్ (రైస్ కార్డ్), పాస్‌పోర్ట్ సైజ్ ఫోటో మరియు మునుపటి సర్టిఫికేట్ లేదా పాఠశాల రికార్డులు అవసరం."
+    },
+    {
+      q: "కొత్త PAN కార్డ్ రావడానికి ఎన్ని రోజులు పడుతుంది?",
+      a: "దరఖాస్తు చేసిన 3 నుండి 5 రోజుల్లో ఇ-పాన్ (E-PAN) వస్తుంది. ఫిజికల్ కార్డ్ 10-15 రోజుల్లో పోస్ట్ ద్వారా మీ ఇంటికి చేరుతుంది."
+    },
+    {
+      q: "స్మార్ట్ PVC కార్డ్ ప్రింటింగ్ ఎంత సమయంలో లభిస్తుంది?",
+      a: "కేవలం 5 నుండి 10 నిమిషాల్లో అధిక నాణ్యత గల వాటర్‌ప్రూఫ్ స్మార్ట్ PVC కార్డ్ ప్రింట్ చేసి ఇవ్వబడుతుంది."
+    },
+    {
+      q: "మీ సెంటర్ పని వేళలు ఏమిటి?",
+      a: "సోమవారం నుండి శనివారం వరకు ఉదయం 8:30 నుండి రాత్రి 8:30 వరకు, ఆదివారం ఉదయం 9:00 నుండి మధ్యాహ్నం 2:00 వరకు అందుబాటులో ఉంటాము."
+    },
+    {
+      q: "WhatsApp ద్వారా ముందస్తు సమాచారం పొందవచ్చా?",
+      a: "అవును! మా WhatsApp నంబర్ 8985 100 777 కు మెసేజ్ చేసి అవసరమైన డాక్యుమెంట్లు మరియు సేవల వివరాలు సులభంగా తెలుసుకోవచ్చు."
+    }
+  ]
 };
-
-const MARQUEE_ITEMS = [
-  "\u0C06\u0C27\u0C3E\u0C30\u0C4D \u0C15\u0C3E\u0C30\u0C4D\u0C21\u0C4D", "PAN \u0C15\u0C3E\u0C30\u0C4D\u0C21\u0C4D", "\u0C30\u0C47\u0C37\u0C28\u0C4D \u0C15\u0C3E\u0C30\u0C4D\u0C21\u0C4D", "\u0C1C\u0C3F\u0C30\u0C3E\u0C15\u0C4D\u0C38\u0C4D",
-  "\u0C2B\u0C4B\u0C1F\u0C4B \u0C2A\u0C4D\u0C30\u0C3F\u0C02\u0C1F\u0C3F\u0C02\u0C17\u0C4D", "\u0C32\u0C3E\u0C2E\u0C3F\u0C28\u0C47\u0C37\u0C28\u0C4D", "PVC \u0C15\u0C3E\u0C30\u0C4D\u0C21\u0C4D", "\u0C06\u0C26\u0C3E\u0C2F \u0C38\u0C30\u0C4D\u0C1F\u0C3F\u0C2B\u0C3F\u0C15\u0C47\u0C1F\u0C4D",
-  "\u0C15\u0C41\u0C32 \u0C38\u0C30\u0C4D\u0C1F\u0C3F\u0C2B\u0C3F\u0C15\u0C47\u0C1F\u0C4D", "OBC \u0C38\u0C30\u0C4D\u0C1F\u0C3F\u0C2B\u0C3F\u0C15\u0C47\u0C1F\u0C4D", "EWS \u0C38\u0C30\u0C4D\u0C1F\u0C3F\u0C2B\u0C3F\u0C15\u0C47\u0C1F\u0C4D", "\u0C05\u0C21\u0C02\u0C17\u0C32\u0C4D / 1B",
-  "\u0C32\u0C40\u0C17\u0C32\u0C4D \u0C39\u0C46\u0C2F\u0C3F\u0C30\u0C4D \u0C38\u0C30\u0C4D\u0C1F\u0C3F\u0C2B\u0C3F\u0C15\u0C47\u0C1F\u0C4D", "UDID \u0C15\u0C3E\u0C30\u0C4D\u0C21\u0C4D", "\u0C38\u0C40\u0C28\u0C3F\u0C2F\u0C30\u0C4D \u0C38\u0C3F\u0C1F\u0C3F\u0C1C\u0C28\u0C4D \u0C15\u0C3E\u0C30\u0C4D\u0C21\u0C4D",
-  "\u0C21\u0C4D\u0C30\u0C48\u0C35\u0C3F\u0C02\u0C17\u0C4D \u0C32\u0C48\u0C38\u0C46\u0C28\u0C4D\u0C38\u0C4D", "\u0C08-\u0C38\u0C4D\u0C1F\u0C3E\u0C02\u0C2A\u0C4D", "\u0C2A\u0C3E\u0C38\u0C4D\u200C\u0C2C\u0C41\u0C15\u0C4D \u0C2E\u0C4D\u0C2F\u0C42\u0C1F\u0C47\u0C37\u0C28\u0C4D",
-  "\u0C21\u0C3E\u0C15\u0C4D\u0C2F\u0C41\u0C2E\u0C46\u0C02\u0C1F\u0C4D \u0C2A\u0C4D\u0C30\u0C3F\u0C02\u0C1F\u0C3F\u0C02\u0C17\u0C4D", "\u0C30\u0C48\u0C38\u0C4D \u0C15\u0C3E\u0C30\u0C4D\u0C21\u0C4D \u0C1F\u0C4D\u0C30\u0C3E\u0C28\u0C4D\u0C38\u0C4D\u200C\u0C2B\u0C30\u0C4D"
-];
-
-const TESTIMONIALS = [
-  {
-    name: "\u0C30\u0C3E\u0C2E\u0C2F\u0C4D\u0C2F \u0C17\u0C3E\u0C30\u0C41",
-    location: "\u0C35\u0C46\u0C32\u0C4D\u0C26\u0C41\u0C30\u0C4D\u0C24\u0C3F",
-    text: "\u0C28\u0C3E \u0C06\u0C26\u0C3E\u0C2F \u0C38\u0C30\u0C4D\u0C1F\u0C3F\u0C2B\u0C3F\u0C15\u0C47\u0C1F\u0C4D \u0C15\u0C3E\u0C35\u0C3E\u0C32\u0C3F \u0C05\u0C28\u0C3F \u0C35\u0C46\u0C33\u0C4D\u0C1D\u0C3E\u0C28\u0C41. \u0C1A\u0C3E\u0C32\u0C3E \u0C38\u0C41\u0C32\u0C2D\u0C02\u0C17\u0C3E, \u0C24\u0C4D\u0C35\u0C30\u0C17\u0C3E \u0C2A\u0C28\u0C3F \u0C1C\u0C30\u0C3F\u0C17\u0C3F\u0C02\u0C26\u0C3F. \u0C1A\u0C3E\u0C32\u0C3E \u0C38\u0C02\u0C24\u0C4B\u0C37\u0C02\u0C17\u0C3E \u0C09\u0C02\u0C26\u0C3F.",
-    stars: 5
-  },
-  {
-    name: "\u0C32\u0C15\u0C4D\u0C37\u0C4D\u0C2E\u0C3F \u0C26\u0C47\u0C35\u0C3F",
-    location: "\u0C35\u0C46\u0C32\u0C4D\u0C26\u0C41\u0C30\u0C4D\u0C24\u0C3F",
-    text: "\u0C30\u0C47\u0C37\u0C28\u0C4D \u0C15\u0C3E\u0C30\u0C4D\u0C21\u0C4D\u200C\u0C32\u0C4B \u0C2A\u0C47\u0C30\u0C41 \u0C1A\u0C47\u0C30\u0C4D\u0C1A\u0C21\u0C3E\u0C28\u0C3F\u0C15\u0C3F \u0C35\u0C46\u0C33\u0C4D\u0C1D\u0C3E\u0C28\u0C41. \u0C05\u0C28\u0C4D\u0C28\u0C3F \u0C21\u0C3E\u0C15\u0C4D\u0C2F\u0C41\u0C2E\u0C46\u0C02\u0C1F\u0C4D\u0C32\u0C41 \u0C38\u0C30\u0C3F\u0C17\u0C4D\u0C17\u0C3E \u0C1A\u0C46\u0C2A\u0C4D\u0C2A\u0C3E\u0C30\u0C41. \u0C1A\u0C3E\u0C32\u0C3E \u0C2C\u0C3E\u0C17\u0C3E \u0C38\u0C39\u0C3E\u0C2F\u0C02 \u0C1A\u0C47\u0C36\u0C3E\u0C30\u0C41.",
-    stars: 5
-  },
-  {
-    name: "\u0C38\u0C41\u0C30\u0C47\u0C37\u0C4D",
-    location: "\u0C35\u0C46\u0C32\u0C4D\u0C26\u0C41\u0C30\u0C4D\u0C24\u0C3F",
-    text: "PAN \u0C15\u0C3E\u0C30\u0C4D\u0C21\u0C4D \u0C15\u0C4B\u0C38\u0C2E \u0C35\u0C46\u0C33\u0C4D\u0C1D\u0C3E\u0C28\u0C41. \u0C30\u0C46\u0C02\u0C21\u0C41 \u0C30\u0C4B\u0C1C\u0C41\u0C32\u0C4D\u0C32\u0C4B\u0C28\u0C47 \u0C2A\u0C28\u0C3F \u0C2A\u0C42\u0C30\u0C4D\u0C24\u0C2F\u0C4D\u0C38\u0C3F\u0C02\u0C26\u0C3F. \u0C1A\u0C3E\u0C32\u0C3E \u0C35\u0C47\u0C17\u0C02\u0C17\u0C3E \u0C1A\u0C47\u0C38\u0C4D\u0C24\u0C3E\u0C30\u0C41.",
-    stars: 5
-  },
-  {
-    name: "\u0C05\u0C28\u0C4D\u0C28\u0C2A\u0C42\u0C30\u0C4D\u0C23 \u0C17\u0C3E\u0C30\u0C41",
-    location: "\u0C35\u0C46\u0C32\u0C4D\u0C26\u0C41\u0C30\u0C4D\u0C24\u0C3F",
-    text: "\u0C28\u0C3E \u0C15\u0C4A\u0C21\u0C41\u0C15\u0C41 \u0C15\u0C4B\u0C38\u0C2E \u0C06\u0C27\u0C3E\u0C30\u0C4D \u0C15\u0C3E\u0C30\u0C4D\u0C21\u0C4D \u0C1A\u0C47\u0C2F\u0C3F\u0C02\u0C1A\u0C3E\u0C28\u0C41. \u0C1A\u0C3E\u0C32\u0C3E \u0C28\u0C3F\u0C02\u0C2A\u0C3E\u0C26\u0C3F\u0C17\u0C3E \u0C1A\u0C46\u0C2A\u0C4D\u0C2A\u0C3E\u0C30\u0C41. \u0C0E\u0C02\u0C24\u0C4B \u0C38\u0C39\u0C3E\u0C2F\u0C2A\u0C21\u0C4D\u0C1D\u0C3E\u0C30\u0C41.",
-    stars: 5
-  },
-  {
-    name: "\u0C30\u0C3E\u0C1C\u0C47\u0C37\u0C4D \u0C15\u0C41\u0C2E\u0C3E\u0C30\u0C4D",
-    location: "\u0C35\u0C46\u0C32\u0C4D\u0C26\u0C41\u0C30\u0C4D\u0C24\u0C3F",
-    text: "\u0C2A\u0C4D\u0C30\u0C3F\u0C02\u0C1F\u0C3F\u0C02\u0C17\u0C4D \u0C2A\u0C28\u0C41\u0C32 \u0C15\u0C4B\u0C38\u0C2E \u0C0E\u0C2A\u0C4D\u0C2A\u0C41\u0C21\u0C42 \u0C07\u0C15\u0C4D\u0C15\u0C21\u0C3F\u0C15\u0C47 \u0C35\u0C46\u0C33\u0C4D\u0C1D\u0C4D\u0C24\u0C3E\u0C28\u0C41. \u0C28\u0C3E\u0C23\u0C4D\u0C2F\u0C24 \u0C2C\u0C3E\u0C17\u0C41\u0C02\u0C1F\u0C3F\u0C02\u0C26\u0C3F, \u0C27\u0C30\u0C32\u0C41 \u0C15\u0C42\u0C21\u0C3E \u0C38\u0C30\u0C3F\u0C17\u0C4D\u0C17\u0C3E \u0C1A\u0C4B\u0C1F\u0C4D\u0C2F\u0C3E\u0C2F\u0C3F.",
-    stars: 5
-  }
-];
-
-const FAQ_ITEMS = [
-  {
-    q: "\u0C2E\u0C40 \u0C38\u0C47\u0C35\u0C32\u0C41 \u0C0E\u0C15\u0C4D\u0C15\u0C21 \u0C09\u0C28\u0C4D\u0C24\u0C3E\u0C2F\u0C3F?",
-    a: "\u0C2E\u0C47\u0C2E\u0C41 \u0C30\u0C48\u0C32\u0C4D\u0C35\u0C47 \u0C38\u0C4D\u0C1F\u0C47\u0C37\u0C28\u0C4D \u0C30\u0C4B\u0C21\u0C4D, \u0C35\u0C46\u0C32\u0C4D\u0C26\u0C41\u0C30\u0C4D\u0C24\u0C3F\u0C32\u0C4B \u0C09\u0C28\u0C4D\u0C24\u0C3E\u0C2E\u0C41. \u0C2E\u0C40\u0C30\u0C41 \u0C08\u0C1C\u0C40\u0C17\u0C3E \u0C2E\u0C2E\u0C4D\u0C2E\u0C32\u0C4D\u0C28\u0C3F \u0C15\u0C32\u0C35\u0C2F\u0C1A\u0C4D\u0C1A\u0C41."
-  },
-  {
-    q: "\u0C38\u0C47\u0C35\u0C32\u0C41 \u0C2A\u0C4A\u0C02\u0C26\u0C21\u0C3E\u0C28\u0C3F\u0C15\u0C3F \u0C0E\u0C2E\u0C3F \u0C24\u0C40\u0C38\u0C41\u0C15\u0C41\u0C30\u0C3E\u0C35\u0C3E\u0C32\u0C3F?",
-    a: "\u0C2E\u0C40\u0C15\u0C41 \u0C15\u0C3E\u0C35\u0C3E\u0C32\u0C4D\u0C38\u0C3F\u0C28 \u0C38\u0C47\u0C35\u0C28\u0C41 \u0C2C\u0C1F\u0C4D\u0C1F\u0C3F \u0C21\u0C3E\u0C15\u0C4D\u0C2F\u0C41\u0C2E\u0C46\u0C02\u0C1F\u0C4D\u0C32\u0C41 \u0C2E\u0C3E\u0C30\u0C41\u0C24\u0C3E\u0C2F\u0C3F. WhatsApp \u0C26\u0C4D\u0C35\u0C3E\u0C30\u0C3E \u0C2E\u0C2E\u0C4D\u0C2E\u0C32\u0C4D\u0C28\u0C3F \u0C38\u0C02\u0C2A\u0C4D\u0C30\u0C26\u0C3F\u0C02\u0C1A\u0C02\u0C21\u0C3F, \u0C2E\u0C47\u0C2E\u0C41 \u0C2E\u0C40\u0C15\u0C41 \u0C05\u0C35\u0C38\u0C30\u0C2E\u0C48\u0C28 \u0C21\u0C3E\u0C15\u0C4D\u0C2F\u0C41\u0C2E\u0C46\u0C02\u0C1F\u0C4D\u0C32 \u0C1C\u0C3E\u0C2C\u0C3F\u0C24\u0C3E \u0C1A\u0C46\u0C2A\u0C4D\u0C24\u0C3E\u0C2E\u0C41."
-  },
-  {
-    q: "\u0C0E\u0C02\u0C24 \u0C38\u0C2E\u0C2F\u0C02\u0C32\u0C4B \u0C2A\u0C28\u0C3F \u0C2A\u0C42\u0C30\u0C4D\u0C24\u0C35\u0C41\u0C24\u0C4D\u0C38\u0C3F\u0C02\u0C26\u0C3F?",
-    a: "\u0C38\u0C47\u0C35\u0C28\u0C41 \u0C2C\u0C1F\u0C4D\u0C1F\u0C3F \u0C38\u0C2E\u0C2F\u0C02 \u0C2E\u0C3E\u0C30\u0C41\u0C24\u0C41\u0C02\u0C26\u0C3F. \u0C15\u0C4A\u0C28\u0C4D\u0C28\u0C3F \u0C38\u0C47\u0C35\u0C32\u0C41 \u0C35\u0C46\u0C02\u0C1F\u0C28\u0C47 \u0C2A\u0C42\u0C30\u0C4D\u0C24\u0C35\u0C41\u0C24\u0C3E\u0C2F\u0C3F, \u0C15\u0C4A\u0C28\u0C4D\u0C28\u0C3F \u0C38\u0C47\u0C35\u0C32\u0C15\u0C41 \u0C12\u0C15\u0C1F\u0C3F \u0C30\u0C46\u0C02\u0C21\u0C41 \u0C30\u0C4B\u0C1C\u0C41\u0C32\u0C4D \u0C2A\u0C21\u0C41\u0C24\u0C41\u0C02\u0C26\u0C3F. \u0C2E\u0C47\u0C2E\u0C41 \u0C2E\u0C40\u0C15\u0C41 \u0C2E\u0C41\u0C02\u0C26\u0C47 \u0C1A\u0C46\u0C2A\u0C4D\u0C24\u0C3E\u0C2E\u0C41."
-  },
-  {
-    q: "WhatsApp \u0C26\u0C4D\u0C35\u0C3E\u0C30\u0C3E \u0C38\u0C02\u0C2A\u0C4D\u0C30\u0C26\u0C3F\u0C02\u0C1A\u0C35\u0C1A\u0C4D\u0C1A\u0C3E?",
-    a: "\u0C05\u0C35\u0C41\u0C28\u0C41! \u0C2E\u0C40\u0C30\u0C41 8985 100 777 \u0C28\u0C02\u0C2C\u0C30\u0C4D\u200C\u0C15\u0C41 WhatsApp \u0C2E\u0C46\u0C38\u0C47\u0C1C\u0C4D \u0C2A\u0C02\u0C2A\u0C35\u0C1A\u0C4D\u0C1A\u0C35\u0C1A\u0C4D\u0C1A\u0C30\u0C41. \u0C2E\u0C47\u0C2E\u0C41 \u0C35\u0C46\u0C02\u0C1F\u0C28\u0C47 \u0C38\u0C4D\u0C2A\u0C02\u0C26\u0C3F\u0C38\u0C4D\u0C24\u0C3E\u0C2E\u0C41."
-  },
-  {
-    q: "\u0C2E\u0C40 \u0C38\u0C47\u0C35\u0C32 \u0C27\u0C30\u0C32\u0C41 \u0C0E\u0C32\u0C3E \u0C09\u0C28\u0C4D\u0C24\u0C3E\u0C2F\u0C3F?",
-    a: "\u0C2E\u0C3E \u0C27\u0C30\u0C32\u0C41 \u0C1A\u0C3E\u0C32\u0C3E \u0C38\u0C30\u0C38\u0C2E\u0C48\u0C28\u0C35\u0C3F. \u0C2A\u0C4D\u0C30\u0C24\u0C3F \u0C38\u0C47\u0C35\u0C15\u0C41 \u0C27\u0C30 \u0C2E\u0C41\u0C02\u0C26\u0C47 \u0C1A\u0C46\u0C2A\u0C4D\u0C24\u0C3E\u0C2E\u0C41. \u0C0E\u0C32\u0C3E\u0C02\u0C1F\u0C3F \u0C26\u0C3E\u0C17\u0C3F\u0C28 \u0C16\u0C30\u0C4D\u0C1A\u0C41\u0C32\u0C41 \u0C09\u0C02\u0C21\u0C3E\u0C35\u0C41."
-  },
-  {
-    q: "\u0C38\u0C40\u0C28\u0C3F\u0C2F\u0C30\u0C4D \u0C38\u0C3F\u0C1F\u0C3F\u0C1C\u0C28\u0C4D\u0C32\u0C15\u0C41 \u0C2A\u0C4D\u0C30\u0C24\u0C4D\u0C2F\u0C47\u0C15 \u0C38\u0C47\u0C35\u0C32\u0C41 \u0C1A\u0C3E\u0C32\u0C3E \u0C1A\u0C47\u0C2F\u0C3E?",
-    a: "\u0C05\u0C35\u0C41\u0C28\u0C41! \u0C38\u0C40\u0C28\u0C3F\u0C2F\u0C30\u0C4D \u0C38\u0C3F\u0C1F\u0C3F\u0C1C\u0C28\u0C4D\u0C32\u0C15\u0C41 \u0C2E\u0C47\u0C2E\u0C41 \u0C2A\u0C4D\u0C30\u0C24\u0C4D\u0C2F\u0C47\u0C15 \u0C38\u0C39\u0C3E\u0C2F\u0C02 \u0C05\u0C02\u0C26\u0C3F\u0C38\u0C4D\u0C24\u0C41\u0C28\u0C4D\u0C28\u0C3E\u0E02\u0C41. \u0C2E\u0C40\u0C30\u0C41 \u0C35\u0C1A\u0C4D\u0C1A\u0C3F\u0C28\u0C2A\u0C4D\u0C21\u0C41 \u0C2E\u0C3E \u0C38\u0C3F\u0C2C\u0C4D\u0C2C\u0C02\u0C26\u0C3F \u0C2E\u0C40\u0C15\u0C41 \u0C38\u0C39\u0C3E\u0C2F\u0C02 \u0C1A\u0C47\u0C38\u0C4D\u0C24\u0C3E\u0C30\u0C41."
-  }
-];
-
