@@ -170,7 +170,7 @@
 
     const monumentLayer = document.getElementById("monumentLayer");
     const docStream = document.querySelectorAll(".stream-doc");
-    let targetScroll = 0, currentScroll = 0;
+    let targetScroll = 0, currentScroll = 0, scrollVel = 0;
     let targetMouseX = 0, targetMouseY = 0, mouseX = 0, mouseY = 0;
 
     window.addEventListener("scroll", () => {
@@ -185,7 +185,10 @@
     }
 
     function tickParallax() {
+      const prevScroll = currentScroll;
       currentScroll += (targetScroll - currentScroll) * 0.08;
+      scrollVel = currentScroll - prevScroll;
+
       mouseX += (targetMouseX - mouseX) * 0.05;
       mouseY += (targetMouseY - mouseY) * 0.05;
 
@@ -195,15 +198,19 @@
         monumentLayer.style.transform = `translate3d(${mouseX * 0.3}px, ${-monY + mouseY * 0.3}px, 0)`;
       }
 
-      // Parallax on Floating Document Silhouettes (varying speeds)
+      // Parallax on Floating Document Silhouettes (varying speeds & scroll tilt)
       docStream.forEach(doc => {
-        const speed = parseFloat(doc.dataset.speed) || 0.12;
+        const speed = parseFloat(doc.dataset.speed) || 0.14;
         const yOffset = currentScroll * speed;
-        const rot = doc.classList.contains("doc-pan") ? 12 :
-                    doc.classList.contains("doc-aadhaar") ? -8 :
-                    doc.classList.contains("doc-passbook") ? 10 :
-                    doc.classList.contains("doc-ration") ? -14 : -10;
-        doc.style.transform = `translate3d(${mouseX * speed * 1.5}px, ${-yOffset + mouseY * speed * 1.5}px, 0) rotate(${rot}deg)`;
+        const baseRot = doc.classList.contains("doc-pan") ? 12 :
+                        doc.classList.contains("doc-aadhaar") ? -8 :
+                        doc.classList.contains("doc-dl") ? 14 :
+                        doc.classList.contains("doc-passbook") ? 10 :
+                        doc.classList.contains("doc-ration") ? -14 :
+                        doc.classList.contains("doc-residence") ? -12 :
+                        doc.classList.contains("doc-senior") ? 10 : -10;
+        const dynamicTilt = baseRot + Math.max(-6, Math.min(6, scrollVel * 0.2));
+        doc.style.transform = `translate3d(${mouseX * speed * 1.5}px, ${-yOffset + mouseY * speed * 1.5}px, 0) rotate(${dynamicTilt}deg)`;
       });
 
       requestAnimationFrame(tickParallax);

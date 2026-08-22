@@ -49,6 +49,38 @@
     <div class="aura-green"></div>
   </div>
 
+  <!-- Background Waving Indian Flag Landmark -->
+  <div class="bg-indian-flag-unit">
+    <div class="flag-pole"></div>
+    <div class="flag-cloth-ripple">
+      <div class="flag-bar bar-saffron"></div>
+      <div class="flag-bar bar-white">
+        <div class="ashoka-chakra-art">
+          <svg viewBox="0 0 100 100">
+            <circle cx="50" cy="50" r="44" stroke="#000080" stroke-width="4" fill="none"/>
+            <circle cx="50" cy="50" r="8" fill="#000080"/>
+            <g stroke="#000080" stroke-width="2">
+              <line x1="50" y1="6" x2="50" y2="94"/>
+              <line x1="6" y1="50" x2="94" y2="50"/>
+              <line x1="19" y1="19" x2="81" y2="81"/>
+              <line x1="19" y1="81" x2="81" y2="19"/>
+              <line x1="35" y1="8" x2="65" y2="92"/>
+              <line x1="65" y1="8" x2="35" y2="92"/>
+              <line x1="8" y1="35" x2="92" y2="65"/>
+              <line x1="8" y1="65" x2="92" y2="35"/>
+              <line x1="27" y1="12" x2="73" y2="88"/>
+              <line x1="73" y1="12" x2="27" y2="88"/>
+              <line x1="12" y1="27" x2="88" y2="73"/>
+              <line x1="12" y1="73" x2="88" y2="27"/>
+            </g>
+          </svg>
+        </div>
+      </div>
+      <div class="flag-bar bar-green"></div>
+      <div class="flag-wave-shine"></div>
+    </div>
+  </div>
+
   <!-- 2. Civic Monuments Layer (Kurnool Fort, Parliament, Assembly, Red Fort) -->
   <div class="monuments-backdrop" id="monumentLayer">
     <!-- Kurnool Konda Reddy Fort (Andhra Pradesh Local Landmark) -->
@@ -113,10 +145,10 @@
     </div>
   </div>
 
-  <!-- 3. Parallax Floating Document Silhouettes (PAN, Aadhaar, A4 Certificate, Ration, Passbook) -->
+  <!-- 3. Parallax Floating Document Stream (Certificates, PAN, Aadhaar, Ration, Passbook, License) -->
   <div class="floating-documents-stream" id="docStreamLayer">
-    <!-- A4 Official Certificate Sheet -->
-    <div class="stream-doc doc-a4" data-speed="0.14" style="top: 12%; left: 7%;">
+    <!-- A4 Official Certificate Sheet 1 (Income / Caste) -->
+    <div class="stream-doc doc-a4" data-speed="0.16" style="top: 8%; left: 6%;">
       <div class="doc-body">
         <div class="doc-line d-title"></div>
         <div class="doc-line"></div>
@@ -124,11 +156,11 @@
         <div class="doc-line d-half"></div>
         <div class="doc-seal-stamp"></div>
       </div>
-      <span class="stream-doc-tag">ప్రభుత్వ సర్టిఫికేట్</span>
+      <span class="stream-doc-tag">ఆదాయ సర్టిఫికేట్</span>
     </div>
 
     <!-- Official PAN Card Silhouette -->
-    <div class="stream-doc doc-pan" data-speed="-0.16" style="top: 28%; right: 8%;">
+    <div class="stream-doc doc-pan" data-speed="-0.18" style="top: 20%; right: 8%;">
       <div class="doc-body">
         <div class="doc-chip-gold"></div>
         <div class="doc-line d-half"></div>
@@ -139,7 +171,7 @@
     </div>
 
     <!-- Official Aadhaar ID Card Silhouette -->
-    <div class="stream-doc doc-aadhaar" data-speed="0.18" style="top: 48%; left: 6%;">
+    <div class="stream-doc doc-aadhaar" data-speed="0.2" style="top: 34%; left: 7%;">
       <div class="doc-body">
         <div class="doc-tricolor-strip"></div>
         <div class="doc-line d-title"></div>
@@ -149,8 +181,18 @@
       <span class="stream-doc-tag">ఆధార్ కార్డ్</span>
     </div>
 
+    <!-- Driving License / Smart PVC Card -->
+    <div class="stream-doc doc-dl" data-speed="-0.15" style="top: 46%; right: 6%;">
+      <div class="doc-body">
+        <div class="doc-chip-gold"></div>
+        <div class="doc-line"></div>
+        <div class="doc-line d-half"></div>
+      </div>
+      <span class="stream-doc-tag">డ్రైవింగ్ లైసెన్స్</span>
+    </div>
+
     <!-- Official Pattadar Passbook Silhouette -->
-    <div class="stream-doc doc-passbook" data-speed="-0.13" style="top: 68%; right: 7%;">
+    <div class="stream-doc doc-passbook" data-speed="0.17" style="top: 58%; left: 5%;">
       <div class="doc-body">
         <div class="doc-crest-gold"></div>
         <div class="doc-line d-title"></div>
@@ -160,13 +202,32 @@
     </div>
 
     <!-- Official Rice / Ration Card Silhouette -->
-    <div class="stream-doc doc-ration" data-speed="0.15" style="top: 86%; left: 9%;">
+    <div class="stream-doc doc-ration" data-speed="-0.19" style="top: 72%; right: 7%;">
       <div class="doc-body">
         <div class="doc-green-bar"></div>
         <div class="doc-line d-title"></div>
         <div class="doc-line"></div>
       </div>
       <span class="stream-doc-tag">రైస్ / రేషన్ కార్డ్</span>
+    </div>
+
+    <!-- A4 Official Certificate Sheet 2 (Residence / EWS) -->
+    <div class="stream-doc doc-a4 doc-residence" data-speed="0.14" style="top: 84%; left: 8%;">
+      <div class="doc-body">
+        <div class="doc-line d-title"></div>
+        <div class="doc-line"></div>
+        <div class="doc-seal-stamp"></div>
+      </div>
+      <span class="stream-doc-tag">నివాస ధృవీకరణ పత్రం</span>
+    </div>
+
+    <!-- Senior Citizen & UDID Welfare Card -->
+    <div class="stream-doc doc-senior" data-speed="-0.16" style="top: 93%; right: 8%;">
+      <div class="doc-body">
+        <div class="doc-line d-title"></div>
+        <div class="doc-line d-half"></div>
+      </div>
+      <span class="stream-doc-tag">UDID &amp; సీనియర్ కార్డ్</span>
     </div>
   </div>
 
@@ -232,18 +293,50 @@
 
 <main id="main">
 
-  <!-- 1. HERO SECTION -->
+  <!-- 1. HERO SECTION WITH AIR-WAVING INDIAN FLAG BADGE -->
   <section class="hero" id="home">
     <div class="hero-content">
       <div class="hero-badge reveal-up">
-        <span class="badge-dot"></span>
+        <!-- Air Waving Indian National Flag -->
+        <div class="hero-flag-unit" aria-hidden="true" title="భారత జాతీయ పతాకం">
+          <div class="hero-flag-pole"></div>
+          <div class="hero-flag-cloth">
+            <div class="hf-stripe hf-saffron"></div>
+            <div class="hf-stripe hf-white">
+              <div class="hf-chakra">
+                <svg viewBox="0 0 100 100">
+                  <circle cx="50" cy="50" r="44" stroke="#000080" stroke-width="4" fill="none"/>
+                  <circle cx="50" cy="50" r="8" fill="#000080"/>
+                  <g stroke="#000080" stroke-width="2">
+                    <line x1="50" y1="6" x2="50" y2="94"/>
+                    <line x1="6" y1="50" x2="94" y2="50"/>
+                    <line x1="19" y1="19" x2="81" y2="81"/>
+                    <line x1="19" y1="81" x2="81" y2="19"/>
+                    <line x1="35" y1="8" x2="65" y2="92"/>
+                    <line x1="65" y1="8" x2="35" y2="92"/>
+                    <line x1="8" y1="35" x2="92" y2="65"/>
+                    <line x1="8" y1="65" x2="92" y2="35"/>
+                    <line x1="27" y1="12" x2="73" y2="88"/>
+                    <line x1="73" y1="12" x2="27" y2="88"/>
+                    <line x1="12" y1="27" x2="88" y2="73"/>
+                    <line x1="12" y1="73" x2="88" y2="27"/>
+                  </g>
+                </svg>
+              </div>
+            </div>
+            <div class="hf-stripe hf-green"></div>
+            <div class="hf-wave-shimmer"></div>
+          </div>
+        </div>
         <span>అధికారిక ఈ-సేవా కేంద్రం — రైల్వే స్టేషన్ రోడ్, వెల్దుర్తి</span>
       </div>
+
       <h1>
         <span class="hero-line reveal-word">మీ ప్రభుత్వ &amp; పౌర సేవలు</span>
         <span class="hero-line reveal-word"><span class="accent-text gradient-text">ఒకే చోట సులభంగా!</span></span>
       </h1>
       <p class="hero-sub reveal-up">ఆదాయ, కుల సర్టిఫికేట్లు, ఆధార్, PAN, రేషన్ కార్డ్, లైసెన్స్, జిరాక్స్ &amp; ప్రింటింగ్ — వేగవంతమైన మరియు నమ్మకమైన అధికారిక సేవలు.</p>
+      
       <div class="hero-actions reveal-up">
         <a href="#services" class="btn btn-primary magnetic">
           <span>అన్ని సేవలు చూడండి</span>
@@ -253,6 +346,7 @@
           <span>WhatsApp ద్వారా అడగండి</span>
         </a>
       </div>
+
       <div class="hero-stats reveal-up" role="list">
         <div role="listitem" class="stat-card">
           <strong class="counter" data-target="25">0</strong>
