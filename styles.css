@@ -1,7 +1,7 @@
 /**
- * SRI MANIKANTA MEESEVA — EXECUTIVE CIVIC STYLES
- * Live Waving Indian Flag Canvas Engines, Civic Monuments (Parliament, AP Assembly, Kurnool Fort, Red Fort),
- * Floating Document Parallax Stream & High-Standard UI
+ * SRI MANIKANTA MEESEVA — EXECUTIVE 3D CINEMATIC STYLES
+ * Three.js WebGL 3D World (Smart Cards, Parchment Certificates, Waving Flag & Stardust)
+ * High-Standard Civic UI & Editorial Typography
  */
 
 :root {
@@ -9,7 +9,7 @@
   --bg-navy: #06142a;
   --bg-deep: #0a1f3d;
   --card-bg: rgba(10, 31, 61, 0.65);
-  --card-border: rgba(56, 189, 248, 0.2);
+  --card-border: rgba(56, 189, 248, 0.22);
   --card-border-hover: rgba(245, 158, 11, 0.55);
   
   --saffron: #f97316;
@@ -60,7 +60,7 @@ body {
 }
 
 /* ================================================================
-   1. SCROLL-REACTIVE CIVIC ATMOSPHERE & BACKGROUND SYSTEM
+   1. 3D CINEMATIC WEBGL ATMOSPHERE & BACKGROUND SYSTEM
    ================================================================ */
 .civic-world-atmosphere {
   position: fixed;
@@ -71,13 +71,24 @@ body {
   background: radial-gradient(circle at 50% 15%, #081d38 0%, var(--bg-dark) 85%);
 }
 
+/* 3D WebGL Canvas Layer */
+.webgl-3d-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+}
+
 /* Indian Flag Tricolor Flowing Gradient Aura */
 .flag-tricolor-aura {
   position: absolute;
   inset: 0;
   overflow: hidden;
-  filter: blur(90px);
-  opacity: 0.55;
+  filter: blur(100px);
+  opacity: 0.5;
+  z-index: 0;
 }
 
 .aura-saffron {
@@ -125,293 +136,15 @@ body {
   100% { transform: translate(-4%, -3%) scale(0.96); }
 }
 
-/* Background Waving Indian Flag Landmark */
-.bg-indian-flag-unit {
-  position: absolute;
-  top: 6%;
-  right: 5%;
-  display: flex;
-  align-items: flex-start;
-  opacity: 0.85;
-  filter: drop-shadow(0 0 35px rgba(249, 115, 22, 0.4));
-  z-index: 2;
-}
-
-.flag-pole {
-  width: 5px;
-  height: 240px;
-  background: linear-gradient(180deg, #fbbf24 0%, #cbd5e1 30%, #64748b 100%);
-  border-radius: 2.5px;
-  box-shadow: 0 0 14px rgba(251, 191, 36, 0.7);
-  position: relative;
-}
-
-.pole-gold-finial {
-  position: absolute;
-  top: -8px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 14px;
-  height: 14px;
-  border-radius: 50%;
-  background: radial-gradient(circle at 35% 35%, #fff, #fbbf24, #d97706);
-  box-shadow: 0 0 10px rgba(251, 191, 36, 0.8);
-}
-
-.pole-gold-finial.small {
-  width: 7px;
-  height: 7px;
-  top: -4px;
-}
-
-.flag-waving-canvas {
-  width: 180px;
-  height: 114px;
-  border-radius: 0 4px 4px 0;
-  filter: drop-shadow(0 10px 25px rgba(0, 0, 0, 0.6));
-}
-
-/* Civic Monuments Layer (Kurnool Fort, Parliament, Assembly, Red Fort) */
-.monuments-backdrop {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-}
-
-.monument-wrap {
-  position: absolute;
-  color: #0d274c;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 8px;
-  will-change: transform;
-}
-
-.monument-art {
-  width: 100%;
-  height: auto;
-}
-
-.monument-title {
-  font-size: 0.75rem;
-  font-weight: 700;
-  letter-spacing: 1.5px;
-  color: rgba(56, 189, 248, 0.45);
-  text-transform: uppercase;
-  font-family: var(--font-display);
-}
-
-.fort-kurnool {
-  top: 14%;
-  right: -4%;
-  width: 640px;
-  max-width: 90vw;
-  opacity: 0.4;
-  filter: drop-shadow(0 0 50px rgba(245, 158, 11, 0.2));
-}
-
-.parliament-delhi {
-  top: 38%;
-  left: -6%;
-  width: 720px;
-  max-width: 92vw;
-  opacity: 0.35;
-  filter: drop-shadow(0 0 60px rgba(56, 189, 248, 0.2));
-}
-
-.assembly-ap {
-  top: 64%;
-  right: -5%;
-  width: 660px;
-  max-width: 90vw;
-  opacity: 0.38;
-  filter: drop-shadow(0 0 50px rgba(22, 163, 74, 0.2));
-}
-
-.fort-delhi {
-  top: 84%;
-  left: -4%;
-  width: 620px;
-  max-width: 88vw;
-  opacity: 0.35;
-  filter: drop-shadow(0 0 50px rgba(249, 115, 22, 0.2));
-}
-
-/* Floating Document Silhouettes (Parallax Stream) */
-.floating-documents-stream {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-}
-
-.stream-doc {
-  position: absolute;
-  border-radius: 12px;
-  border: 1.5px solid rgba(56, 189, 248, 0.4);
-  background: linear-gradient(135deg, rgba(14, 43, 82, 0.88) 0%, rgba(6, 18, 38, 0.94) 100%);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.7), 0 0 25px rgba(56, 189, 248, 0.15), inset 0 1px 1px rgba(255, 255, 255, 0.3);
-  will-change: transform;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  padding: 14px;
-  animation: doc-stream-float 12s ease-in-out infinite alternate;
-}
-
-.stream-doc-tag {
-  align-self: flex-start;
-  font-size: 0.72rem;
-  font-weight: 700;
-  color: var(--gold-light);
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  margin-top: 8px;
-  text-shadow: 0 0 8px rgba(245, 158, 11, 0.5);
-}
-
-.doc-body {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  position: relative;
-}
-
-.doc-a4 {
-  width: 160px;
-  height: 215px;
-  transform: rotate(-10deg);
-  border-color: rgba(245, 158, 11, 0.55);
-}
-
-.doc-pan {
-  width: 185px;
-  height: 120px;
-  transform: rotate(12deg);
-  border-color: rgba(56, 189, 248, 0.6);
-}
-
-.doc-aadhaar {
-  width: 185px;
-  height: 120px;
-  transform: rotate(-8deg);
-  border-color: rgba(249, 115, 22, 0.6);
-}
-
-.doc-dl {
-  width: 180px;
-  height: 115px;
-  transform: rotate(14deg);
-  border-color: rgba(56, 189, 248, 0.55);
-}
-
-.doc-passbook {
-  width: 160px;
-  height: 210px;
-  transform: rotate(10deg);
-  border-color: rgba(245, 158, 11, 0.6);
-}
-
-.doc-ration {
-  width: 180px;
-  height: 120px;
-  transform: rotate(-14deg);
-  border-color: rgba(74, 222, 128, 0.6);
-}
-
-.doc-residence {
-  border-color: rgba(56, 189, 248, 0.55);
-  transform: rotate(-12deg);
-}
-
-.doc-senior {
-  width: 175px;
-  height: 115px;
-  transform: rotate(10deg);
-  border-color: rgba(245, 158, 11, 0.55);
-}
-
-.doc-line {
-  height: 4px;
-  border-radius: 2px;
-  background: rgba(248, 250, 252, 0.3);
-  width: 85%;
-}
-
-.d-title {
-  height: 6px;
-  width: 65%;
-  background: rgba(245, 158, 11, 0.8);
-}
-
-.d-half {
-  width: 45%;
-}
-
-.doc-chip-gold {
-  width: 26px;
-  height: 20px;
-  border-radius: 4px;
-  background: linear-gradient(135deg, #fbbf24, #d97706);
-  box-shadow: 0 0 14px rgba(245, 158, 11, 0.7);
-}
-
-.doc-photo-box {
-  position: absolute;
-  bottom: 0; right: 0;
-  width: 34px; height: 40px;
-  border-radius: 4px;
-  background: rgba(56, 189, 248, 0.35);
-  border: 1.5px solid rgba(56, 189, 248, 0.7);
-}
-
-.doc-tricolor-strip {
-  width: 100%;
-  height: 7px;
-  border-radius: 3px;
-  background: linear-gradient(90deg, #ff671f 0%, #ffffff 50%, #046a38 100%);
-  margin-bottom: 4px;
-}
-
-.doc-crest-gold {
-  width: 34px;
-  height: 34px;
-  margin: 0 auto;
-  border-radius: 50%;
-  border: 2px solid var(--gold);
-  box-shadow: 0 0 14px rgba(245, 158, 11, 0.5);
-}
-
-.doc-green-bar {
-  width: 100%;
-  height: 6px;
-  border-radius: 3px;
-  background: var(--green);
-}
-
-.doc-seal-stamp {
-  position: absolute;
-  bottom: 0; right: 0;
-  width: 32px; height: 32px;
-  border-radius: 50%;
-  border: 2px dashed rgba(245, 158, 11, 0.8);
-}
-
-@keyframes doc-stream-float {
-  0% { transform: translateY(0); }
-  100% { transform: translateY(-24px); }
-}
-
 .civic-grid-mesh {
   position: absolute;
   inset: 0;
   background-image: 
-    linear-gradient(rgba(248, 250, 252, 0.025) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(248, 250, 252, 0.025) 1px, transparent 1px);
-  background-size: 50px 50px;
-  opacity: 0.7;
+    linear-gradient(rgba(248, 250, 252, 0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(248, 250, 252, 0.02) 1px, transparent 1px);
+  background-size: 60px 60px;
+  opacity: 0.6;
+  z-index: 2;
 }
 
 /* ================================================================
@@ -575,9 +308,9 @@ body {
 }
 
 .site-nav.is-scrolled {
-  background: rgba(3, 7, 18, 0.88);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
+  background: rgba(3, 7, 18, 0.9);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
   border-bottom-color: rgba(56, 189, 248, 0.15);
   padding: 10px 24px;
 }
@@ -797,7 +530,7 @@ body {
 }
 
 /* ================================================================
-   4. HERO SECTION WITH AIR-WAVING FLAG BADGE & LIVE CANVAS
+   4. HERO SECTION
    ================================================================ */
 .hero {
   min-height: 100vh;
@@ -821,7 +554,7 @@ body {
 .hero-badge {
   display: inline-flex;
   align-items: center;
-  gap: 12px;
+  gap: 10px;
   padding: 8px 20px;
   border-radius: 24px;
   background: rgba(245, 158, 11, 0.12);
@@ -833,31 +566,18 @@ body {
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
 }
 
-/* Hero Air-Waving Indian Flag Unit */
-.hero-flag-unit {
-  display: inline-flex;
-  align-items: flex-start;
-  height: 28px;
-}
-
-.hero-flag-pole {
-  width: 3px;
-  height: 32px;
-  background: linear-gradient(180deg, #fbbf24, #94a3b8);
-  border-radius: 1.5px;
-  position: relative;
-}
-
-.hero-flag-canvas {
-  width: 46px;
-  height: 28px;
-  border-radius: 0 2px 2px 0;
+.badge-tricolor-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #ff671f 0%, #ffffff 50%, #046a38 100%);
+  box-shadow: 0 0 10px rgba(251, 191, 36, 0.8);
 }
 
 h1 {
-  font-size: clamp(2.4rem, 5.5vw, 4rem);
+  font-size: clamp(2.4rem, 5.5vw, 4.2rem);
   font-weight: 800;
-  line-height: 1.25;
+  line-height: 1.22;
   letter-spacing: -0.02em;
 }
 
@@ -914,8 +634,8 @@ h1 {
 }
 
 .btn-ghost {
-  background: rgba(10, 31, 61, 0.6);
-  border: 1.5px solid rgba(56, 189, 248, 0.35);
+  background: rgba(10, 31, 61, 0.65);
+  border: 1.5px solid rgba(56, 189, 248, 0.4);
   color: #ffffff;
   backdrop-filter: blur(8px);
 }
@@ -944,7 +664,8 @@ h1 {
   background: var(--card-bg);
   border: 1px solid var(--card-border);
   border-radius: 14px;
-  backdrop-filter: blur(12px);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -1076,10 +797,11 @@ h1 {
   align-items: center;
   gap: 12px;
   padding: 14px 20px;
-  background: rgba(10, 31, 61, 0.65);
-  border: 1.5px solid rgba(56, 189, 248, 0.3);
+  background: rgba(10, 31, 61, 0.7);
+  border: 1.5px solid rgba(56, 189, 248, 0.35);
   border-radius: 14px;
-  backdrop-filter: blur(12px);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
   transition: border-color 0.3s, box-shadow 0.3s;
 }
 
@@ -1119,8 +841,8 @@ h1 {
 .chip {
   padding: 8px 18px;
   border-radius: 20px;
-  background: rgba(10, 31, 61, 0.45);
-  border: 1px solid rgba(56, 189, 248, 0.2);
+  background: rgba(10, 31, 61, 0.5);
+  border: 1px solid rgba(56, 189, 248, 0.25);
   color: var(--text-sub);
   font-family: var(--font-telugu);
   font-size: 0.88rem;
@@ -1189,8 +911,8 @@ h1 {
   background: var(--card-bg);
   border: 1px solid var(--card-border);
   border-radius: 14px;
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -1246,6 +968,8 @@ h1 {
   background: var(--card-bg);
   border: 1px solid var(--card-border);
   border-radius: 16px;
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
   display: flex;
   flex-direction: column;
   gap: 12px;
@@ -1302,7 +1026,8 @@ h1 {
   background: var(--card-bg);
   border: 1px solid var(--card-border);
   border-radius: 18px;
-  backdrop-filter: blur(14px);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
   display: flex;
   flex-direction: column;
   gap: 14px;
@@ -1383,10 +1108,11 @@ h1 {
 
 .trust-container {
   padding: 40px;
-  background: linear-gradient(135deg, rgba(10, 31, 61, 0.7), rgba(3, 7, 18, 0.9));
+  background: linear-gradient(135deg, rgba(10, 31, 61, 0.75), rgba(3, 7, 18, 0.92));
   border: 1.5px solid rgba(245, 158, 11, 0.35);
   border-radius: 24px;
-  backdrop-filter: blur(16px);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
   display: grid;
   grid-template-columns: 1fr 1fr;
   align-items: center;
@@ -1476,6 +1202,8 @@ h1 {
   background: var(--card-bg);
   border: 1px solid var(--card-border);
   border-radius: 16px;
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
   text-align: center;
   display: flex;
   flex-direction: column;
@@ -1524,6 +1252,8 @@ h1 {
   background: var(--card-bg);
   border: 1px solid var(--card-border);
   border-radius: 16px;
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
   display: flex;
   flex-direction: column;
   gap: 14px;
@@ -1589,6 +1319,8 @@ h1 {
   border: 1px solid var(--card-border);
   border-radius: 14px;
   background: var(--card-bg);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
   overflow: hidden;
   transition: border-color 0.3s;
 }
@@ -1658,6 +1390,8 @@ h1 {
   background: var(--card-bg);
   border: 1px solid var(--card-border);
   border-radius: 16px;
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -1740,8 +1474,10 @@ h1 {
 .cta-brand-reveal {
   padding: 40px;
   border-radius: 20px;
-  background: linear-gradient(135deg, rgba(10, 31, 61, 0.7), rgba(3, 7, 18, 0.9));
+  background: linear-gradient(135deg, rgba(10, 31, 61, 0.75), rgba(3, 7, 18, 0.92));
   border: 1.5px solid rgba(245, 158, 11, 0.4);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -1878,6 +1614,7 @@ h1 {
   align-items: center;
   justify-content: center;
   backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   z-index: 998;
   text-decoration: none;
   opacity: 0;
@@ -1991,7 +1728,7 @@ h1 {
     scroll-behavior: auto !important;
   }
   
-  .aura-saffron, .aura-white, .aura-green, .stream-doc, .marquee-content {
+  .aura-saffron, .aura-white, .aura-green, .marquee-content {
     animation: none !important;
   }
   

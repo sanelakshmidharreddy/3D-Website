@@ -19,6 +19,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Telugu:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -40,7 +41,7 @@
 </head>
 <body>
 
-<!-- EXECUTIVE INDIAN CIVIC BACKGROUND & PARALLAX ATMOSPHERE -->
+<!-- EXECUTIVE 3D CINEMATIC WEBGL ATMOSPHERE -->
 <div class="civic-world-atmosphere" aria-hidden="true">
   <!-- 1. Indian Flag Tricolor Flowing Gradient Aura -->
   <div class="flag-tricolor-aura">
@@ -49,165 +50,10 @@
     <div class="aura-green"></div>
   </div>
 
-  <!-- Background Real-Time Air-Waving Indian Flag Canvas & Landmark Unit -->
-  <div class="bg-indian-flag-unit">
-    <div class="flag-pole">
-      <div class="pole-gold-finial"></div>
-    </div>
-    <canvas id="bgFlagCanvas" class="flag-waving-canvas" width="220" height="140"></canvas>
-  </div>
+  <!-- 2. Interactive High-Performance 3D WebGL Canvas (Documents, Monuments, Waving Flag, Stardust) -->
+  <canvas id="webglCanvas" class="webgl-3d-canvas"></canvas>
 
-  <!-- 2. Civic Monuments Layer (Kurnool Fort, Parliament, Assembly, Red Fort) -->
-  <div class="monuments-backdrop" id="monumentLayer">
-    <!-- Kurnool Konda Reddy Fort (Andhra Pradesh Local Landmark) -->
-    <div class="monument-wrap fort-kurnool">
-      <svg viewBox="0 0 640 260" class="monument-art">
-        <path d="M40 260 L40 180 L80 180 L80 160 L120 160 L120 180 L160 180 L160 140 L200 140 L200 180 L240 180 L240 110 L280 85 L360 85 L400 110 L400 180 L440 180 L440 150 L480 150 L480 180 L520 180 L520 160 L560 160 L560 180 L600 180 L600 260 Z" fill="currentColor"/>
-        <path d="M290 130 Q320 100 350 130 L350 190 L290 190 Z" fill="rgba(3,7,18,0.7)"/>
-        <path d="M305 190 Q320 165 335 190 L335 260 L305 260 Z" fill="rgba(3,7,18,0.9)"/>
-      </svg>
-      <span class="monument-title">కొండారెడ్డి బురుజు, కర్నూలు (AP)</span>
-    </div>
-
-    <!-- Indian Parliament House (New Delhi) -->
-    <div class="monument-wrap parliament-delhi">
-      <svg viewBox="0 0 740 240" class="monument-art">
-        <path d="M60 240 L60 150 L680 150 L680 240 Z" fill="currentColor" opacity="0.6"/>
-        <path d="M270 150 Q370 40 470 150 Z" fill="currentColor" opacity="0.8"/>
-        <!-- Colonnade Pillars -->
-        <g stroke="currentColor" stroke-width="7" opacity="0.9">
-          <line x1="100" y1="150" x2="100" y2="240"/>
-          <line x1="150" y1="150" x2="150" y2="240"/>
-          <line x1="200" y1="150" x2="200" y2="240"/>
-          <line x1="250" y1="150" x2="250" y2="240"/>
-          <line x1="310" y1="150" x2="310" y2="240"/>
-          <line x1="370" y1="150" x2="370" y2="240"/>
-          <line x1="430" y1="150" x2="430" y2="240"/>
-          <line x1="490" y1="150" x2="490" y2="240"/>
-          <line x1="540" y1="150" x2="540" y2="240"/>
-          <line x1="590" y1="150" x2="590" y2="240"/>
-          <line x1="640" y1="150" x2="640" y2="240"/>
-        </g>
-      </svg>
-      <span class="monument-title">భారత పార్లమెంట్ భవనం (NEW DELHI)</span>
-    </div>
-
-    <!-- AP State Legislative Assembly (Amaravati) -->
-    <div class="monument-wrap assembly-ap">
-      <svg viewBox="0 0 680 240" class="monument-art">
-        <path d="M80 240 L80 140 L600 140 L600 240 Z" fill="currentColor" opacity="0.6"/>
-        <path d="M260 140 L340 60 L420 140 Z" fill="currentColor" opacity="0.85"/>
-        <g stroke="currentColor" stroke-width="6" opacity="0.9">
-          <line x1="130" y1="140" x2="130" y2="240"/>
-          <line x1="190" y1="140" x2="190" y2="240"/>
-          <line x1="250" y1="140" x2="250" y2="240"/>
-          <line x1="430" y1="140" x2="430" y2="240"/>
-          <line x1="490" y1="140" x2="490" y2="240"/>
-          <line x1="550" y1="140" x2="550" y2="240"/>
-        </g>
-      </svg>
-      <span class="monument-title">ఆంధ్రప్రదేశ్ శాసనసభ (AMARAVATI)</span>
-    </div>
-
-    <!-- Red Fort Ramparts (Delhi) -->
-    <div class="monument-wrap fort-delhi">
-      <svg viewBox="0 0 640 220" class="monument-art">
-        <path d="M40 220 L40 120 L90 120 L90 100 L140 100 L140 120 L190 120 L190 90 L240 90 L240 120 L280 120 L280 80 L360 80 L360 120 L400 120 L400 90 L450 90 L450 120 L500 120 L500 100 L550 100 L550 120 L600 120 L600 220 Z" fill="currentColor"/>
-        <path d="M290 145 Q320 115 350 145 L350 220 L290 220 Z" fill="rgba(3,7,18,0.7)"/>
-        <path d="M140 155 Q165 135 190 155 L190 220 L140 220 Z" fill="rgba(3,7,18,0.6)"/>
-        <path d="M450 155 Q475 135 500 155 L500 220 L450 220 Z" fill="rgba(3,7,18,0.6)"/>
-      </svg>
-      <span class="monument-title">ఎర్రకోట (RED FORT, DELHI)</span>
-    </div>
-  </div>
-
-  <!-- 3. Parallax Floating Document Stream (Certificates, PAN, Aadhaar, Ration, Passbook, License) -->
-  <div class="floating-documents-stream" id="docStreamLayer">
-    <!-- A4 Official Certificate Sheet 1 (Income / Caste) -->
-    <div class="stream-doc doc-a4" data-speed="0.18" style="top: 6%; left: 5%;">
-      <div class="doc-body">
-        <div class="doc-line d-title"></div>
-        <div class="doc-line"></div>
-        <div class="doc-line"></div>
-        <div class="doc-line d-half"></div>
-        <div class="doc-seal-stamp"></div>
-      </div>
-      <span class="stream-doc-tag">ఆదాయ సర్టిఫికేట్</span>
-    </div>
-
-    <!-- Official PAN Card Silhouette -->
-    <div class="stream-doc doc-pan" data-speed="-0.22" style="top: 18%; right: 7%;">
-      <div class="doc-body">
-        <div class="doc-chip-gold"></div>
-        <div class="doc-line d-half"></div>
-        <div class="doc-line"></div>
-        <div class="doc-photo-box"></div>
-      </div>
-      <span class="stream-doc-tag">PAN CARD</span>
-    </div>
-
-    <!-- Official Aadhaar ID Card Silhouette -->
-    <div class="stream-doc doc-aadhaar" data-speed="0.25" style="top: 32%; left: 6%;">
-      <div class="doc-body">
-        <div class="doc-tricolor-strip"></div>
-        <div class="doc-line d-title"></div>
-        <div class="doc-line"></div>
-        <div class="doc-line d-half"></div>
-      </div>
-      <span class="stream-doc-tag">ఆధార్ కార్డ్</span>
-    </div>
-
-    <!-- Driving License / Smart PVC Card -->
-    <div class="stream-doc doc-dl" data-speed="-0.2" style="top: 45%; right: 6%;">
-      <div class="doc-body">
-        <div class="doc-chip-gold"></div>
-        <div class="doc-line"></div>
-        <div class="doc-line d-half"></div>
-      </div>
-      <span class="stream-doc-tag">డ్రైవింగ్ లైసెన్స్</span>
-    </div>
-
-    <!-- Official Pattadar Passbook Silhouette -->
-    <div class="stream-doc doc-passbook" data-speed="0.22" style="top: 58%; left: 5%;">
-      <div class="doc-body">
-        <div class="doc-crest-gold"></div>
-        <div class="doc-line d-title"></div>
-        <div class="doc-line d-half"></div>
-      </div>
-      <span class="stream-doc-tag">పట్టాదారు పాస్‌బుక్</span>
-    </div>
-
-    <!-- Official Rice / Ration Card Silhouette -->
-    <div class="stream-doc doc-ration" data-speed="-0.24" style="top: 70%; right: 7%;">
-      <div class="doc-body">
-        <div class="doc-green-bar"></div>
-        <div class="doc-line d-title"></div>
-        <div class="doc-line"></div>
-      </div>
-      <span class="stream-doc-tag">రైస్ / రేషన్ కార్డ్</span>
-    </div>
-
-    <!-- A4 Official Certificate Sheet 2 (Residence / EWS) -->
-    <div class="stream-doc doc-a4 doc-residence" data-speed="0.19" style="top: 82%; left: 7%;">
-      <div class="doc-body">
-        <div class="doc-line d-title"></div>
-        <div class="doc-line"></div>
-        <div class="doc-seal-stamp"></div>
-      </div>
-      <span class="stream-doc-tag">నివాస ధృవీకరణ పత్రం</span>
-    </div>
-
-    <!-- Senior Citizen & UDID Welfare Card -->
-    <div class="stream-doc doc-senior" data-speed="-0.22" style="top: 92%; right: 7%;">
-      <div class="doc-body">
-        <div class="doc-line d-title"></div>
-        <div class="doc-line d-half"></div>
-      </div>
-      <span class="stream-doc-tag">UDID &amp; సీనియర్ కార్డ్</span>
-    </div>
-  </div>
-
-  <!-- 4. Subtle Executive Civic Grid Overlay -->
+  <!-- 3. Subtle Executive Civic Grid Overlay -->
   <div class="civic-grid-mesh"></div>
 </div>
 
@@ -219,7 +65,7 @@
     <div class="loader-ring"><div></div><div></div><div></div></div>
     <div class="loader-glyph">శ్రీ</div>
     <div class="loader-bar"><span></span></div>
-    <p class="loader-text">అధికారిక డిజిటల్ మీ సేవ సిద్ధమవుతోంది...</p>
+    <p class="loader-text">అధికారిక డిజిటల్ 3D మీ సేవ సిద్ధమవుతోంది...</p>
   </div>
 </div>
 
@@ -269,17 +115,11 @@
 
 <main id="main">
 
-  <!-- 1. HERO SECTION WITH AIR-WAVING INDIAN FLAG BADGE & LIVE CANVAS -->
+  <!-- 1. HERO SECTION WITH 3D PRIDE BADGE -->
   <section class="hero" id="home">
     <div class="hero-content">
       <div class="hero-badge reveal-up">
-        <!-- Air Waving Indian National Flag Canvas -->
-        <div class="hero-flag-unit" aria-hidden="true" title="భారత జాతీయ పతాకం">
-          <div class="hero-flag-pole">
-            <div class="pole-gold-finial small"></div>
-          </div>
-          <canvas id="heroFlagCanvas" class="hero-flag-canvas" width="46" height="28"></canvas>
-        </div>
+        <span class="badge-tricolor-dot"></span>
         <span>అధికారిక ఈ-సేవా కేంద్రం — రైల్వే స్టేషన్ రోడ్, వెల్దుర్తి</span>
       </div>
 
