@@ -1,6 +1,7 @@
 /**
  * SRI MANIKANTA MEESEVA — EXECUTIVE 3D CINEMATIC WEBGL ENGINE
- * Three.js 3D World (Procedural Smart Cards, Parchment Certificates, Waving 3D Flag, Monuments & Stardust)
+ * Large Standing Indian Flag with Realistic Air Flutter Dynamics
+ * Three.js 3D World (Procedural Smart Cards, Parchment Certificates, Monuments & Stardust)
  * Single Audio Instance, Live Service Search & Interactive Accordions
  */
 
@@ -166,7 +167,7 @@
      ================================================================ */
   function createFlagCanvasTexture() {
     const c = document.createElement("canvas");
-    c.width = 1024; c.height = 640;
+    c.width = 2048; c.height = 1280;
     const ctx = c.getContext("2d");
     const h = c.height / 3;
 
@@ -175,9 +176,9 @@
     ctx.fillStyle = "#ffffff"; ctx.fillRect(0, h, c.width, h);
     ctx.fillStyle = "#046a38"; ctx.fillRect(0, h * 2, c.width, h);
 
-    // Ashoka Chakra
+    // Ashoka Chakra (High-Resolution with 24 Spokes)
     const cx = c.width / 2, cy = c.height / 2, r = h * 0.42;
-    ctx.strokeStyle = "#000080"; ctx.fillStyle = "#000080"; ctx.lineWidth = 6;
+    ctx.strokeStyle = "#000080"; ctx.fillStyle = "#000080"; ctx.lineWidth = 12;
     ctx.beginPath(); ctx.arc(cx, cy, r, 0, Math.PI * 2); ctx.stroke();
     ctx.beginPath(); ctx.arc(cx, cy, r * 0.18, 0, Math.PI * 2); ctx.fill();
     for (let i = 0; i < 24; i++) {
@@ -194,31 +195,26 @@
     c.width = 1024; c.height = 640;
     const ctx = c.getContext("2d");
 
-    // Background Gradient
     const bg = ctx.createLinearGradient(0, 0, c.width, c.height);
     bg.addColorStop(0, "#0a2540"); bg.addColorStop(0.5, "#0d3b66"); bg.addColorStop(1, "#03172b");
     ctx.fillStyle = bg; ctx.fillRect(0, 0, c.width, c.height);
 
-    // Card Border & Header
     ctx.strokeStyle = "rgba(56, 189, 248, 0.6)"; ctx.lineWidth = 8;
     ctx.strokeRect(16, 16, c.width - 32, c.height - 32);
 
     ctx.fillStyle = "#f59e0b"; ctx.font = "bold 32px sans-serif";
     ctx.fillText("INCOME TAX DEPARTMENT • GOVT. OF INDIA", 40, 70);
 
-    // Holographic Foil & EMV Gold Chip
     const chip = ctx.createLinearGradient(40, 110, 160, 200);
     chip.addColorStop(0, "#fbbf24"); chip.addColorStop(0.5, "#d97706"); chip.addColorStop(1, "#f59e0b");
     ctx.fillStyle = chip; ctx.fillRect(40, 110, 120, 90);
     ctx.strokeStyle = "#78350f"; ctx.lineWidth = 3;
     ctx.strokeRect(40, 110, 120, 90);
 
-    // Photo Box & Details
     ctx.fillStyle = "rgba(56, 189, 248, 0.25)";
     ctx.fillRect(c.width - 240, 110, 180, 220);
     ctx.strokeStyle = "#38bdf8"; ctx.strokeRect(c.width - 240, 110, 180, 220);
 
-    // Card Text Lines
     ctx.fillStyle = "#f8fafc"; ctx.font = "bold 44px monospace";
     ctx.fillText("ABCDE1234F", 40, 280);
     ctx.font = "28px sans-serif"; ctx.fillStyle = "#94a3b8";
@@ -228,7 +224,6 @@
     ctx.fillText("FATHER'S NAME: CITIZEN GUARDIAN", 40, 460);
     ctx.fillText("DOB: 01/01/1990", 40, 520);
 
-    // Holographic Seal
     ctx.strokeStyle = "rgba(245, 158, 11, 0.7)"; ctx.lineWidth = 4;
     ctx.beginPath(); ctx.arc(c.width - 150, c.height - 150, 60, 0, Math.PI * 2); ctx.stroke();
     return new THREE.CanvasTexture(c);
@@ -239,21 +234,17 @@
     c.width = 1024; c.height = 640;
     const ctx = c.getContext("2d");
 
-    // White Card
     ctx.fillStyle = "#f8fafc"; ctx.fillRect(0, 0, c.width, c.height);
 
-    // Tricolor Top Strip
     ctx.fillStyle = "#ff671f"; ctx.fillRect(0, 0, c.width, 24);
     ctx.fillStyle = "#ffffff"; ctx.fillRect(0, 24, c.width, 24);
     ctx.fillStyle = "#046a38"; ctx.fillRect(0, 48, c.width, 24);
 
-    // Header
     ctx.fillStyle = "#030712"; ctx.font = "bold 34px sans-serif";
     ctx.fillText("భారత విశిష్ట గుర్తింపు ప్రాధికార సంస్థ (UIDAI)", 40, 125);
     ctx.font = "22px sans-serif"; ctx.fillStyle = "#64748b";
     ctx.fillText("Unique Identification Authority of India", 40, 155);
 
-    // Photo Box & QR Box
     ctx.fillStyle = "#e2e8f0"; ctx.fillRect(40, 180, 180, 220);
     ctx.strokeStyle = "#94a3b8"; ctx.lineWidth = 3; ctx.strokeRect(40, 180, 180, 220);
 
@@ -265,14 +256,12 @@
       }
     }
 
-    // Citizen Info
     ctx.fillStyle = "#030712"; ctx.font = "bold 30px sans-serif";
     ctx.fillText("పేరు / Name: పౌరుడు / Citizen", 250, 240);
     ctx.font = "26px sans-serif"; ctx.fillStyle = "#334155";
     ctx.fillText("పుట్టిన తేదీ / DOB: 01/01/1990", 250, 290);
     ctx.fillText("లింగం / Gender: పురుషుడు / MALE", 250, 340);
 
-    // Red Aadhaar Number Banner
     ctx.fillStyle = "#b91c1c"; ctx.font = "bold 52px monospace";
     ctx.fillText("XXXX  XXXX  1234", 40, 480);
 
@@ -286,16 +275,13 @@
     c.width = 800; c.height = 1100;
     const ctx = c.getContext("2d");
 
-    // Cream Parchment
     ctx.fillStyle = "#fefae0"; ctx.fillRect(0, 0, c.width, c.height);
 
-    // Ornate Border
     ctx.strokeStyle = "#d97706"; ctx.lineWidth = 14;
     ctx.strokeRect(24, 24, c.width - 48, c.height - 48);
     ctx.strokeStyle = "#b45309"; ctx.lineWidth = 4;
     ctx.strokeRect(40, 40, c.width - 80, c.height - 80);
 
-    // AP Government Header
     ctx.fillStyle = "#78350f"; ctx.font = "bold 38px sans-serif"; ctx.textAlign = "center";
     ctx.fillText("ఆంధ్రప్రదేశ్ ప్రభుత్వం", c.width / 2, 110);
     ctx.font = "bold 26px sans-serif";
@@ -303,7 +289,6 @@
     ctx.fillStyle = "#1e3a8a"; ctx.font = "bold 34px sans-serif";
     ctx.fillText("రెవెన్యూ శాఖ — ఆదాయ & కుల ధృవీకరణ పత్రం", c.width / 2, 220);
 
-    // Certificate Lines
     ctx.textAlign = "left"; ctx.fillStyle = "#1f2937"; ctx.font = "24px sans-serif";
     ctx.fillText("సర్టిఫికేట్ సంఖ్య / Application No: CGC0123456789", 70, 320);
     ctx.fillText("ఈ క్రింది వివరాలు గల దరఖాస్తుదారునికి ధృవీకరించడమైనది:", 70, 380);
@@ -313,7 +298,6 @@
       ctx.fillRect(70, y, c.width - 140, 3);
     }
 
-    // Gold Foil Seal & Signature Stamp
     ctx.strokeStyle = "#d97706"; ctx.lineWidth = 6;
     ctx.beginPath(); ctx.arc(160, 920, 70, 0, Math.PI * 2); ctx.stroke();
     ctx.fillStyle = "rgba(245, 158, 11, 0.2)"; ctx.fill();
@@ -334,14 +318,10 @@
     c.width = 800; c.height = 1100;
     const ctx = c.getContext("2d");
 
-    // Navy Leather
     ctx.fillStyle = "#0c2340"; ctx.fillRect(0, 0, c.width, c.height);
-
-    // Gold Border
     ctx.strokeStyle = "#fbbf24"; ctx.lineWidth = 12;
     ctx.strokeRect(30, 30, c.width - 60, c.height - 60);
 
-    // Gold Crest & Title
     ctx.fillStyle = "#fbbf24"; ctx.textAlign = "center";
     ctx.font = "bold 44px sans-serif";
     ctx.fillText("ఆంధ్రప్రదేశ్ ప్రభుత్వం", c.width / 2, 220);
@@ -401,7 +381,6 @@
     ctx.fillStyle = "#38bdf8"; ctx.font = "bold 32px sans-serif";
     ctx.fillText("TRANSPORT DEPARTMENT • GOVT. OF AP", 40, 70);
 
-    // Smart Chip
     ctx.fillStyle = "#fbbf24"; ctx.fillRect(40, 110, 110, 80);
 
     ctx.fillStyle = "#ffffff"; ctx.font = "bold 38px monospace";
@@ -419,7 +398,7 @@
   }
 
   /* ================================================================
-     7. 3D WEBGL ENGINE (THREE.JS CINEMATIC WORLD)
+     7. 3D WEBGL ENGINE (THREE.JS CINEMATIC PRIDE WORLD)
      ================================================================ */
   function init3DWebGLWorld() {
     if (typeof THREE === "undefined") return;
@@ -436,7 +415,7 @@
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, isMobile ? 1.5 : 2));
     renderer.setSize(window.innerWidth, window.innerHeight);
     renderer.toneMapping = THREE.ACESFilmicToneMapping;
-    renderer.toneMappingExposure = 1.1;
+    renderer.toneMappingExposure = 1.15;
 
     const scene = new THREE.Scene();
     scene.fog = new THREE.FogExp2(0x030712, 0.02);
@@ -445,49 +424,67 @@
     camera.position.set(0, 0, 12);
 
     // Realistic Lighting System
-    const ambientLight = new THREE.AmbientLight(0xffffff, 0.9);
+    const ambientLight = new THREE.AmbientLight(0xffffff, 0.95);
     scene.add(ambientLight);
 
-    const saffronSun = new THREE.DirectionalLight(0xff7700, 1.8);
-    saffronSun.position.set(10, 12, 8);
+    const saffronSun = new THREE.DirectionalLight(0xff7700, 2.0);
+    saffronSun.position.set(12, 14, 10);
     scene.add(saffronSun);
 
-    const greenBounce = new THREE.DirectionalLight(0x16a34a, 1.4);
-    greenBounce.position.set(-10, -12, 6);
+    const greenBounce = new THREE.DirectionalLight(0x16a34a, 1.6);
+    greenBounce.position.set(-12, -14, 8);
     scene.add(greenBounce);
 
-    const goldGlory = new THREE.PointLight(0xfbbf24, 2.2, 35);
-    goldGlory.position.set(0, 2, 8);
+    const goldGlory = new THREE.PointLight(0xfbbf24, 2.4, 40);
+    goldGlory.position.set(0, 3, 10);
     scene.add(goldGlory);
 
-    const cyanRim = new THREE.PointLight(0x38bdf8, 1.8, 40);
-    cyanRim.position.set(4, -15, 6);
-    scene.add(cyanRim);
+    const flagSunLight = new THREE.DirectionalLight(0xfff1d6, 2.0);
+    flagSunLight.position.set(6, 6, 8);
+    scene.add(flagSunLight);
 
-    // 1. 3D Waving Indian Flag on Mast
-    const flagPoleGeo = new THREE.CylinderGeometry(0.06, 0.06, 5.5, 16);
-    const flagPoleMat = new THREE.MeshStandardMaterial({ color: 0xd1d5db, metalness: 0.9, roughness: 0.15 });
+    // 1. BIG STANDING 3D INDIAN NATIONAL FLAG ON TALL MAST
+    const flagGroup = new THREE.Group();
+
+    // Base Pedestal
+    const baseGeo = new THREE.CylinderGeometry(0.45, 0.6, 0.35, 24);
+    const baseMat = new THREE.MeshStandardMaterial({ color: 0x1e293b, metalness: 0.8, roughness: 0.2 });
+    const baseMesh = new THREE.Mesh(baseGeo, baseMat);
+    baseMesh.position.y = -3.2;
+    flagGroup.add(baseMesh);
+
+    // Tall Mast / Flagpole
+    const mastHeight = 8.8;
+    const flagPoleGeo = new THREE.CylinderGeometry(0.08, 0.11, mastHeight, 24);
+    const flagPoleMat = new THREE.MeshStandardMaterial({ color: 0xe2e8f0, metalness: 0.95, roughness: 0.1 });
     const flagPole = new THREE.Mesh(flagPoleGeo, flagPoleMat);
-    flagPole.position.set(3.4, 1.2, -1.5);
-    scene.add(flagPole);
+    flagPole.position.y = 1.0;
+    flagGroup.add(flagPole);
 
-    const finialGeo = new THREE.SphereGeometry(0.16, 16, 16);
-    const finialMat = new THREE.MeshStandardMaterial({ color: 0xfbbf24, metalness: 0.95, roughness: 0.1 });
+    // Top Golden Finial Sphere
+    const finialGeo = new THREE.SphereGeometry(0.24, 24, 24);
+    const finialMat = new THREE.MeshStandardMaterial({ color: 0xfbbf24, metalness: 0.98, roughness: 0.08 });
     const finial = new THREE.Mesh(finialGeo, finialMat);
-    finial.position.set(3.4, 3.95, -1.5);
-    scene.add(finial);
+    finial.position.y = 1.0 + mastHeight / 2 + 0.15;
+    flagGroup.add(finial);
 
-    const flagGeo = new THREE.PlaneGeometry(3.2, 2.0, 36, 24);
+    // Big Size Waving Cloth Flag (Width 6.2, Height 4.0)
+    const flagW = 6.2, flagH = 4.0;
+    const flagGeo = new THREE.PlaneGeometry(flagW, flagH, 54, 36);
     const flagTex = createFlagCanvasTexture();
     const flagMat = new THREE.MeshStandardMaterial({
       map: flagTex,
       side: THREE.DoubleSide,
-      roughness: 0.45,
-      metalness: 0.1
+      roughness: 0.4,
+      metalness: 0.08
     });
     const flagMesh = new THREE.Mesh(flagGeo, flagMat);
-    flagMesh.position.set(5.0, 2.8, -1.5);
-    scene.add(flagMesh);
+    flagMesh.position.set(flagW / 2 + 0.06, 3.2, 0);
+    flagGroup.add(flagMesh);
+
+    // Position Big Standing Flag in Upper 3D Space
+    flagGroup.position.set(isMobile ? 1.5 : 3.8, isMobile ? 0.2 : 0.8, -2.5);
+    scene.add(flagGroup);
 
     // 2. 3D Floating Documents Along Vertical Scroll Path
     const docMeshes = [];
@@ -525,7 +522,6 @@
     add3DCard(createRationTexture(), 3.2, 2.0, isMobile ? -1.5 : -2.8, -34.5, 0.4, { x: -0.15, y: 0.2, z: -0.08, speed: 1.1 });
 
     // 3. 3D Architectural Monuments in Deep 3D Space (z = -18 to -25)
-    // Indian Parliament (Circular Colonnade with Pillars & Dome)
     const parliamentGroup = new THREE.Group();
     const domeGeo = new THREE.SphereGeometry(2.2, 24, 16, 0, Math.PI * 2, 0, Math.PI * 0.5);
     const monMat = new THREE.MeshStandardMaterial({ color: 0x0c274c, wireframe: true, transparent: true, opacity: 0.45 });
@@ -533,13 +529,12 @@
     dome.position.y = 1.2;
     parliamentGroup.add(dome);
 
-    const baseGeo = new THREE.CylinderGeometry(4.2, 4.4, 1.8, 28);
-    const baseCol = new THREE.Mesh(baseGeo, monMat);
+    const baseColGeo = new THREE.CylinderGeometry(4.2, 4.4, 1.8, 28);
+    const baseCol = new THREE.Mesh(baseColGeo, monMat);
     parliamentGroup.add(baseCol);
     parliamentGroup.position.set(-6, -11, -18);
     scene.add(parliamentGroup);
 
-    // Kurnool Konda Reddy Fort Bastion
     const fortGroup = new THREE.Group();
     const towerGeo = new THREE.CylinderGeometry(2.4, 2.8, 4.0, 16);
     const fortMat = new THREE.MeshStandardMaterial({ color: 0x1e3a5f, wireframe: true, transparent: true, opacity: 0.4 });
@@ -607,11 +602,11 @@
       renderer.setSize(window.innerWidth, window.innerHeight);
     });
 
-    // 60 FPS Render Loop
+    // 60 FPS Render Loop with True Air Wind Flutter Physics
     function animate() {
       requestAnimationFrame(animate);
 
-      if (!prefersReducedMotion) time += 0.03;
+      if (!prefersReducedMotion) time += 0.032;
 
       // Smooth Camera Glide
       camera.position.y += (targetCameraY - camera.position.y) * 0.06;
@@ -621,14 +616,15 @@
       camera.rotation.x = -mouseY * 0.06;
       camera.rotation.y = -mouseX * 0.08;
 
-      // 3D Flag Waving Vertex Shader Animation
+      // Big Flag True Air Wind Flutter Vertex Simulation
       const posAttr = flagGeo.attributes.position;
       for (let i = 0; i < posAttr.count; i++) {
         const vx = posAttr.getX(i);
         const vy = posAttr.getY(i);
-        const normX = (vx + 1.6) / 3.2;
-        const wave = Math.sin(normX * 3.5 - time * 3) * 0.22 * Math.pow(normX, 1.2) +
-                     Math.cos(vy * 2 - time * 2) * 0.06 * normX;
+        const normX = (vx + flagW / 2) / flagW; // 0 at mast, 1 at free tip
+        const wave = Math.sin(normX * 3.2 - time * 3.6) * 0.44 * Math.pow(normX, 1.15) +
+                     Math.cos(vy * 2.2 - time * 2.5) * 0.14 * normX +
+                     Math.sin((normX + vy * 0.3) * 4.0 - time * 4.2) * 0.08 * normX;
         posAttr.setZ(i, wave);
       }
       posAttr.needsUpdate = true;
