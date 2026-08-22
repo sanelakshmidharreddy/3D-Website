@@ -1,8 +1,8 @@
 /**
- * SRI MANIKANTA MEESEVA — EXECUTIVE 3D CINEMATIC WEBGL ENGINE
- * Large Standing Indian Flag with Realistic Air Flutter Dynamics
- * Three.js 3D World (Procedural Smart Cards, Parchment Certificates, Monuments & Stardust)
- * Single Audio Instance, Live Service Search & Interactive Accordions
+ * SRI MANIKANTA MEESEVA — EXECUTIVE CIVIC SCRIPT
+ * Big Standing Indian Flag with Air Flutter Wave Simulation
+ * Background Parallax Engine (Monuments & Document Stream)
+ * Single Audio Source, Live Service Search & Interactive Accordions
  */
 
 (function () {
@@ -163,494 +163,130 @@
   })();
 
   /* ================================================================
-     6. HIGH-RESOLUTION PROCEDURAL TEXTURE GENERATORS
+     6. REAL-TIME FLUID INDIAN FLAG AIR WAVING SIMULATION
      ================================================================ */
-  function createFlagCanvasTexture() {
-    const c = document.createElement("canvas");
-    c.width = 2048; c.height = 1280;
-    const ctx = c.getContext("2d");
-    const h = c.height / 3;
+  function startFlagSimulation(canvasId) {
+    const canvas = document.getElementById(canvasId);
+    if (!canvas) return;
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
 
-    // Saffron, White, Green
-    ctx.fillStyle = "#ff671f"; ctx.fillRect(0, 0, c.width, h);
-    ctx.fillStyle = "#ffffff"; ctx.fillRect(0, h, c.width, h);
-    ctx.fillStyle = "#046a38"; ctx.fillRect(0, h * 2, c.width, h);
+    const width = canvas.width;
+    const height = canvas.height;
+    const bandHeight = height / 3;
+    let t = 0;
 
-    // Ashoka Chakra (High-Resolution with 24 Spokes)
-    const cx = c.width / 2, cy = c.height / 2, r = h * 0.42;
-    ctx.strokeStyle = "#000080"; ctx.fillStyle = "#000080"; ctx.lineWidth = 12;
-    ctx.beginPath(); ctx.arc(cx, cy, r, 0, Math.PI * 2); ctx.stroke();
-    ctx.beginPath(); ctx.arc(cx, cy, r * 0.18, 0, Math.PI * 2); ctx.fill();
-    for (let i = 0; i < 24; i++) {
-      const a = (i * Math.PI) / 12;
-      ctx.beginPath(); ctx.moveTo(cx, cy);
-      ctx.lineTo(cx + Math.cos(a) * r, cy + Math.sin(a) * r);
+    function render() {
+      ctx.clearRect(0, 0, width, height);
+
+      // Slice cloth horizontally to calculate air fluid waves
+      const sliceW = 2;
+      for (let x = 0; x < width; x += sliceW) {
+        const normX = x / width; // 0 at mast, 1 at free fluttering tip
+        
+        // Multi-frequency air wind equations
+        const wave = Math.sin(normX * 4.2 - t * 3.8) * 9 * Math.pow(normX, 1.15) +
+                     Math.sin(normX * 8.0 - t * 5.2) * 3 * normX;
+        const slope = Math.cos(normX * 4.2 - t * 3.8) * 0.4 * normX;
+
+        // Top Band: Saffron (#ff671f)
+        ctx.fillStyle = "#ff671f";
+        ctx.fillRect(x, wave, sliceW, bandHeight);
+
+        // Middle Band: White (#ffffff)
+        ctx.fillStyle = "#ffffff";
+        ctx.fillRect(x, bandHeight + wave, sliceW, bandHeight);
+
+        // Bottom Band: India Green (#046a38)
+        ctx.fillStyle = "#046a38";
+        ctx.fillRect(x, bandHeight * 2 + wave, sliceW, bandHeight);
+
+        // Dynamic Wind Lighting & Shadow on Wave Slopes
+        if (slope > 0.08) {
+          ctx.fillStyle = `rgba(255, 255, 255, ${Math.min(0.25, slope * 0.45)})`;
+          ctx.fillRect(x, wave, sliceW, height);
+        } else if (slope < -0.08) {
+          ctx.fillStyle = `rgba(0, 0, 0, ${Math.min(0.3, -slope * 0.5)})`;
+          ctx.fillRect(x, wave, sliceW, height);
+        }
+      }
+
+      // Draw Central Ashoka Chakra on White Band
+      const cx = width / 2;
+      const normCenterX = cx / width;
+      const centerWave = Math.sin(normCenterX * 4.2 - t * 3.8) * 9 * Math.pow(normCenterX, 1.15);
+      const cy = bandHeight * 1.5 + centerWave;
+      const chakraRadius = bandHeight * 0.42;
+
+      ctx.save();
+      ctx.strokeStyle = "#000080";
+      ctx.fillStyle = "#000080";
+      ctx.lineWidth = Math.max(1.5, width * 0.012);
+
+      // Outer Ring & Hub
+      ctx.beginPath();
+      ctx.arc(cx, cy, chakraRadius, 0, Math.PI * 2);
       ctx.stroke();
-    }
-    return new THREE.CanvasTexture(c);
-  }
 
-  function createPANTexture() {
-    const c = document.createElement("canvas");
-    c.width = 1024; c.height = 640;
-    const ctx = c.getContext("2d");
+      ctx.beginPath();
+      ctx.arc(cx, cy, chakraRadius * 0.2, 0, Math.PI * 2);
+      ctx.fill();
 
-    const bg = ctx.createLinearGradient(0, 0, c.width, c.height);
-    bg.addColorStop(0, "#0a2540"); bg.addColorStop(0.5, "#0d3b66"); bg.addColorStop(1, "#03172b");
-    ctx.fillStyle = bg; ctx.fillRect(0, 0, c.width, c.height);
+      // 24 Ashoka Spokes
+      for (let i = 0; i < 24; i++) {
+        const angle = (i * Math.PI) / 12;
+        ctx.beginPath();
+        ctx.moveTo(cx, cy);
+        ctx.lineTo(cx + Math.cos(angle) * chakraRadius, cy + Math.sin(angle) * chakraRadius);
+        ctx.stroke();
+      }
+      ctx.restore();
 
-    ctx.strokeStyle = "rgba(56, 189, 248, 0.6)"; ctx.lineWidth = 8;
-    ctx.strokeRect(16, 16, c.width - 32, c.height - 32);
-
-    ctx.fillStyle = "#f59e0b"; ctx.font = "bold 32px sans-serif";
-    ctx.fillText("INCOME TAX DEPARTMENT • GOVT. OF INDIA", 40, 70);
-
-    const chip = ctx.createLinearGradient(40, 110, 160, 200);
-    chip.addColorStop(0, "#fbbf24"); chip.addColorStop(0.5, "#d97706"); chip.addColorStop(1, "#f59e0b");
-    ctx.fillStyle = chip; ctx.fillRect(40, 110, 120, 90);
-    ctx.strokeStyle = "#78350f"; ctx.lineWidth = 3;
-    ctx.strokeRect(40, 110, 120, 90);
-
-    ctx.fillStyle = "rgba(56, 189, 248, 0.25)";
-    ctx.fillRect(c.width - 240, 110, 180, 220);
-    ctx.strokeStyle = "#38bdf8"; ctx.strokeRect(c.width - 240, 110, 180, 220);
-
-    ctx.fillStyle = "#f8fafc"; ctx.font = "bold 44px monospace";
-    ctx.fillText("ABCDE1234F", 40, 280);
-    ctx.font = "28px sans-serif"; ctx.fillStyle = "#94a3b8";
-    ctx.fillText("PERMANENT ACCOUNT NUMBER CARD", 40, 330);
-    ctx.fillStyle = "#ffffff"; ctx.font = "bold 30px sans-serif";
-    ctx.fillText("NAME: RESIDENT CITIZEN", 40, 400);
-    ctx.fillText("FATHER'S NAME: CITIZEN GUARDIAN", 40, 460);
-    ctx.fillText("DOB: 01/01/1990", 40, 520);
-
-    ctx.strokeStyle = "rgba(245, 158, 11, 0.7)"; ctx.lineWidth = 4;
-    ctx.beginPath(); ctx.arc(c.width - 150, c.height - 150, 60, 0, Math.PI * 2); ctx.stroke();
-    return new THREE.CanvasTexture(c);
-  }
-
-  function createAadhaarTexture() {
-    const c = document.createElement("canvas");
-    c.width = 1024; c.height = 640;
-    const ctx = c.getContext("2d");
-
-    ctx.fillStyle = "#f8fafc"; ctx.fillRect(0, 0, c.width, c.height);
-
-    ctx.fillStyle = "#ff671f"; ctx.fillRect(0, 0, c.width, 24);
-    ctx.fillStyle = "#ffffff"; ctx.fillRect(0, 24, c.width, 24);
-    ctx.fillStyle = "#046a38"; ctx.fillRect(0, 48, c.width, 24);
-
-    ctx.fillStyle = "#030712"; ctx.font = "bold 34px sans-serif";
-    ctx.fillText("భారత విశిష్ట గుర్తింపు ప్రాధికార సంస్థ (UIDAI)", 40, 125);
-    ctx.font = "22px sans-serif"; ctx.fillStyle = "#64748b";
-    ctx.fillText("Unique Identification Authority of India", 40, 155);
-
-    ctx.fillStyle = "#e2e8f0"; ctx.fillRect(40, 180, 180, 220);
-    ctx.strokeStyle = "#94a3b8"; ctx.lineWidth = 3; ctx.strokeRect(40, 180, 180, 220);
-
-    ctx.fillStyle = "#030712"; ctx.fillRect(c.width - 240, 180, 200, 200);
-    ctx.fillStyle = "#ffffff";
-    for (let i = 0; i < 6; i++) {
-      for (let j = 0; j < 6; j++) {
-        if ((i + j) % 2 === 0) ctx.fillRect(c.width - 230 + i * 30, 190 + j * 30, 24, 24);
+      if (!prefersReducedMotion) {
+        t += 0.035;
+        requestAnimationFrame(render);
       }
     }
 
-    ctx.fillStyle = "#030712"; ctx.font = "bold 30px sans-serif";
-    ctx.fillText("పేరు / Name: పౌరుడు / Citizen", 250, 240);
-    ctx.font = "26px sans-serif"; ctx.fillStyle = "#334155";
-    ctx.fillText("పుట్టిన తేదీ / DOB: 01/01/1990", 250, 290);
-    ctx.fillText("లింగం / Gender: పురుషుడు / MALE", 250, 340);
-
-    ctx.fillStyle = "#b91c1c"; ctx.font = "bold 52px monospace";
-    ctx.fillText("XXXX  XXXX  1234", 40, 480);
-
-    ctx.fillStyle = "#046a38"; ctx.font = "bold 28px sans-serif";
-    ctx.fillText("నా ఆధార్, నా గుర్తింపు — మేరా ఆధార్, మేరీ పెహచాన్", 40, 560);
-    return new THREE.CanvasTexture(c);
-  }
-
-  function createCertificateTexture() {
-    const c = document.createElement("canvas");
-    c.width = 800; c.height = 1100;
-    const ctx = c.getContext("2d");
-
-    ctx.fillStyle = "#fefae0"; ctx.fillRect(0, 0, c.width, c.height);
-
-    ctx.strokeStyle = "#d97706"; ctx.lineWidth = 14;
-    ctx.strokeRect(24, 24, c.width - 48, c.height - 48);
-    ctx.strokeStyle = "#b45309"; ctx.lineWidth = 4;
-    ctx.strokeRect(40, 40, c.width - 80, c.height - 80);
-
-    ctx.fillStyle = "#78350f"; ctx.font = "bold 38px sans-serif"; ctx.textAlign = "center";
-    ctx.fillText("ఆంధ్రప్రదేశ్ ప్రభుత్వం", c.width / 2, 110);
-    ctx.font = "bold 26px sans-serif";
-    ctx.fillText("GOVERNMENT OF ANDHRA PRADESH", c.width / 2, 150);
-    ctx.fillStyle = "#1e3a8a"; ctx.font = "bold 34px sans-serif";
-    ctx.fillText("రెవెన్యూ శాఖ — ఆదాయ & కుల ధృవీకరణ పత్రం", c.width / 2, 220);
-
-    ctx.textAlign = "left"; ctx.fillStyle = "#1f2937"; ctx.font = "24px sans-serif";
-    ctx.fillText("సర్టిఫికేట్ సంఖ్య / Application No: CGC0123456789", 70, 320);
-    ctx.fillText("ఈ క్రింది వివరాలు గల దరఖాస్తుదారునికి ధృవీకరించడమైనది:", 70, 380);
-
-    ctx.fillStyle = "#4b5563"; ctx.font = "22px sans-serif";
-    for (let y = 440; y <= 760; y += 45) {
-      ctx.fillRect(70, y, c.width - 140, 3);
-    }
-
-    ctx.strokeStyle = "#d97706"; ctx.lineWidth = 6;
-    ctx.beginPath(); ctx.arc(160, 920, 70, 0, Math.PI * 2); ctx.stroke();
-    ctx.fillStyle = "rgba(245, 158, 11, 0.2)"; ctx.fill();
-    ctx.fillStyle = "#78350f"; ctx.font = "bold 20px sans-serif"; ctx.textAlign = "center";
-    ctx.fillText("అధికారిక ముద్ర", 160, 915);
-    ctx.fillText("OFFICIAL SEAL", 160, 940);
-
-    ctx.fillStyle = "#1e40af"; ctx.font = "bold 24px sans-serif";
-    ctx.fillText("డిజిటల్ సంతకం చేయబడింది", c.width - 220, 915);
-    ctx.font = "18px sans-serif";
-    ctx.fillText("TAHSILDAR, VELDURTHI", c.width - 220, 945);
-
-    return new THREE.CanvasTexture(c);
-  }
-
-  function createPassbookTexture() {
-    const c = document.createElement("canvas");
-    c.width = 800; c.height = 1100;
-    const ctx = c.getContext("2d");
-
-    ctx.fillStyle = "#0c2340"; ctx.fillRect(0, 0, c.width, c.height);
-    ctx.strokeStyle = "#fbbf24"; ctx.lineWidth = 12;
-    ctx.strokeRect(30, 30, c.width - 60, c.height - 60);
-
-    ctx.fillStyle = "#fbbf24"; ctx.textAlign = "center";
-    ctx.font = "bold 44px sans-serif";
-    ctx.fillText("ఆంధ్రప్రదేశ్ ప్రభుత్వం", c.width / 2, 220);
-
-    ctx.beginPath(); ctx.arc(c.width / 2, 420, 100, 0, Math.PI * 2);
-    ctx.strokeStyle = "#fbbf24"; ctx.lineWidth = 8; ctx.stroke();
-    ctx.font = "bold 32px sans-serif";
-    ctx.fillText("రైతు భరోసా", c.width / 2, 430);
-
-    ctx.font = "bold 38px sans-serif";
-    ctx.fillText("పట్టాదారు పాస్‌బుక్", c.width / 2, 620);
-    ctx.font = "26px sans-serif"; ctx.fillStyle = "#fef08a";
-    ctx.fillText("మరియు వ్యవసాయ భూమి హక్కుల రికార్డు", c.width / 2, 670);
-
-    ctx.fillStyle = "#93c5fd"; ctx.font = "bold 28px monospace";
-    ctx.fillText("ఖాతా నం. / KHATA NO: 1248", c.width / 2, 850);
-    ctx.fillText("వెల్దుర్తి మండలం, కర్నూలు జిల్లా", c.width / 2, 900);
-    return new THREE.CanvasTexture(c);
-  }
-
-  function createRationTexture() {
-    const c = document.createElement("canvas");
-    c.width = 1024; c.height = 640;
-    const ctx = c.getContext("2d");
-
-    ctx.fillStyle = "#f8fafc"; ctx.fillRect(0, 0, c.width, c.height);
-    ctx.fillStyle = "#046a38"; ctx.fillRect(0, 0, c.width, 100);
-
-    ctx.fillStyle = "#ffffff"; ctx.font = "bold 38px sans-serif";
-    ctx.fillText("ఆంధ్రప్రదేశ్ పౌర సరఫరాల శాఖ — రైస్ కార్డ్", 40, 65);
-
-    ctx.strokeStyle = "#16a34a"; ctx.lineWidth = 6;
-    ctx.strokeRect(16, 16, c.width - 32, c.height - 32);
-
-    ctx.fillStyle = "#030712"; ctx.font = "bold 30px sans-serif";
-    ctx.fillText("కార్డ్ నం. / RICE CARD NO: WAP123456789", 50, 180);
-    ctx.font = "24px sans-serif"; ctx.fillStyle = "#334155";
-    ctx.fillText("కుటుంబ పెద్ద / Head of Family: పౌరుడు", 50, 240);
-    ctx.fillText("FP షాప్ నం: 0802012 (వెల్దుర్తి)", 50, 290);
-    ctx.fillText("మొత్తం సభ్యుల సంఖ్య: 04", 50, 340);
-
-    ctx.fillStyle = "#16a34a"; ctx.fillRect(50, 400, c.width - 100, 6);
-    ctx.fillStyle = "#046a38"; ctx.font = "bold 26px sans-serif";
-    ctx.fillText("ప్రజా పంపిణీ వ్యవస్థ — ఆంధ్రప్రదేశ్ ప్రభుత్వం", 50, 460);
-    return new THREE.CanvasTexture(c);
-  }
-
-  function createLicenseTexture() {
-    const c = document.createElement("canvas");
-    c.width = 1024; c.height = 640;
-    const ctx = c.getContext("2d");
-
-    ctx.fillStyle = "#0b2545"; ctx.fillRect(0, 0, c.width, c.height);
-    ctx.strokeStyle = "#38bdf8"; ctx.lineWidth = 8;
-    ctx.strokeRect(16, 16, c.width - 32, c.height - 32);
-
-    ctx.fillStyle = "#38bdf8"; ctx.font = "bold 32px sans-serif";
-    ctx.fillText("TRANSPORT DEPARTMENT • GOVT. OF AP", 40, 70);
-
-    ctx.fillStyle = "#fbbf24"; ctx.fillRect(40, 110, 110, 80);
-
-    ctx.fillStyle = "#ffffff"; ctx.font = "bold 38px monospace";
-    ctx.fillText("DL NO: AP21 20240012345", 40, 260);
-
-    ctx.font = "28px sans-serif"; ctx.fillStyle = "#cbd5e1";
-    ctx.fillText("NAME: DRIVER CITIZEN", 40, 330);
-    ctx.fillText("VALIDITY: NON-TRANSPORT (20 YEARS)", 40, 390);
-    ctx.fillText("CLASS: MCWG, LMV (MOTOR CYCLE & CAR)", 40, 450);
-
-    ctx.fillStyle = "rgba(56, 189, 248, 0.3)";
-    ctx.fillRect(c.width - 220, 110, 170, 210);
-    ctx.strokeStyle = "#38bdf8"; ctx.strokeRect(c.width - 220, 110, 170, 210);
-    return new THREE.CanvasTexture(c);
+    render();
   }
 
   /* ================================================================
-     7. 3D WEBGL ENGINE (THREE.JS CINEMATIC PRIDE WORLD)
+     7. BACKGROUND PARALLAX SCROLL ENGINE (Documents & Monuments)
      ================================================================ */
-  function init3DWebGLWorld() {
-    if (typeof THREE === "undefined") return;
+  function initParallaxEngine() {
+    if (prefersReducedMotion) return;
 
-    const canvas = document.getElementById("webglCanvas");
-    if (!canvas) return;
+    const streamDocs = document.querySelectorAll(".stream-doc");
+    const monumentLayer = document.getElementById("monumentLayer");
 
-    const renderer = new THREE.WebGLRenderer({
-      canvas: canvas,
-      antialias: true,
-      alpha: true,
-      powerPreference: "high-performance"
-    });
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, isMobile ? 1.5 : 2));
-    renderer.setSize(window.innerWidth, window.innerHeight);
-    renderer.toneMapping = THREE.ACESFilmicToneMapping;
-    renderer.toneMappingExposure = 1.15;
+    let latestKnownScrollY = 0;
+    let ticking = false;
 
-    const scene = new THREE.Scene();
-    scene.fog = new THREE.FogExp2(0x030712, 0.02);
+    function onScroll() {
+      latestKnownScrollY = window.scrollY;
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          const sy = latestKnownScrollY;
 
-    const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 100);
-    camera.position.set(0, 0, 12);
+          // Parallax for Background Monuments
+          if (monumentLayer) {
+            monumentLayer.style.transform = `translateY(${sy * 0.08}px)`;
+          }
 
-    // Realistic Lighting System
-    const ambientLight = new THREE.AmbientLight(0xffffff, 0.95);
-    scene.add(ambientLight);
+          // Parallax for Floating Document Stream
+          streamDocs.forEach(doc => {
+            const speed = parseFloat(doc.dataset.speed) || 0.15;
+            doc.style.transform = `translateY(${sy * speed}px)`;
+          });
 
-    const saffronSun = new THREE.DirectionalLight(0xff7700, 2.0);
-    saffronSun.position.set(12, 14, 10);
-    scene.add(saffronSun);
-
-    const greenBounce = new THREE.DirectionalLight(0x16a34a, 1.6);
-    greenBounce.position.set(-12, -14, 8);
-    scene.add(greenBounce);
-
-    const goldGlory = new THREE.PointLight(0xfbbf24, 2.4, 40);
-    goldGlory.position.set(0, 3, 10);
-    scene.add(goldGlory);
-
-    const flagSunLight = new THREE.DirectionalLight(0xfff1d6, 2.0);
-    flagSunLight.position.set(6, 6, 8);
-    scene.add(flagSunLight);
-
-    // 1. BIG STANDING 3D INDIAN NATIONAL FLAG ON TALL MAST
-    const flagGroup = new THREE.Group();
-
-    // Base Pedestal
-    const baseGeo = new THREE.CylinderGeometry(0.45, 0.6, 0.35, 24);
-    const baseMat = new THREE.MeshStandardMaterial({ color: 0x1e293b, metalness: 0.8, roughness: 0.2 });
-    const baseMesh = new THREE.Mesh(baseGeo, baseMat);
-    baseMesh.position.y = -3.2;
-    flagGroup.add(baseMesh);
-
-    // Tall Mast / Flagpole
-    const mastHeight = 8.8;
-    const flagPoleGeo = new THREE.CylinderGeometry(0.08, 0.11, mastHeight, 24);
-    const flagPoleMat = new THREE.MeshStandardMaterial({ color: 0xe2e8f0, metalness: 0.95, roughness: 0.1 });
-    const flagPole = new THREE.Mesh(flagPoleGeo, flagPoleMat);
-    flagPole.position.y = 1.0;
-    flagGroup.add(flagPole);
-
-    // Top Golden Finial Sphere
-    const finialGeo = new THREE.SphereGeometry(0.24, 24, 24);
-    const finialMat = new THREE.MeshStandardMaterial({ color: 0xfbbf24, metalness: 0.98, roughness: 0.08 });
-    const finial = new THREE.Mesh(finialGeo, finialMat);
-    finial.position.y = 1.0 + mastHeight / 2 + 0.15;
-    flagGroup.add(finial);
-
-    // Big Size Waving Cloth Flag (Width 6.2, Height 4.0)
-    const flagW = 6.2, flagH = 4.0;
-    const flagGeo = new THREE.PlaneGeometry(flagW, flagH, 54, 36);
-    const flagTex = createFlagCanvasTexture();
-    const flagMat = new THREE.MeshStandardMaterial({
-      map: flagTex,
-      side: THREE.DoubleSide,
-      roughness: 0.4,
-      metalness: 0.08
-    });
-    const flagMesh = new THREE.Mesh(flagGeo, flagMat);
-    flagMesh.position.set(flagW / 2 + 0.06, 3.2, 0);
-    flagGroup.add(flagMesh);
-
-    // Position Big Standing Flag in Upper 3D Space
-    flagGroup.position.set(isMobile ? 1.5 : 3.8, isMobile ? 0.2 : 0.8, -2.5);
-    scene.add(flagGroup);
-
-    // 2. 3D Floating Documents Along Vertical Scroll Path
-    const docMeshes = [];
-
-    function add3DCard(texture, w, h, x, y, z, baseRot) {
-      const geo = new THREE.BoxGeometry(w, h, 0.04);
-      const frontMat = new THREE.MeshStandardMaterial({ map: texture, roughness: 0.2, metalness: 0.25 });
-      const edgeMat = new THREE.MeshStandardMaterial({ color: 0x38bdf8, roughness: 0.1, metalness: 0.9 });
-      const backMat = new THREE.MeshStandardMaterial({ color: 0x06142a, roughness: 0.3, metalness: 0.5 });
-      const materials = [edgeMat, edgeMat, edgeMat, edgeMat, frontMat, backMat];
-      const mesh = new THREE.Mesh(geo, materials);
-      mesh.position.set(x, y, z);
-      mesh.rotation.set(baseRot.x || 0, baseRot.y || 0, baseRot.z || 0);
-      mesh.userData = {
-        baseX: x, baseY: y, baseZ: z,
-        rotX: baseRot.x || 0, rotY: baseRot.y || 0, rotZ: baseRot.z || 0,
-        speed: baseRot.speed || 1
-      };
-      scene.add(mesh);
-      docMeshes.push(mesh);
-      return mesh;
-    }
-
-    // PAN Card at y = -4.5
-    add3DCard(createPANTexture(), 3.2, 2.0, isMobile ? 1.6 : 3.2, -4.5, 0, { x: 0.1, y: -0.25, z: 0.15, speed: 1.2 });
-    // Aadhaar Card at y = -10.5
-    add3DCard(createAadhaarTexture(), 3.2, 2.0, isMobile ? -1.6 : -3.2, -10.5, 0.5, { x: -0.12, y: 0.28, z: -0.1, speed: 1.1 });
-    // AP Certificate at y = -16.5
-    add3DCard(createCertificateTexture(), 2.5, 3.4, isMobile ? 1.5 : 3.0, -16.5, -0.5, { x: 0.15, y: -0.2, z: 0.08, speed: 1.3 });
-    // Driving License at y = -22.5
-    add3DCard(createLicenseTexture(), 3.2, 2.0, isMobile ? -1.5 : -3.0, -22.5, 0.2, { x: -0.1, y: 0.25, z: -0.15, speed: 1.0 });
-    // Pattadar Passbook at y = -28.5
-    add3DCard(createPassbookTexture(), 2.5, 3.4, isMobile ? 1.5 : 3.0, -28.5, -0.3, { x: 0.12, y: -0.22, z: 0.12, speed: 1.2 });
-    // Rice Card at y = -34.5
-    add3DCard(createRationTexture(), 3.2, 2.0, isMobile ? -1.5 : -2.8, -34.5, 0.4, { x: -0.15, y: 0.2, z: -0.08, speed: 1.1 });
-
-    // 3. 3D Architectural Monuments in Deep 3D Space (z = -18 to -25)
-    const parliamentGroup = new THREE.Group();
-    const domeGeo = new THREE.SphereGeometry(2.2, 24, 16, 0, Math.PI * 2, 0, Math.PI * 0.5);
-    const monMat = new THREE.MeshStandardMaterial({ color: 0x0c274c, wireframe: true, transparent: true, opacity: 0.45 });
-    const dome = new THREE.Mesh(domeGeo, monMat);
-    dome.position.y = 1.2;
-    parliamentGroup.add(dome);
-
-    const baseColGeo = new THREE.CylinderGeometry(4.2, 4.4, 1.8, 28);
-    const baseCol = new THREE.Mesh(baseColGeo, monMat);
-    parliamentGroup.add(baseCol);
-    parliamentGroup.position.set(-6, -11, -18);
-    scene.add(parliamentGroup);
-
-    const fortGroup = new THREE.Group();
-    const towerGeo = new THREE.CylinderGeometry(2.4, 2.8, 4.0, 16);
-    const fortMat = new THREE.MeshStandardMaterial({ color: 0x1e3a5f, wireframe: true, transparent: true, opacity: 0.4 });
-    const tower = new THREE.Mesh(towerGeo, fortMat);
-    fortGroup.add(tower);
-    fortGroup.position.set(6, -27, -18);
-    scene.add(fortGroup);
-
-    // 4. 3D Floating Golden Stardust & Tricolor Particles
-    const particleCount = 500;
-    const particleGeo = new THREE.BufferGeometry();
-    const positions = new Float32Array(particleCount * 3);
-    const colors = new Float32Array(particleCount * 3);
-
-    const cSaffron = new THREE.Color(0xff671f);
-    const cWhite = new THREE.Color(0xffffff);
-    const cGreen = new THREE.Color(0x16a34a);
-    const cGold = new THREE.Color(0xfbbf24);
-
-    for (let i = 0; i < particleCount; i++) {
-      positions[i * 3] = (Math.random() - 0.5) * 26;
-      positions[i * 3 + 1] = Math.random() * -45 + 5;
-      positions[i * 3 + 2] = (Math.random() - 0.5) * 16;
-
-      const r = Math.random();
-      const col = r < 0.35 ? cSaffron : r < 0.65 ? cGold : r < 0.85 ? cGreen : cWhite;
-      colors[i * 3] = col.r;
-      colors[i * 3 + 1] = col.g;
-      colors[i * 3 + 2] = col.b;
-    }
-    particleGeo.setAttribute("position", new THREE.BufferAttribute(positions, 3));
-    particleGeo.setAttribute("color", new THREE.BufferAttribute(colors, 3));
-
-    const particleMat = new THREE.PointsMaterial({
-      size: isMobile ? 0.08 : 0.12,
-      vertexColors: true,
-      transparent: true,
-      opacity: 0.75,
-      blending: THREE.AdditiveBlending
-    });
-    const particleSystem = new THREE.Points(particleGeo, particleMat);
-    scene.add(particleSystem);
-
-    // Scroll & Mouse Tracking
-    let targetCameraY = 0;
-    let mouseX = 0, mouseY = 0, targetMouseX = 0, targetMouseY = 0;
-    let time = 0;
-
-    window.addEventListener("scroll", () => {
-      const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
-      const progress = maxScroll > 0 ? window.scrollY / maxScroll : 0;
-      targetCameraY = -progress * 38;
-    }, { passive: true });
-
-    if (!isMobile) {
-      window.addEventListener("mousemove", (e) => {
-        targetMouseX = (e.clientX / window.innerWidth - 0.5) * 2;
-        targetMouseY = (e.clientY / window.innerHeight - 0.5) * 2;
-      });
-    }
-
-    window.addEventListener("resize", () => {
-      camera.aspect = window.innerWidth / window.innerHeight;
-      camera.updateProjectionMatrix();
-      renderer.setSize(window.innerWidth, window.innerHeight);
-    });
-
-    // 60 FPS Render Loop with True Air Wind Flutter Physics
-    function animate() {
-      requestAnimationFrame(animate);
-
-      if (!prefersReducedMotion) time += 0.032;
-
-      // Smooth Camera Glide
-      camera.position.y += (targetCameraY - camera.position.y) * 0.06;
-      mouseX += (targetMouseX - mouseX) * 0.05;
-      mouseY += (targetMouseY - mouseY) * 0.05;
-
-      camera.rotation.x = -mouseY * 0.06;
-      camera.rotation.y = -mouseX * 0.08;
-
-      // Big Flag True Air Wind Flutter Vertex Simulation
-      const posAttr = flagGeo.attributes.position;
-      for (let i = 0; i < posAttr.count; i++) {
-        const vx = posAttr.getX(i);
-        const vy = posAttr.getY(i);
-        const normX = (vx + flagW / 2) / flagW; // 0 at mast, 1 at free tip
-        const wave = Math.sin(normX * 3.2 - time * 3.6) * 0.44 * Math.pow(normX, 1.15) +
-                     Math.cos(vy * 2.2 - time * 2.5) * 0.14 * normX +
-                     Math.sin((normX + vy * 0.3) * 4.0 - time * 4.2) * 0.08 * normX;
-        posAttr.setZ(i, wave);
+          ticking = false;
+        });
+        ticking = true;
       }
-      posAttr.needsUpdate = true;
-      flagGeo.computeVertexNormals();
-
-      // 3D Floating Documents Sway & Float
-      docMeshes.forEach((mesh, idx) => {
-        const u = mesh.userData;
-        const floatY = Math.sin(time * 1.2 + idx) * 0.15;
-        mesh.position.y = u.baseY + floatY;
-        mesh.rotation.x = u.rotX + Math.sin(time + idx) * 0.05 - mouseY * 0.1;
-        mesh.rotation.y = u.rotY + Math.cos(time * 0.8 + idx) * 0.08 + mouseX * 0.15;
-        mesh.rotation.z = u.rotZ + Math.sin(time * 0.6 + idx) * 0.04;
-      });
-
-      // Monuments Slow Rotation
-      parliamentGroup.rotation.y = time * 0.1;
-      fortGroup.rotation.y = -time * 0.08;
-
-      // Stardust Drift
-      particleSystem.rotation.y = time * 0.02;
-
-      renderer.render(scene, camera);
     }
 
-    animate();
+    window.addEventListener("scroll", onScroll, { passive: true });
   }
 
   /* ================================================================
@@ -851,7 +487,9 @@
      ================================================================ */
   window.addEventListener("DOMContentLoaded", () => {
     populateContent();
-    init3DWebGLWorld();
+    startFlagSimulation("bgFlagCanvas");
+    startFlagSimulation("heroFlagCanvas");
+    initParallaxEngine();
     initReveals();
   });
 
