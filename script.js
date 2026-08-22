@@ -1,5 +1,6 @@
 /**
  * SRI MANIKANTA MEESEVA — EXECUTIVE CIVIC JAVASCRIPT
+ * Real-Time Air-Waving Indian Flag Canvas Engines (Wind Flutter Physics)
  * Hardware-Accelerated Scroll Parallax Engine (Monuments & Floating Documents)
  * Single Audio Instance, Live Service Search & Interactive Accordions
  */
@@ -162,7 +163,107 @@
   })();
 
   /* ================================================================
-     6. SCROLL-REACTIVE CIVIC PARALLAX & ATMOSPHERE ENGINE
+     6. REAL-TIME AIR-WAVING INDIAN FLAG CANVAS SIMULATORS
+     True sinusoidal fluid cloth ripple with dynamic lighting & Ashoka Chakra
+     ================================================================ */
+  function initFlagCanvasEngines() {
+    const bgCanvas = document.getElementById("bgFlagCanvas");
+    const heroCanvas = document.getElementById("heroFlagCanvas");
+
+    function setupFlag(canvas, options) {
+      if (!canvas) return;
+      const ctx = canvas.getContext("2d");
+      if (!ctx) return;
+
+      const W = canvas.width;
+      const H = canvas.height;
+      const stripeH = H / 3;
+      let time = 0;
+
+      function drawAshokaChakra(cx, cy, radius) {
+        ctx.save();
+        ctx.strokeStyle = "#000080";
+        ctx.fillStyle = "#000080";
+        ctx.lineWidth = Math.max(1, radius * 0.12);
+
+        // Outer Ring
+        ctx.beginPath();
+        ctx.arc(cx, cy, radius, 0, Math.PI * 2);
+        ctx.stroke();
+
+        // Inner Hub
+        ctx.beginPath();
+        ctx.arc(cx, cy, radius * 0.18, 0, Math.PI * 2);
+        ctx.fill();
+
+        // 24 Radial Spokes
+        for (let i = 0; i < 24; i++) {
+          const angle = (i * Math.PI) / 12;
+          ctx.beginPath();
+          ctx.moveTo(cx, cy);
+          ctx.lineTo(cx + Math.cos(angle) * radius, cy + Math.sin(angle) * radius);
+          ctx.stroke();
+        }
+        ctx.restore();
+      }
+
+      function render() {
+        if (!prefersReducedMotion) time += options.speed || 0.06;
+
+        ctx.clearRect(0, 0, W, H);
+
+        const cols = 40;
+        const colW = W / cols;
+
+        // Render each vertical cloth slice
+        for (let i = 0; i < cols; i++) {
+          const x = i * colW;
+          // Wave amplitude increases from fixed flagpole (x=0) to free end (x=W)
+          const normX = x / W;
+          const waveAmp = (options.amp || 9) * Math.pow(normX, 1.2);
+          const waveY = Math.sin(normX * 4 - time) * waveAmp + Math.cos(normX * 2.5 - time * 1.5) * (waveAmp * 0.4);
+
+          // Top Saffron Stripe
+          ctx.fillStyle = "#ff671f";
+          ctx.fillRect(x, waveY, colW + 0.5, stripeH);
+
+          // Middle White Stripe
+          ctx.fillStyle = "#ffffff";
+          ctx.fillRect(x, waveY + stripeH, colW + 0.5, stripeH);
+
+          // Bottom Green Stripe
+          ctx.fillStyle = "#046a38";
+          ctx.fillRect(x, waveY + stripeH * 2, colW + 0.5, stripeH);
+
+          // Light & Shadow Shading on Wave Crests/Troughs
+          const slope = Math.cos(normX * 4 - time);
+          if (slope > 0) {
+            ctx.fillStyle = `rgba(255, 255, 255, ${slope * 0.18})`;
+          } else {
+            ctx.fillStyle = `rgba(0, 0, 0, ${Math.abs(slope) * 0.22})`;
+          }
+          ctx.fillRect(x, waveY, colW + 0.5, H);
+        }
+
+        // Draw Ashoka Chakra at Flag Center (x=W/2, y=H/2) tracking cloth wave
+        const midNormX = 0.5;
+        const midAmp = (options.amp || 9) * Math.pow(midNormX, 1.2);
+        const midWaveY = Math.sin(midNormX * 4 - time) * midAmp + Math.cos(midNormX * 2.5 - time * 1.5) * (midAmp * 0.4);
+        const chakraRadius = stripeH * 0.42;
+        drawAshokaChakra(W / 2, midWaveY + stripeH * 1.5, chakraRadius);
+
+        requestAnimationFrame(render);
+      }
+
+      render();
+    }
+
+    setupFlag(bgCanvas, { speed: 0.055, amp: 11 });
+    setupFlag(heroCanvas, { speed: 0.075, amp: 3.5 });
+  }
+
+  /* ================================================================
+     7. SCROLL-REACTIVE CIVIC PARALLAX & ATMOSPHERE ENGINE
      Hardware-accelerated parallax on Monuments & Floating Documents
      ================================================================ */
   function initParallaxEngine() {
@@ -200,7 +301,7 @@
 
       // Parallax on Floating Document Silhouettes (varying speeds & scroll tilt)
       docStream.forEach(doc => {
-        const speed = parseFloat(doc.dataset.speed) || 0.14;
+        const speed = parseFloat(doc.dataset.speed) || 0.18;
         const yOffset = currentScroll * speed;
         const baseRot = doc.classList.contains("doc-pan") ? 12 :
                         doc.classList.contains("doc-aadhaar") ? -8 :
@@ -209,8 +310,8 @@
                         doc.classList.contains("doc-ration") ? -14 :
                         doc.classList.contains("doc-residence") ? -12 :
                         doc.classList.contains("doc-senior") ? 10 : -10;
-        const dynamicTilt = baseRot + Math.max(-6, Math.min(6, scrollVel * 0.2));
-        doc.style.transform = `translate3d(${mouseX * speed * 1.5}px, ${-yOffset + mouseY * speed * 1.5}px, 0) rotate(${dynamicTilt}deg)`;
+        const dynamicTilt = baseRot + Math.max(-6, Math.min(6, scrollVel * 0.25));
+        doc.style.transform = `translate3d(${mouseX * speed * 1.6}px, ${-yOffset + mouseY * speed * 1.6}px, 0) rotate(${dynamicTilt}deg)`;
       });
 
       requestAnimationFrame(tickParallax);
@@ -220,7 +321,7 @@
   }
 
   /* ================================================================
-     7. DATA POPULATION (Services, Marquee, Testimonials, FAQ)
+     8. DATA POPULATION (Services, Marquee, Testimonials, FAQ)
      ================================================================ */
   function populateContent() {
     const D = window.MEESEVA_DATA;
@@ -359,7 +460,7 @@
   }
 
   /* ================================================================
-     8. INTERSECTION REVEALS & METRIC COUNTERS
+     9. INTERSECTION REVEALS & METRIC COUNTERS
      ================================================================ */
   function initReveals() {
     const revealElements = document.querySelectorAll(".reveal, .reveal-up, .reveal-word");
@@ -402,7 +503,7 @@
   }
 
   /* ================================================================
-     9. BACK TO TOP
+     10. BACK TO TOP
      ================================================================ */
   const backToTop = document.getElementById("backToTop");
   if (backToTop) {
@@ -413,10 +514,11 @@
   }
 
   /* ================================================================
-     10. INITIALIZATION
+     11. INITIALIZATION
      ================================================================ */
   window.addEventListener("DOMContentLoaded", () => {
     populateContent();
+    initFlagCanvasEngines();
     initParallaxEngine();
     initReveals();
   });

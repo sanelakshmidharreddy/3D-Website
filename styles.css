@@ -1,6 +1,6 @@
 /**
  * SRI MANIKANTA MEESEVA — EXECUTIVE CIVIC STYLES
- * Indian Flag with Air Flutter Wave Effect, Civic Monuments (Parliament, AP Assembly, Kurnool Fort, Red Fort),
+ * Live Waving Indian Flag Canvas Engines, Civic Monuments (Parliament, AP Assembly, Kurnool Fort, Red Fort),
  * Floating Document Parallax Stream & High-Standard UI
  */
 
@@ -8,9 +8,9 @@
   --bg-dark: #030712;
   --bg-navy: #06142a;
   --bg-deep: #0a1f3d;
-  --card-bg: rgba(10, 31, 61, 0.6);
-  --card-border: rgba(56, 189, 248, 0.18);
-  --card-border-hover: rgba(245, 158, 11, 0.5);
+  --card-bg: rgba(10, 31, 61, 0.65);
+  --card-border: rgba(56, 189, 248, 0.2);
+  --card-border-hover: rgba(245, 158, 11, 0.55);
   
   --saffron: #f97316;
   --saffron-light: #fb923c;
@@ -129,79 +129,46 @@ body {
 .bg-indian-flag-unit {
   position: absolute;
   top: 6%;
-  right: 4%;
+  right: 5%;
   display: flex;
   align-items: flex-start;
-  opacity: 0.45;
-  filter: drop-shadow(0 0 30px rgba(249, 115, 22, 0.3));
+  opacity: 0.85;
+  filter: drop-shadow(0 0 35px rgba(249, 115, 22, 0.4));
+  z-index: 2;
 }
 
 .flag-pole {
-  width: 4px;
-  height: 200px;
-  background: linear-gradient(180deg, #fbbf24 0%, #cbd5e1 40%, #64748b 100%);
-  border-radius: 2px;
-  box-shadow: 0 0 10px rgba(251, 191, 36, 0.6);
-}
-
-.flag-cloth-ripple {
-  width: 130px;
-  height: 84px;
-  border-radius: 2px 6px 6px 2px;
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  overflow: hidden;
-  transform-origin: left center;
-  animation: flag-air-flutter 3.2s ease-in-out infinite alternate;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
-}
-
-.flag-bar {
-  flex: 1;
-  width: 100%;
-}
-
-.bar-saffron { background: #ff671f; }
-.bar-white {
-  background: #ffffff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  width: 5px;
+  height: 240px;
+  background: linear-gradient(180deg, #fbbf24 0%, #cbd5e1 30%, #64748b 100%);
+  border-radius: 2.5px;
+  box-shadow: 0 0 14px rgba(251, 191, 36, 0.7);
   position: relative;
 }
-.bar-green { background: #046a38; }
 
-.ashoka-chakra-art {
-  width: 22px;
-  height: 22px;
-}
-
-.flag-wave-shine {
+.pole-gold-finial {
   position: absolute;
-  inset: 0;
-  background: linear-gradient(90deg, 
-    rgba(255,255,255,0) 0%, 
-    rgba(255,255,255,0.4) 25%, 
-    rgba(0,0,0,0.3) 50%, 
-    rgba(255,255,255,0.3) 75%, 
-    rgba(0,0,0,0.2) 100%);
-  background-size: 200% 100%;
-  animation: flag-shimmer 2.4s linear infinite;
-  pointer-events: none;
+  top: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #fff, #fbbf24, #d97706);
+  box-shadow: 0 0 10px rgba(251, 191, 36, 0.8);
 }
 
-@keyframes flag-air-flutter {
-  0% { transform: skewY(0deg) scaleY(1); }
-  25% { transform: skewY(2.5deg) scaleY(0.96) rotateZ(1deg); }
-  50% { transform: skewY(-2deg) scaleY(1.03) rotateZ(-1deg); }
-  75% { transform: skewY(3deg) scaleY(0.97) rotateZ(1.5deg); }
-  100% { transform: skewY(-1.5deg) scaleY(1) rotateZ(0deg); }
+.pole-gold-finial.small {
+  width: 7px;
+  height: 7px;
+  top: -4px;
 }
 
-@keyframes flag-shimmer {
-  0% { background-position: 0% 0%; }
-  100% { background-position: 200% 0%; }
+.flag-waving-canvas {
+  width: 180px;
+  height: 114px;
+  border-radius: 0 4px 4px 0;
+  filter: drop-shadow(0 10px 25px rgba(0, 0, 0, 0.6));
 }
 
 /* Civic Monuments Layer (Kurnool Fort, Parliament, Assembly, Red Fort) */
@@ -281,11 +248,11 @@ body {
 .stream-doc {
   position: absolute;
   border-radius: 12px;
-  border: 1.5px solid rgba(248, 250, 252, 0.18);
-  background: linear-gradient(135deg, rgba(10, 31, 61, 0.72) 0%, rgba(3, 7, 18, 0.85) 100%);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6), inset 0 1px 1px rgba(255, 255, 255, 0.25);
+  border: 1.5px solid rgba(56, 189, 248, 0.4);
+  background: linear-gradient(135deg, rgba(14, 43, 82, 0.88) 0%, rgba(6, 18, 38, 0.94) 100%);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.7), 0 0 25px rgba(56, 189, 248, 0.15), inset 0 1px 1px rgba(255, 255, 255, 0.3);
   will-change: transform;
   display: flex;
   flex-direction: column;
@@ -296,12 +263,13 @@ body {
 
 .stream-doc-tag {
   align-self: flex-start;
-  font-size: 0.68rem;
+  font-size: 0.72rem;
   font-weight: 700;
   color: var(--gold-light);
   letter-spacing: 1px;
   text-transform: uppercase;
   margin-top: 8px;
+  text-shadow: 0 0 8px rgba(245, 158, 11, 0.5);
 }
 
 .doc-body {
@@ -312,70 +280,70 @@ body {
 }
 
 .doc-a4 {
-  width: 155px;
-  height: 205px;
+  width: 160px;
+  height: 215px;
   transform: rotate(-10deg);
-  border-color: rgba(245, 158, 11, 0.4);
+  border-color: rgba(245, 158, 11, 0.55);
 }
 
 .doc-pan {
-  width: 180px;
-  height: 115px;
+  width: 185px;
+  height: 120px;
   transform: rotate(12deg);
-  border-color: rgba(56, 189, 248, 0.45);
+  border-color: rgba(56, 189, 248, 0.6);
 }
 
 .doc-aadhaar {
-  width: 180px;
-  height: 115px;
+  width: 185px;
+  height: 120px;
   transform: rotate(-8deg);
-  border-color: rgba(249, 115, 22, 0.45);
+  border-color: rgba(249, 115, 22, 0.6);
 }
 
 .doc-dl {
-  width: 175px;
-  height: 110px;
+  width: 180px;
+  height: 115px;
   transform: rotate(14deg);
-  border-color: rgba(56, 189, 248, 0.4);
+  border-color: rgba(56, 189, 248, 0.55);
 }
 
 .doc-passbook {
-  width: 155px;
-  height: 200px;
+  width: 160px;
+  height: 210px;
   transform: rotate(10deg);
-  border-color: rgba(245, 158, 11, 0.45);
+  border-color: rgba(245, 158, 11, 0.6);
 }
 
 .doc-ration {
-  width: 175px;
-  height: 115px;
+  width: 180px;
+  height: 120px;
   transform: rotate(-14deg);
-  border-color: rgba(74, 222, 128, 0.45);
+  border-color: rgba(74, 222, 128, 0.6);
 }
 
 .doc-residence {
-  border-color: rgba(56, 189, 248, 0.4);
+  border-color: rgba(56, 189, 248, 0.55);
   transform: rotate(-12deg);
 }
 
 .doc-senior {
-  width: 170px;
-  height: 110px;
+  width: 175px;
+  height: 115px;
   transform: rotate(10deg);
-  border-color: rgba(245, 158, 11, 0.4);
+  border-color: rgba(245, 158, 11, 0.55);
 }
 
 .doc-line {
   height: 4px;
   border-radius: 2px;
-  background: rgba(248, 250, 252, 0.2);
+  background: rgba(248, 250, 252, 0.3);
   width: 85%;
 }
 
 .d-title {
   height: 6px;
-  width: 60%;
-  background: rgba(245, 158, 11, 0.6);
+  width: 65%;
+  background: rgba(245, 158, 11, 0.8);
 }
 
 .d-half {
@@ -383,42 +351,42 @@ body {
 }
 
 .doc-chip-gold {
-  width: 24px;
-  height: 18px;
+  width: 26px;
+  height: 20px;
   border-radius: 4px;
   background: linear-gradient(135deg, #fbbf24, #d97706);
-  box-shadow: 0 0 12px rgba(245, 158, 11, 0.5);
+  box-shadow: 0 0 14px rgba(245, 158, 11, 0.7);
 }
 
 .doc-photo-box {
   position: absolute;
   bottom: 0; right: 0;
-  width: 32px; height: 38px;
+  width: 34px; height: 40px;
   border-radius: 4px;
-  background: rgba(56, 189, 248, 0.25);
-  border: 1px solid rgba(56, 189, 248, 0.5);
+  background: rgba(56, 189, 248, 0.35);
+  border: 1.5px solid rgba(56, 189, 248, 0.7);
 }
 
 .doc-tricolor-strip {
   width: 100%;
-  height: 6px;
+  height: 7px;
   border-radius: 3px;
-  background: linear-gradient(90deg, #f97316 0%, #ffffff 50%, #16a34a 100%);
+  background: linear-gradient(90deg, #ff671f 0%, #ffffff 50%, #046a38 100%);
   margin-bottom: 4px;
 }
 
 .doc-crest-gold {
-  width: 32px;
-  height: 32px;
+  width: 34px;
+  height: 34px;
   margin: 0 auto;
   border-radius: 50%;
   border: 2px solid var(--gold);
-  box-shadow: 0 0 10px rgba(245, 158, 11, 0.4);
+  box-shadow: 0 0 14px rgba(245, 158, 11, 0.5);
 }
 
 .doc-green-bar {
   width: 100%;
-  height: 5px;
+  height: 6px;
   border-radius: 3px;
   background: var(--green);
 }
@@ -426,14 +394,14 @@ body {
 .doc-seal-stamp {
   position: absolute;
   bottom: 0; right: 0;
-  width: 30px; height: 30px;
+  width: 32px; height: 32px;
   border-radius: 50%;
-  border: 1.5px dashed rgba(168, 85, 247, 0.7);
+  border: 2px dashed rgba(245, 158, 11, 0.8);
 }
 
 @keyframes doc-stream-float {
-  0% { transform: translateY(0) rotate(var(--r, 0deg)); }
-  100% { transform: translateY(-24px) rotate(calc(var(--r, 0deg) + 6deg)); }
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-24px); }
 }
 
 .civic-grid-mesh {
@@ -829,7 +797,7 @@ body {
 }
 
 /* ================================================================
-   4. HERO SECTION WITH AIR-WAVING FLAG BADGE
+   4. HERO SECTION WITH AIR-WAVING FLAG BADGE & LIVE CANVAS
    ================================================================ */
 .hero {
   min-height: 100vh;
@@ -869,60 +837,21 @@ body {
 .hero-flag-unit {
   display: inline-flex;
   align-items: flex-start;
-  height: 22px;
+  height: 28px;
 }
 
 .hero-flag-pole {
-  width: 2.5px;
-  height: 24px;
+  width: 3px;
+  height: 32px;
   background: linear-gradient(180deg, #fbbf24, #94a3b8);
-  border-radius: 1px;
-}
-
-.hero-flag-cloth {
-  width: 32px;
-  height: 20px;
-  border-radius: 1px 3px 3px 1px;
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  overflow: hidden;
-  transform-origin: left center;
-  animation: flag-air-flutter 2.8s ease-in-out infinite alternate;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
-}
-
-.hf-stripe {
-  flex: 1;
-  width: 100%;
-}
-
-.hf-saffron { background: #ff671f; }
-.hf-white {
-  background: #ffffff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  border-radius: 1.5px;
   position: relative;
 }
-.hf-green { background: #046a38; }
 
-.hf-chakra {
-  width: 6px;
-  height: 6px;
-}
-
-.hf-wave-shimmer {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(90deg, 
-    rgba(255,255,255,0) 0%, 
-    rgba(255,255,255,0.45) 30%, 
-    rgba(0,0,0,0.3) 60%, 
-    rgba(255,255,255,0.3) 100%);
-  background-size: 200% 100%;
-  animation: flag-shimmer 2.2s linear infinite;
-  pointer-events: none;
+.hero-flag-canvas {
+  width: 46px;
+  height: 28px;
+  border-radius: 0 2px 2px 0;
 }
 
 h1 {
@@ -2062,7 +1991,7 @@ h1 {
     scroll-behavior: auto !important;
   }
   
-  .aura-saffron, .aura-white, .aura-green, .stream-doc, .marquee-content, .flag-cloth-ripple, .hero-flag-cloth {
+  .aura-saffron, .aura-white, .aura-green, .stream-doc, .marquee-content {
     animation: none !important;
   }
   
