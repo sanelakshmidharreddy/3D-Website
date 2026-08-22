@@ -632,7 +632,7 @@
 
     // Unified Master Scene & Cinematic Camera
     const scene = new THREE.Scene();
-    scene.fog = new THREE.FogExp2(0x030712, 0.016);
+    scene.fog = new THREE.FogExp2(0x030712, 0.015);
 
     const camera = new THREE.PerspectiveCamera(40, window.innerWidth / window.innerHeight, 0.1, 140);
     camera.position.set(0, 0, 8);
