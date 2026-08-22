@@ -1,14 +1,14 @@
 /**
- * SRI MANIKANTA MEESEVA — CIVIC / GOVERNMENT ATMOSPHERE JAVASCRIPT
- * Scroll-Reactive Parallax Engine, Document Silhouettes & Ambient Motion
- * Clean, Lightweight, Zero WebGL Dependencies • 100% Mobile Safe
+ * SRI MANIKANTA MEESEVA — EXECUTIVE CIVIC JAVASCRIPT
+ * Hardware-Accelerated Scroll Parallax Engine (Monuments & Floating Documents)
+ * Single Audio Instance, Live Service Search & Interactive Accordions
  */
 
 (function () {
   "use strict";
 
   /* ================================================================
-     1. PERFORMANCE & DEVICE DETECTION
+     1. PERFORMANCE & REDUCED MOTION DETECTION
      ================================================================ */
   const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || window.innerWidth < 768;
@@ -62,14 +62,14 @@
     }
     tickCursor();
 
-    document.querySelectorAll("a, button, input, .service-card, .step-card, .community-card, .contact-card").forEach(el => {
+    document.querySelectorAll("a, button, input, .service-card, .step-card, .spotlight-card, .community-card, .contact-card").forEach(el => {
       el.addEventListener("mouseenter", () => cursor.classList.add("is-hover"));
       el.addEventListener("mouseleave", () => cursor.classList.remove("is-hover"));
     });
   }
 
   /* ================================================================
-     4. NAVIGATION & MOBILE MENU
+     4. NAVIGATION & MOBILE EXPANSION
      ================================================================ */
   const siteNav = document.getElementById("siteNav");
   const navToggle = document.getElementById("navToggle");
@@ -162,14 +162,14 @@
   })();
 
   /* ================================================================
-     6. SCROLL-REACTIVE PARALLAX & ATMOSPHERE ENGINE
-     Smooth hardware-accelerated parallax on monuments & document silhouettes
+     6. SCROLL-REACTIVE CIVIC PARALLAX & ATMOSPHERE ENGINE
+     Hardware-accelerated parallax on Monuments & Floating Documents
      ================================================================ */
   function initParallaxEngine() {
     if (prefersReducedMotion) return;
 
     const monumentLayer = document.getElementById("monumentLayer");
-    const docSilhouettes = document.querySelectorAll(".doc-silhouette");
+    const docStream = document.querySelectorAll(".stream-doc");
     let targetScroll = 0, currentScroll = 0;
     let targetMouseX = 0, targetMouseY = 0, mouseX = 0, mouseY = 0;
 
@@ -189,20 +189,20 @@
       mouseX += (targetMouseX - mouseX) * 0.05;
       mouseY += (targetMouseY - mouseY) * 0.05;
 
-      // Parallax on Monuments (slower background motion)
+      // Parallax on Monuments (slower deep background)
       if (monumentLayer) {
         const monY = currentScroll * 0.12;
-        monumentLayer.style.transform = `translate3d(${mouseX * 0.4}px, ${-monY + mouseY * 0.4}px, 0)`;
+        monumentLayer.style.transform = `translate3d(${mouseX * 0.3}px, ${-monY + mouseY * 0.3}px, 0)`;
       }
 
-      // Parallax on Individual Floating Document Silhouettes
-      docSilhouettes.forEach(doc => {
-        const speed = parseFloat(doc.dataset.speed) || 0.1;
+      // Parallax on Floating Document Silhouettes (varying speeds)
+      docStream.forEach(doc => {
+        const speed = parseFloat(doc.dataset.speed) || 0.12;
         const yOffset = currentScroll * speed;
-        const rot = doc.classList.contains("doc-pan") ? 14 :
-                    doc.classList.contains("doc-ration") ? -8 :
+        const rot = doc.classList.contains("doc-pan") ? 12 :
+                    doc.classList.contains("doc-aadhaar") ? -8 :
                     doc.classList.contains("doc-passbook") ? 10 :
-                    doc.classList.contains("doc-dl") ? -15 : -12;
+                    doc.classList.contains("doc-ration") ? -14 : -10;
         doc.style.transform = `translate3d(${mouseX * speed * 1.5}px, ${-yOffset + mouseY * speed * 1.5}px, 0) rotate(${rot}deg)`;
       });
 
@@ -219,14 +219,14 @@
     const D = window.MEESEVA_DATA;
     if (!D) return;
 
-    // Marquee
+    // Marquee Ticker
     const marqueeTrack = document.getElementById("marqueeTrack");
     if (marqueeTrack && D.marqueeItems) {
       const itemsHtml = D.marqueeItems.map(item => `<div class="marquee-item">${item}</div>`).join("");
       marqueeTrack.innerHTML = itemsHtml + itemsHtml;
     }
 
-    // Services
+    // Services Catalog
     const serviceGroups = document.getElementById("serviceGroups");
     if (serviceGroups && D.categories) {
       let html = "";
@@ -269,7 +269,7 @@
       `).join("");
     }
 
-    // FAQ Accordion
+    // Interactive FAQ Accordion
     const faqList = document.getElementById("faqList");
     if (faqList && D.faqs) {
       faqList.innerHTML = D.faqs.map(f => `
@@ -295,7 +295,7 @@
       });
     }
 
-    // Live Search & Category Filter
+    // Live Smart Search & Category Chips
     const searchInput = document.getElementById("serviceSearch");
     const searchClear = document.getElementById("searchClear");
     const searchEmpty = document.getElementById("searchEmpty");
@@ -352,7 +352,7 @@
   }
 
   /* ================================================================
-     8. INTERSECTION REVEALS & NUMBER COUNTERS
+     8. INTERSECTION REVEALS & METRIC COUNTERS
      ================================================================ */
   function initReveals() {
     const revealElements = document.querySelectorAll(".reveal, .reveal-up, .reveal-word");
